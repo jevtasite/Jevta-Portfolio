@@ -125,35 +125,12 @@ const Footer = () => {
         <div className="border-t border-comment-green/30 my-8" />
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4">
           {/* Copyright */}
-          <div className="text-comment-green font-fira text-sm">
+          <div className="text-comment-green font-fira text-sm text-center">
             <span className="text-lime-terminal shine-logo">Jevta</span> © Copyright 2025
             <span className="text-matrix-green ml-2">// All Rights Reserved</span>
           </div>
-
-          {/* Back to Top */}
-          <button
-            onClick={scrollToTop}
-            className="border-2 border-lime-terminal text-lime-terminal px-6 py-2 font-fira text-sm hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2 group cursor-pointer relative z-10"
-            aria-label="Back to top"
-            type="button"
-          >
-            <span>$ cd ~</span>
-            <svg
-              className="w-4 h-4 group-hover:-translate-y-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
-              />
-            </svg>
-          </button>
         </div>
 
         {/* Terminal Prompt */}

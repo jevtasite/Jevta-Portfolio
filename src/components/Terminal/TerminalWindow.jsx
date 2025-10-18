@@ -3,6 +3,7 @@ import useTerminalStore from '../../store/terminalStore';
 import TerminalChrome from './TerminalChrome';
 import MatrixRain from './MatrixRain';
 import CommandLine from './CommandLine';
+import BackToTop from '../BackToTop';
 
 const TerminalWindow = ({ children }) => {
   const contentRef = useRef(null);
@@ -30,23 +31,22 @@ const TerminalWindow = ({ children }) => {
       {/* Terminal Chrome */}
       <TerminalChrome />
 
-      {/* Main Content Area - stops before command line */}
+      {/* Main Content Area */}
       <div
         ref={contentRef}
         className="terminal-content overflow-y-auto"
         style={{
           position: 'fixed',
-          top: '40px', // below terminal chrome
+          top: '40px',
           left: 0,
           right: 0,
           bottom: '0', // extends all the way down
-          zIndex: 10,
-          marginBottom: '64px', // but with margin to prevent content overlap
-          pointerEvents: 'none' // no blocking
+          zIndex: 1,
+          paddingBottom: '64px' // padding to prevent content from going under command line
         }}
       >
         {/* Page Content */}
-        <div className="page-content" style={{ pointerEvents: 'auto' }}>
+        <div className="page-content">
           {children}
         </div>
       </div>
@@ -119,7 +119,7 @@ const TerminalWindow = ({ children }) => {
       {!showConsole && output.length > 0 && (
         <button
           onClick={() => setShowConsole(true)}
-          className="fixed right-4 bg-elevated-black border-2 border-lime-terminal text-lime-terminal px-4 py-2 font-fira text-sm hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
+          className="fixed left-4 bg-elevated-black border-2 border-lime-terminal text-lime-terminal px-4 py-2 font-fira text-sm hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
           style={{
             bottom: '72px',
             zIndex: 8888
@@ -133,6 +133,9 @@ const TerminalWindow = ({ children }) => {
 
       {/* Command Line (Fixed at Bottom) */}
       <CommandLine />
+
+      {/* Floating Back to Top Button */}
+      <BackToTop />
     </div>
   );
 };

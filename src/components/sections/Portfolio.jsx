@@ -131,7 +131,7 @@ const Portfolio = () => {
                     {project.name}
                   </h3>
                   <span className="text-comment-green font-fira text-xs">
-                    .exe
+                    .com
                   </span>
                 </div>
                 <div className="text-comment-green font-fira text-xs">

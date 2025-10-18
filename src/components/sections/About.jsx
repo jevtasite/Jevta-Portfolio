@@ -48,12 +48,12 @@ const About = () => {
 
         {/* Content Grid */}
         <div
-          className={`grid md:grid-cols-2 gap-8 ${
+          className={`grid md:grid-cols-2 gap-8 md:items-stretch ${
             isVisible ? "animate-fade-in" : "opacity-0"
           }`}
         >
           {/* Left Column - Profile Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col">
             <div className="border border-comment-green p-6 bg-elevated-black/50">
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
                 &gt; Profile Information
@@ -93,9 +93,9 @@ const About = () => {
             </div>
 
             {/* Profile Picture Placeholder */}
-            <div className="border border-comment-green p-6 bg-elevated-black/50">
-              <div className="bg-terminal-black border-2 border-matrix-green flex items-center justify-center py-6">
-                <pre className="text-matrix-green text-xs leading-tight">
+            <div className="border border-comment-green p-6 bg-elevated-black/50 flex-1 flex flex-col">
+              <div className="bg-terminal-black border-2 border-matrix-green flex items-center justify-center flex-1">
+                <pre className="text-matrix-green text-2xl leading-tight">
                   {`   ___
   /   \\
  |  o o|
@@ -104,7 +104,7 @@ const About = () => {
   \\___/`}
                 </pre>
               </div>
-              <p className="text-comment-green font-fira text-xs text-center mt-2">
+              <p className="text-comment-green font-fira text-xs text-center mt-4">
                 // ASCII profile picture
               </p>
             </div>
