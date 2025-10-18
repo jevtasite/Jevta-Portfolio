@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
-import useTerminalStore from '../../store/terminalStore';
-import { parseCommand } from '../../utils/commands';
+import { useState, useRef, useEffect } from "react";
+import useTerminalStore from "../../store/terminalStore";
+import { parseCommand } from "../../utils/commands";
 
 const CommandLine = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [showCommandLine, setShowCommandLine] = useState(false);
   const inputRef = useRef(null);
 
   const {
@@ -28,6 +29,17 @@ const CommandLine = () => {
     }
   }, []);
 
+  // Show command line with CRT flash after hero content finishes
+  useEffect(() => {
+    // Hero CRT reveal: 500ms delay + 800ms animation = 1300ms
+    // Add flash AFTER hero animation completes
+    const timer = setTimeout(() => {
+      setShowCommandLine(true);
+    }, 3800); // 500ms delay + 800ms hero animation + 500ms buffer
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Sync input with store
   useEffect(() => {
     setInput(currentCommand);
@@ -35,7 +47,7 @@ const CommandLine = () => {
 
   // Handle keyboard visibility on mobile
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.visualViewport) return;
+    if (typeof window === "undefined" || !window.visualViewport) return;
 
     const handleViewportResize = () => {
       const viewport = window.visualViewport;
@@ -46,33 +58,33 @@ const CommandLine = () => {
       setKeyboardOffset(offset);
     };
 
-    window.visualViewport.addEventListener('resize', handleViewportResize);
-    window.visualViewport.addEventListener('scroll', handleViewportResize);
+    window.visualViewport.addEventListener("resize", handleViewportResize);
+    window.visualViewport.addEventListener("scroll", handleViewportResize);
 
     return () => {
-      window.visualViewport.removeEventListener('resize', handleViewportResize);
-      window.visualViewport.removeEventListener('scroll', handleViewportResize);
+      window.visualViewport.removeEventListener("resize", handleViewportResize);
+      window.visualViewport.removeEventListener("scroll", handleViewportResize);
     };
   }, []);
 
   const handleKeyDown = (e) => {
     // Arrow Up - Previous command
-    if (e.key === 'ArrowUp') {
+    if (e.key === "ArrowUp") {
       e.preventDefault();
-      navigateHistory('up');
+      navigateHistory("up");
     }
     // Arrow Down - Next command
-    else if (e.key === 'ArrowDown') {
+    else if (e.key === "ArrowDown") {
       e.preventDefault();
-      navigateHistory('down');
+      navigateHistory("down");
     }
     // Tab - Autocomplete (placeholder for now)
-    else if (e.key === 'Tab') {
+    else if (e.key === "Tab") {
       e.preventDefault();
       // TODO: Implement autocomplete
     }
     // Enter - Execute command
-    else if (e.key === 'Enter') {
+    else if (e.key === "Enter") {
       e.preventDefault();
       handleCommand(input.trim());
     }
@@ -99,15 +111,15 @@ const CommandLine = () => {
     // Add command and result to output (only if result is not null)
     if (result !== null) {
       addOutput({
-        type: 'command',
+        type: "command",
         text: command,
         result: result,
       });
     }
 
     // Clear input
-    setInput('');
-    setCurrentCommand('');
+    setInput("");
+    setCurrentCommand("");
 
     // Blur input to close mobile keyboard
     if (inputRef.current) {
@@ -136,11 +148,13 @@ const CommandLine = () => {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 bg-elevated-black border-t-2 border-lime-terminal p-2 sm:p-4 transition-transform duration-200"
+      className={`fixed bottom-0 left-0 right-0 bg-elevated-black border-t-2 border-lime-terminal p-2 sm:p-4 transition-transform duration-200 ${
+        showCommandLine ? "crt-flash" : "opacity-0"
+      }`}
       style={{
         zIndex: 9999,
-        boxShadow: '0 -4px 20px rgba(57, 255, 20, 0.1)',
-        isolation: 'isolate',
+        boxShadow: "0 -4px 20px rgba(57, 255, 20, 0.1)",
+        isolation: "isolate",
         transform: `translateY(-${keyboardOffset}px)`,
       }}
     >

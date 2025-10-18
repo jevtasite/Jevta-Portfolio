@@ -207,6 +207,109 @@ body {
   animation: fade-in 0.5s ease-out forwards;
 }
 
+/* Simple Fade In (no movement) */
+@keyframes simple-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.simple-fade-in {
+  animation: simple-fade-in 0.6s ease-out forwards;
+}
+
+/* CRT Terminal Reveal - Flash/flicker then glow */
+@keyframes crt-reveal {
+  0% {
+    opacity: 0;
+    filter: brightness(0);
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  15% {
+    opacity: 0.7;
+    filter: brightness(0.5);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(1.8);
+  }
+  30% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+  }
+}
+
+.crt-reveal {
+  animation: crt-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* CRT Flash - Smooth glow for command line */
+@keyframes crt-flash {
+  0% {
+    opacity: 0;
+    filter: brightness(1);
+    text-shadow: 0 0 0px rgba(57, 255, 20, 0);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(1.3);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+    text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
+  }
+  75% {
+    opacity: 1;
+    filter: brightness(1.3);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.2);
+  }
+}
+
+.crt-flash {
+  animation: crt-flash 1s ease-in-out forwards;
+}
+
+/* Terminal Loading Spinner */
+@keyframes terminal-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.terminal-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(57, 255, 20, 0.2);
+  border-top-color: var(--matrix-green);
+  border-radius: 50%;
+  animation: terminal-spin 0.8s linear infinite;
+}
+
 /* Reduce Motion */
 @media (prefers-reduced-motion: reduce) {
   *,

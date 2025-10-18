@@ -7,13 +7,13 @@ const Hero = () => {
   const [showName, setShowName] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [systemInitialized, setSystemInitialized] = useState(false);
 
-  const messages = [
-    'Hello, World.',
-    'Welcome to my website!',
-    'Let\'s build something great!',
-    'Explore my work below.',
-  ];
+  const initMessages = [t('hero.greeting'), t('hero.systemReady')];
+  const loopMessages = [t('hero.buildGreat'), t('hero.exploreWork')];
+
+  const messages = systemInitialized ? loopMessages : initMessages;
 
   useEffect(() => {
     let timeout;
@@ -28,11 +28,29 @@ const Hero = () => {
     const pauseTime = isDeleting ? 1000 : 2500;
 
     if (!isDeleting && displayText === currentMessage) {
-      // Finished typing, show name after first message
-      if (messageIndex === 0 && !showName) {
-        setTimeout(() => setShowName(true), 500);
+      // Finished typing first message - hide loader and show content
+      if (messageIndex === 0 && !showName && !systemInitialized) {
+        setIsLoading(false); // Hide spinner
+        setTimeout(() => {
+          setShowName(true);
+          // Move to "System ready." message
+          setDisplayText('');
+          setMessageIndex(1);
+        }, 500);
+        return;
       }
-      // Pause before deleting
+
+      // Finished typing "System ready." - switch to loop messages
+      if (messageIndex === 1 && !systemInitialized) {
+        timeout = setTimeout(() => {
+          setSystemInitialized(true);
+          setMessageIndex(0);
+          setDisplayText('');
+        }, pauseTime);
+        return;
+      }
+
+      // Pause before deleting (for loop messages)
       timeout = setTimeout(() => setIsDeleting(true), pauseTime);
     } else if (isDeleting && displayText === '') {
       // Finished deleting, move to next message
@@ -80,30 +98,25 @@ const Hero = () => {
             <span className="cursor-blink">▋</span>
           </h2>
 
-          {/* Name Reveal */}
-          {showName && (
-            <div className="space-y-2 animate-fade-in">
-              <h1 className="text-matrix-green font-fira text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-                {t('hero.name')}
-              </h1>
-              <p className="text-comment-green font-fira text-sm sm:text-base md:text-lg lg:text-xl">
-                &lt; {t('hero.role')} /&gt;
-              </p>
-            </div>
-          )}
+          {/* Name Reveal - Always rendered to reserve space */}
+          <div className={`space-y-2 ${!isLoading && showName ? 'crt-reveal' : 'opacity-0'}`}>
+            <h1 className="text-matrix-green font-fira text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+              {t('hero.name')}
+            </h1>
+            <p className="text-comment-green font-fira text-sm sm:text-base md:text-lg lg:text-xl">
+              &lt; {t('hero.role')} /&gt;
+            </p>
+          </div>
         </div>
 
-        {/* CTA */}
-        {showName && (
-          <div className="mt-4 sm:mt-6 md:mt-8 text-comment-green font-fira text-xs sm:text-sm animate-fade-in space-y-1">
-            <p>{t('hero.explore')} <span className="text-lime-terminal">'help'</span> {t('hero.toExplore')}</p>
-            <p>{t('hero.or')} <span className="text-lime-terminal">'ls'</span> {t('hero.toSeeAll')}</p>
-          </div>
-        )}
+        {/* CTA - Always rendered to reserve space */}
+        <div className={`mt-4 sm:mt-6 md:mt-8 text-comment-green font-fira text-xs sm:text-sm space-y-1 ${!isLoading && showName ? 'crt-reveal' : 'opacity-0'}`}>
+          <p>{t('hero.explore')} <span className="text-lime-terminal">'help'</span> {t('hero.toExplore')}</p>
+          <p>{t('hero.or')} <span className="text-lime-terminal">'ls'</span> {t('hero.toSeeAll')}</p>
+        </div>
 
-        {/* Social Links */}
-        {showName && (
-          <div className="flex justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
+        {/* Social Links - Always rendered to reserve space */}
+        <div className={`flex justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-6 md:mt-8 ${!isLoading && showName ? 'crt-reveal' : 'opacity-0'}`}>
             <a
               href="https://www.facebook.com/profile.php?id=61552420501147"
               target="_blank"
@@ -138,7 +151,6 @@ const Hero = () => {
               </svg>
             </a>
           </div>
-        )}
       </div>
     </section>
   );

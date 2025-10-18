@@ -42,9 +42,9 @@ const Skills = () => {
           description: "Flexbox, Grid, animations, custom properties",
         },
         {
-          name: "Bootstrap5",
+          name: "Bootstrap 5",
           description:
-            "Async/await, promises, destructuring, functional programming",
+            "Responsive grid system, components, utilities, customization",
         },
         {
           name: "JavaScript-ES6+",
