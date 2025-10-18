@@ -179,7 +179,6 @@ const resources = {
       "cmd.flappy": "Play Flappy Bird game",
       "cmd.bird": "Play Flappy Bird game",
       "cmd.history": "Show command history",
-      "cmd.exit": "Fun easter egg",
     },
   },
   sr: {
@@ -358,7 +357,6 @@ const resources = {
       "cmd.flappy": "Igraj Flappy Bird igru",
       "cmd.bird": "Igraj Flappy Bird igru",
       "cmd.history": "Prikaži istoriju komandi",
-      "cmd.exit": "Zabavno iznenađenje",
     },
   },
 };

@@ -13,7 +13,6 @@ export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection,
   clear             - Clear terminal output
   whoami            - Show info about me
   flappy / bird     - Play Flappy Bird game
-  exit              - Fun easter egg
 
 💡 Quick tip: You can also type section names directly!
    Examples: "about.txt", "skills", "contact"
@@ -128,17 +127,6 @@ Website: jevta.site
       `,
     }),
 
-    exit: () => ({
-      type: 'success',
-      content: `
-  Goodbye!
-
-  Actually... you can't leave. This is a website, not a terminal. 😄
-
-  Try "help" to see what you can do instead!
-      `,
-    }),
-
     // Easter eggs
     sudo: () => ({
       type: 'error',
@@ -209,7 +197,7 @@ Website: jevta.site
 
 // Autocomplete suggestions
 export const getAutocompleteSuggestions = (input) => {
-  const commands = ['help', 'ls', 'cd', 'cat', 'clear', 'whoami', 'flappy', 'bird', 'exit'];
+  const commands = ['help', 'ls', 'cd', 'cat', 'clear', 'whoami', 'flappy', 'bird'];
   const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'stats', 'contact'];
 
   if (input.startsWith('cd ')) {
