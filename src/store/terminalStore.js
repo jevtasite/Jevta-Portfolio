@@ -18,6 +18,9 @@ const useTerminalStore = create((set) => ({
   gameActive: false,
   currentGame: null,
 
+  // Console visibility
+  showConsole: false,
+
   // Actions
   addCommand: (command) =>
     set((state) => ({
@@ -60,6 +63,9 @@ const useTerminalStore = create((set) => ({
 
   setCurrentGame: (game) =>
     set({ currentGame: game }),
+
+  setShowConsole: (show) =>
+    set({ showConsole: show }),
 }));
 
 export default useTerminalStore;

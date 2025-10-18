@@ -47,6 +47,18 @@ const FlappyBird = ({ onClose }) => {
   const birdRef = useRef(createBird(canvasSize.height));
   const pipesRef = useRef([]);
 
+  // Prevent the Enter key that opened the game from immediately starting it
+  const canAcceptInput = useRef(false);
+
+  // Enable input after component mounts (prevents Enter key from terminal from starting game)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      canAcceptInput.current = true;
+    }, 100); // Small delay to ignore the keypress that opened the game
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Start game
   const startGame = useCallback(() => {
     setGameState('playing');
@@ -62,18 +74,22 @@ const FlappyBird = ({ onClose }) => {
   const handleFlap = useCallback(() => {
     if (gameState === 'playing') {
       birdRef.current = applyFlapForce(birdRef.current);
-    } else if (gameState === 'ready' || gameState === 'gameOver') {
-      // startGame() already applies initial flap, so just start
-      startGame();
     }
-  }, [gameState, startGame]);
+  }, [gameState]);
 
   // Keyboard controls
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        handleFlap();
+        // Ignore input until component has fully mounted (prevents Enter from terminal)
+        if (!canAcceptInput.current) return;
+
+        if (gameState === 'playing') {
+          handleFlap();
+        } else if (gameState === 'ready' || gameState === 'gameOver') {
+          startGame();
+        }
       } else if (e.key === 'Escape') {
         onClose();
       }
@@ -81,7 +97,7 @@ const FlappyBird = ({ onClose }) => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [handleFlap, onClose]);
+  }, [handleFlap, onClose, gameState, startGame]);
 
   // Canvas click/tap handler
   const handleCanvasClick = useCallback(() => {
@@ -90,31 +106,35 @@ const FlappyBird = ({ onClose }) => {
 
   // Touch handler for instant mobile response (no 300ms delay)
   const handleTouchStart = useCallback((e) => {
-    e.preventDefault(); // Prevent default touch behaviors (scroll, zoom)
-    handleFlap();
+    if (gameState === 'playing') {
+      e.preventDefault(); // Prevent default touch behaviors (scroll, zoom)
+      handleFlap();
 
-    // Optional: Haptic feedback for mobile devices
-    if ('vibrate' in navigator) {
-      navigator.vibrate(50); // Short 50ms vibration
+      // Optional: Haptic feedback for mobile devices
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50); // Short 50ms vibration
+      }
     }
-  }, [handleFlap]);
+  }, [handleFlap, gameState]);
 
   // Pointer event handler for unified mouse/touch/pen support
   const handlePointerDown = useCallback((e) => {
-    e.preventDefault(); // Prevent default behaviors
+    if (gameState === 'playing') {
+      e.preventDefault(); // Prevent default behaviors
 
-    // Only handle primary pointer (avoid multi-touch issues)
-    if (e.isPrimary) {
-      handleFlap();
+      // Only handle primary pointer (avoid multi-touch issues)
+      if (e.isPrimary) {
+        handleFlap();
 
-      // Haptic feedback for touch/pen
-      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
-        if ('vibrate' in navigator) {
-          navigator.vibrate(50);
+        // Haptic feedback for touch/pen
+        if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+          if ('vibrate' in navigator) {
+            navigator.vibrate(50);
+          }
         }
       }
     }
-  }, [handleFlap]);
+  }, [handleFlap, gameState]);
 
   // Game loop
   useEffect(() => {
@@ -278,15 +298,18 @@ const FlappyBird = ({ onClose }) => {
             ref={canvasRef}
             width={canvasSize.width}
             height={canvasSize.height}
-            onPointerDown={handlePointerDown}
-            onTouchStart={handleTouchStart}
-            className="border border-comment-green/30 cursor-pointer touch-none"
+            {...(gameState === 'playing' && {
+              onPointerDown: handlePointerDown,
+              onTouchStart: handleTouchStart,
+            })}
+            className="border border-comment-green/30 touch-none"
             style={{
               imageRendering: 'pixelated',
               touchAction: 'none', // Prevent all default touch behaviors
               WebkitTouchCallout: 'none', // Prevent iOS callout
               WebkitUserSelect: 'none', // Prevent text selection
-              userSelect: 'none'
+              userSelect: 'none',
+              cursor: gameState === 'playing' ? 'pointer' : 'default'
             }}
           />
 
@@ -298,22 +321,20 @@ const FlappyBird = ({ onClose }) => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="absolute inset-0 bg-terminal-black/90 backdrop-blur-sm flex items-center justify-center m-4"
-                onClick={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
-                onPointerDown={(e) => e.stopPropagation()}
+                className="absolute inset-0 bg-terminal-black/90 backdrop-blur-sm flex items-center justify-center m-4 cursor-pointer"
+                onClick={startGame}
               >
                 <div className="text-center font-fira p-6">
-                  <h2 className="text-lime-terminal text-3xl sm:text-4xl mb-4 font-bold">
+                  <h2 className="text-lime-terminal text-4xl sm:text-5xl mb-8 font-bold">
                     FLAPPY BIRD
                   </h2>
-                  <div className="text-comment-green text-sm space-y-2 mb-6">
-                    <p className="text-matrix-green text-lg mb-4">
-                      Navigate through the pipes!
+                  <div className="space-y-6">
+                    <p className="text-matrix-green text-2xl sm:text-3xl font-bold animate-pulse">
+                      TAP TO START
                     </p>
-                    <p>Press <span className="text-lime-terminal">SPACE</span> or <span className="text-lime-terminal">CLICK</span> to flap</p>
-                    <p className="hidden sm:block">Press <span className="text-lime-terminal">ESC</span> to exit</p>
-                    <p className="mt-4 text-lime-terminal">Press SPACE or CLICK to start</p>
+                    <div className="text-comment-green text-xs sm:text-sm space-y-1">
+                      <p className="hidden sm:block">Press <span className="text-lime-terminal">ESC</span> to exit</p>
+                    </div>
                   </div>
                 </div>
               </motion.div>

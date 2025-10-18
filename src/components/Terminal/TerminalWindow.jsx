@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import useTerminalStore from '../../store/terminalStore';
 import TerminalChrome from './TerminalChrome';
 import MatrixRain from './MatrixRain';
@@ -9,8 +9,7 @@ import FlappyBird from '../Games/FlappyBird';
 const TerminalWindow = ({ children }) => {
   const contentRef = useRef(null);
   const consoleRef = useRef(null);
-  const { output, gameActive, setGameActive } = useTerminalStore();
-  const [showConsole, setShowConsole] = useState(false);
+  const { output, gameActive, setGameActive, showConsole, setShowConsole } = useTerminalStore();
 
   // Auto-scroll console to bottom when new output is added
   useEffect(() => {
@@ -19,7 +18,7 @@ const TerminalWindow = ({ children }) => {
       // Auto-show console when commands are executed
       setShowConsole(true);
     }
-  }, [output]);
+  }, [output, setShowConsole]);
 
   return (
     <div className="terminal-window min-h-screen relative">
@@ -64,11 +63,11 @@ const TerminalWindow = ({ children }) => {
           {/* Console Header */}
           <div className="flex items-center justify-between bg-elevated-black border-b border-lime-terminal px-4 py-2">
             <div className="flex items-center space-x-2">
-              <span className="text-lime-terminal font-fira text-sm">$ Terminal Output</span>
+              <span className="text-lime-terminal font-fira text-base sm:text-lg">$ Terminal Output</span>
             </div>
             <button
               onClick={() => setShowConsole(false)}
-              className="text-comment-green hover:text-error-red transition-colors font-fira text-sm"
+              className="text-comment-green hover:text-error-red transition-colors font-fira text-base sm:text-lg"
               aria-label="Close terminal output"
             >
               [X]
@@ -87,17 +86,17 @@ const TerminalWindow = ({ children }) => {
                 {item.type === 'command' && (
                   <>
                     <div className="flex items-start space-x-2">
-                      <span className="text-matrix-green font-fira text-sm">
+                      <span className="text-matrix-green font-fira text-base sm:text-lg">
                         user@jevta.site:~$
                       </span>
-                      <span className="text-matrix-green font-fira text-sm">
+                      <span className="text-matrix-green font-fira text-base sm:text-lg">
                         {item.text}
                       </span>
                     </div>
                     {/* Result */}
                     {item.result && (
                       <div
-                        className={`mt-1 font-fira text-sm whitespace-pre-wrap ${
+                        className={`mt-1 font-fira text-base sm:text-lg whitespace-pre-wrap ${
                           item.result.type === 'error'
                             ? 'text-error-red'
                             : item.result.type === 'info'
@@ -120,15 +119,14 @@ const TerminalWindow = ({ children }) => {
       {!showConsole && output.length > 0 && (
         <button
           onClick={() => setShowConsole(true)}
-          className="fixed left-4 bg-elevated-black border-2 border-lime-terminal text-lime-terminal px-4 py-2 font-fira text-sm hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
+          className="fixed left-4 bg-elevated-black border-2 border-lime-terminal text-lime-terminal px-4 py-2 font-fira text-sm sm:text-base hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
           style={{
             bottom: '72px',
             zIndex: 8888
           }}
-          aria-label="Show terminal output"
+          aria-label="Show terminal"
         >
-          <span>$ Show Output</span>
-          <span className="text-xs">({output.length})</span>
+          <span>$ Terminal</span>
         </button>
       )}
 

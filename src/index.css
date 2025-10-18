@@ -120,6 +120,20 @@ body {
   text-shadow: 0 0 5px var(--matrix-green);
 }
 
+/* ASCII Art Rendering - Ensure perfect monospace alignment */
+.ascii-art {
+  font-variant-ligatures: none; /* Disable ligatures that could shift characters */
+  letter-spacing: 0 !important; /* Override any letter spacing */
+  word-spacing: 0 !important; /* No word spacing adjustments */
+  tab-size: 8; /* Consistent tab rendering */
+  -moz-tab-size: 8;
+  font-feature-settings: normal; /* Disable OpenType features */
+  font-kerning: none; /* Disable kerning */
+  text-rendering: optimizeSpeed; /* Prioritize speed over aesthetics */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Scan Lines Effect (Optional) */
 @keyframes scan-lines {
   0% {

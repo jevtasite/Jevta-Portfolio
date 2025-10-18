@@ -55,26 +55,22 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="hero-section min-h-screen flex items-center justify-center relative z-10"
+      className="hero-section min-h-screen flex items-center justify-center relative z-10 py-12 sm:py-0"
     >
-      <div className="text-center space-y-8 px-4">
+      <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 px-4 max-w-4xl mx-auto">
         {/* ASCII Art Logo */}
         <div className="w-full flex justify-center overflow-hidden">
-          <pre className="text-matrix-green font-fira text-[0.45rem] sm:text-[0.6rem] md:text-sm lg:text-base leading-tight crt-effect whitespace-pre">
-            {`
-     ██╗███████╗██╗   ██╗████████╗ █████╗
+          <pre className="ascii-art text-matrix-green font-fira text-[0.45rem] sm:text-[0.6rem] md:text-sm lg:text-base leading-tight crt-effect whitespace-pre">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
      ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗
      ██║█████╗  ██║   ██║   ██║   ███████║
 ██   ██║██╔══╝  ╚██╗ ██╔╝   ██║   ██╔══██║
 ╚█████╔╝███████╗ ╚████╔╝    ██║   ██║  ██║
- ╚════╝ ╚══════╝  ╚═══╝     ╚═╝   ╚═╝  ╚═╝
-          `}
-          </pre>
+ ╚════╝ ╚══════╝  ╚═══╝     ╚═╝   ╚═╝  ╚═╝`}</pre>
         </div>
 
         {/* Typing Text */}
-        <div className="space-y-4">
-          <h2 className="text-lime-terminal font-fira text-2xl md:text-3xl">
+        <div className="space-y-3 sm:space-y-4">
+          <h2 className="text-lime-terminal font-fira text-base sm:text-xl md:text-2xl lg:text-3xl">
             {displayText}
             <span className="cursor-blink">▋</span>
           </h2>
@@ -82,10 +78,10 @@ const Hero = () => {
           {/* Name Reveal */}
           {showName && (
             <div className="space-y-2 animate-fade-in">
-              <h1 className="text-matrix-green font-fira text-3xl md:text-5xl font-bold">
+              <h1 className="text-matrix-green font-fira text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                 {t('hero.name')}
               </h1>
-              <p className="text-comment-green font-fira text-lg md:text-xl">
+              <p className="text-comment-green font-fira text-sm sm:text-base md:text-lg lg:text-xl">
                 &lt; {t('hero.role')} /&gt;
               </p>
             </div>
@@ -94,7 +90,7 @@ const Hero = () => {
 
         {/* CTA */}
         {showName && (
-          <div className="mt-8 text-comment-green font-fira text-sm animate-fade-in">
+          <div className="mt-4 sm:mt-6 md:mt-8 text-comment-green font-fira text-xs sm:text-sm animate-fade-in space-y-1">
             <p>{t('hero.explore')} <span className="text-lime-terminal">'help'</span> {t('hero.toExplore')}</p>
             <p>{t('hero.or')} <span className="text-lime-terminal">'ls'</span> {t('hero.toSeeAll')}</p>
           </div>
@@ -102,7 +98,7 @@ const Hero = () => {
 
         {/* Social Links */}
         {showName && (
-          <div className="flex justify-center space-x-6 mt-8 animate-fade-in">
+          <div className="flex justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-6 md:mt-8 animate-fade-in">
             <a
               href="https://www.facebook.com/profile.php?id=61552420501147"
               target="_blank"
