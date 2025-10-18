@@ -4,11 +4,12 @@ import TerminalChrome from './TerminalChrome';
 import MatrixRain from './MatrixRain';
 import CommandLine from './CommandLine';
 import BackToTop from '../BackToTop';
+import FlappyBird from '../Games/FlappyBird';
 
 const TerminalWindow = ({ children }) => {
   const contentRef = useRef(null);
   const consoleRef = useRef(null);
-  const { output } = useTerminalStore();
+  const { output, gameActive, setGameActive } = useTerminalStore();
   const [showConsole, setShowConsole] = useState(false);
 
   // Auto-scroll console to bottom when new output is added
@@ -136,6 +137,15 @@ const TerminalWindow = ({ children }) => {
 
       {/* Floating Back to Top Button */}
       <BackToTop />
+
+      {/* Game Overlay */}
+      {gameActive && (
+        <FlappyBird
+          onClose={() => {
+            setGameActive(false);
+          }}
+        />
+      )}
     </div>
   );
 };

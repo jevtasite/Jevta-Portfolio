@@ -14,6 +14,10 @@ const useTerminalStore = create((set) => ({
   // Current section
   currentSection: 'home',
 
+  // Game state
+  gameActive: false,
+  currentGame: null,
+
   // Actions
   addCommand: (command) =>
     set((state) => ({
@@ -50,6 +54,12 @@ const useTerminalStore = create((set) => ({
 
   setCurrentSection: (section) =>
     set({ currentSection: section }),
+
+  setGameActive: (active) =>
+    set({ gameActive: active }),
+
+  setCurrentGame: (game) =>
+    set({ currentGame: game }),
 }));
 
 export default useTerminalStore;

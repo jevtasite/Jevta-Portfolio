@@ -1,5 +1,5 @@
 // Command parser and executor
-export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection }) => {
+export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection, setGameActive, setCurrentGame }) => {
   const [command, ...args] = input.toLowerCase().split(' ');
 
   const commands = {
@@ -12,6 +12,7 @@ export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection 
   cat [file]        - Display section content
   clear             - Clear terminal output
   whoami            - Show info about me
+  flappy / bird     - Play Flappy Bird game
   exit              - Fun easter egg
 
 💡 Quick tip: You can also type section names directly!
@@ -148,6 +149,24 @@ Website: jevta.site
       type: 'error',
       content: 'rm: Permission denied. I won\'t let you delete my portfolio! 🛡️',
     }),
+
+    flappy: () => {
+      setGameActive(true);
+      setCurrentGame('flappy');
+      return {
+        type: 'game',
+        content: 'Launching Flappy Bird...',
+      };
+    },
+
+    bird: () => {
+      setGameActive(true);
+      setCurrentGame('flappy');
+      return {
+        type: 'game',
+        content: 'Launching Flappy Bird...',
+      };
+    },
   };
 
   // Execute command if it exists
@@ -190,7 +209,7 @@ Website: jevta.site
 
 // Autocomplete suggestions
 export const getAutocompleteSuggestions = (input) => {
-  const commands = ['help', 'ls', 'cd', 'cat', 'clear', 'whoami', 'exit'];
+  const commands = ['help', 'ls', 'cd', 'cat', 'clear', 'whoami', 'flappy', 'bird', 'exit'];
   const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'stats', 'contact'];
 
   if (input.startsWith('cd ')) {

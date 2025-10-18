@@ -14,6 +14,8 @@ const CommandLine = () => {
     addOutput,
     clearOutput,
     setCurrentSection,
+    setGameActive,
+    setCurrentGame,
   } = useTerminalStore();
 
   // Focus input on mount
@@ -62,6 +64,8 @@ const CommandLine = () => {
       addOutput,
       clearOutput,
       setCurrentSection,
+      setGameActive,
+      setCurrentGame,
     });
 
     // Add command and result to output (only if result is not null)
