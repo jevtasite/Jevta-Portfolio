@@ -122,16 +122,46 @@ body {
 
 /* ASCII Art Rendering - Ensure perfect monospace alignment */
 .ascii-art {
-  font-variant-ligatures: none; /* Disable ligatures that could shift characters */
-  letter-spacing: 0 !important; /* Override any letter spacing */
-  word-spacing: 0 !important; /* No word spacing adjustments */
-  tab-size: 8; /* Consistent tab rendering */
+  font-variant-ligatures: none;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+  tab-size: 8;
   -moz-tab-size: 8;
-  font-feature-settings: normal; /* Disable OpenType features */
-  font-kerning: none; /* Disable kerning */
-  text-rendering: optimizeSpeed; /* Prioritize speed over aesthetics */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: normal;
+  font-kerning: none;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+
+  /* Force monospace width consistency */
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.15;
+
+  /* Prevent any text transformations */
+  text-transform: none;
+  white-space: pre;
+  word-break: keep-all;
+  overflow-wrap: normal;
+
+  /* Mobile: Use larger base size then scale */
+  @media (max-width: 640px) {
+    font-size: 11px;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Force hardware acceleration for better rendering */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  @media (min-width: 769px) {
+    font-size: 16px;
+  }
 }
 
 /* Scan Lines Effect (Optional) */

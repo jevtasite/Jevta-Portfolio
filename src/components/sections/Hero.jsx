@@ -55,12 +55,17 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="hero-section min-h-screen flex items-center justify-center relative z-10 py-12 sm:py-0"
+      className="hero-section flex items-center justify-center relative z-10"
+      style={{
+        minHeight: 'calc(100dvh - 104px)', // Use dvh (dynamic viewport height) for mobile browsers
+        marginTop: '40px',
+        marginBottom: '64px'
+      }}
     >
-      <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 px-4 max-w-4xl mx-auto">
+      <div className="text-center space-y-3 sm:space-y-6 md:space-y-8 px-4 max-w-4xl mx-auto">
         {/* ASCII Art Logo */}
-        <div className="w-full flex justify-center overflow-hidden">
-          <pre className="ascii-art text-matrix-green font-fira text-[0.45rem] sm:text-[0.6rem] md:text-sm lg:text-base leading-tight crt-effect whitespace-pre">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
+        <div className="w-full flex justify-center">
+          <pre className="ascii-art text-matrix-green font-fira crt-effect whitespace-pre">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
      ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗
      ██║█████╗  ██║   ██║   ██║   ███████║
 ██   ██║██╔══╝  ╚██╗ ██╔╝   ██║   ██╔══██║

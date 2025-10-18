@@ -38,7 +38,7 @@ const resources = {
       "about.email": "Email",
       "about.aboutMe": "About Me",
       "about.bio1":
-        "Hello! I'm Luka Stoiljković, I'm a passionate front-end developer who loves creating beautiful and functional web experiences.",
+        "Hello! I'm Luka Stoiljković, a passionate front-end developer who loves creating beautiful and functional web experiences.",
       "about.bio2":
         "I specialize in modern web technologies and have a keen eye for design. My goal is to build websites that not only look great but also provide excellent user experiences.",
       "about.bio3":
