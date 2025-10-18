@@ -66,7 +66,7 @@ const Portfolio = () => {
   return (
     <section
       id="projects"
-      className="portfolio-section min-h-screen py-20 px-4 relative z-10"
+      className="portfolio-section py-20 px-4 relative z-10"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}

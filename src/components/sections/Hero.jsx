@@ -3,22 +3,52 @@ import { useEffect, useState } from 'react';
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
   const [showName, setShowName] = useState(false);
-  const fullText = 'Hello, World.';
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const messages = [
+    'Hello, World.',
+    'Welcome to my website!',
+    'Let\'s build something great!',
+    'Explore my work below.',
+  ];
 
   useEffect(() => {
-    let index = 0;
-    const typingInterval = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(typingInterval);
+    let timeout;
+    const currentMessage = messages[messageIndex];
+
+    // Variable typing speed - randomized for natural feel
+    const getTypingSpeed = () => {
+      if (isDeleting) return Math.random() * 50 + 30; // 30-80ms
+      return Math.random() * 100 + 80; // 80-180ms
+    };
+
+    const pauseTime = isDeleting ? 1000 : 2500;
+
+    if (!isDeleting && displayText === currentMessage) {
+      // Finished typing, show name after first message
+      if (messageIndex === 0 && !showName) {
         setTimeout(() => setShowName(true), 500);
       }
-    }, 60);
+      // Pause before deleting
+      timeout = setTimeout(() => setIsDeleting(true), pauseTime);
+    } else if (isDeleting && displayText === '') {
+      // Finished deleting, move to next message
+      setIsDeleting(false);
+      setMessageIndex((prev) => (prev + 1) % messages.length);
+    } else {
+      // Type or delete character with variable speed
+      timeout = setTimeout(() => {
+        if (isDeleting) {
+          setDisplayText(currentMessage.slice(0, displayText.length - 1));
+        } else {
+          setDisplayText(currentMessage.slice(0, displayText.length + 1));
+        }
+      }, getTypingSpeed());
+    }
 
-    return () => clearInterval(typingInterval);
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, messageIndex, showName]);
 
   return (
     <section
@@ -27,8 +57,9 @@ const Hero = () => {
     >
       <div className="text-center space-y-8 px-4">
         {/* ASCII Art Logo */}
-        <pre className="text-matrix-green font-fira text-xs md:text-sm lg:text-base leading-tight crt-effect">
-          {`
+        <div className="w-full flex justify-center overflow-hidden">
+          <pre className="text-matrix-green font-fira text-[0.45rem] sm:text-[0.6rem] md:text-sm lg:text-base leading-tight crt-effect whitespace-pre">
+            {`
      ██╗███████╗██╗   ██╗████████╗ █████╗
      ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗
      ██║█████╗  ██║   ██║   ██║   ███████║
@@ -36,7 +67,8 @@ const Hero = () => {
 ╚█████╔╝███████╗ ╚████╔╝    ██║   ██║  ██║
  ╚════╝ ╚══════╝  ╚═══╝     ╚═╝   ╚═╝  ╚═╝
           `}
-        </pre>
+          </pre>
+        </div>
 
         {/* Typing Text */}
         <div className="space-y-4">

@@ -64,12 +64,14 @@ const CommandLine = () => {
       setCurrentSection,
     });
 
-    // Add command and result to output
-    addOutput({
-      type: 'command',
-      text: command,
-      result: result,
-    });
+    // Add command and result to output (only if result is not null)
+    if (result !== null) {
+      addOutput({
+        type: 'command',
+        text: command,
+        result: result,
+      });
+    }
 
     // Clear input
     setInput('');
@@ -84,17 +86,18 @@ const CommandLine = () => {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 bg-elevated-black border-t-2 border-lime-terminal p-4"
+      className="fixed bottom-0 left-0 right-0 bg-elevated-black border-t-2 border-lime-terminal p-2 sm:p-4"
       style={{
         zIndex: 9999,
         boxShadow: '0 -4px 20px rgba(57, 255, 20, 0.1)',
         isolation: 'isolate'
       }}
     >
-      <div className="max-w-terminal mx-auto flex items-center space-x-2">
+      <div className="max-w-terminal mx-auto flex items-center space-x-1 sm:space-x-2">
         {/* Prompt */}
-        <span className="text-matrix-green font-fira text-sm whitespace-nowrap">
-          user@jevta.site:~$
+        <span className="text-matrix-green font-fira text-xs sm:text-sm whitespace-nowrap">
+          <span className="hidden sm:inline">user@jevta.site:~$</span>
+          <span className="sm:hidden">$</span>
         </span>
 
         {/* Input */}
@@ -105,18 +108,12 @@ const CommandLine = () => {
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            className="w-full bg-transparent border-none outline-none text-matrix-green font-fira text-sm"
-            placeholder="Type 'help' for available commands..."
+            className="w-full bg-transparent border-none outline-none text-matrix-green font-fira text-xs sm:text-sm"
+            placeholder="Type 'help'..."
             spellCheck="false"
             autoComplete="off"
             aria-label="Terminal command input"
           />
-          <span
-            className="absolute right-0 top-0 text-matrix-green cursor-blink"
-            aria-hidden="true"
-          >
-            ▋
-          </span>
         </div>
       </div>
     </div>

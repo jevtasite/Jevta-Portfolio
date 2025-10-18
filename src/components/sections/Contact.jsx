@@ -64,7 +64,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="contact-section min-h-screen py-20 px-4 relative z-10 bg-elevated-black/20"
+      className="contact-section py-20 px-4 relative z-10 bg-elevated-black/20"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}

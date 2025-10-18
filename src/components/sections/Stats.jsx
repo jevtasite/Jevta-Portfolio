@@ -126,7 +126,7 @@ const Stats = () => {
   return (
     <section
       id="stats"
-      className="stats-section min-h-screen py-20 px-4 relative z-10"
+      className="stats-section py-20 px-4 relative z-10"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}

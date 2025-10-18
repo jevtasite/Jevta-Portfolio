@@ -55,7 +55,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="experience-section min-h-screen py-20 px-4 relative z-10 bg-elevated-black/20"
+      className="experience-section py-20 px-4 relative z-10 bg-elevated-black/20"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}

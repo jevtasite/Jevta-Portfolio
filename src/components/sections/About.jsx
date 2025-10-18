@@ -30,7 +30,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="about-section min-h-screen py-20 px-4 relative z-10"
+      className="about-section py-20 px-4 relative z-10"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}

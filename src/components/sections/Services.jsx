@@ -87,7 +87,7 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="services-section min-h-screen py-20 px-4 relative z-10 bg-elevated-black/20"
+      className="services-section py-20 px-4 relative z-10 bg-elevated-black/20"
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}
@@ -153,11 +153,11 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 border border-lime-terminal bg-elevated-black/50 p-8 text-center">
-          <h3 className="text-lime-terminal font-fira text-2xl font-bold mb-4">
+        <div className="mt-12 border border-lime-terminal bg-elevated-black/50 py-16 px-8 flex flex-col items-center justify-center">
+          <h3 className="text-lime-terminal font-fira text-2xl font-bold mb-6 text-center">
             Let's Work Together
           </h3>
-          <p className="text-comment-green font-fira text-sm mb-6 max-w-2xl mx-auto">
+          <p className="text-comment-green font-fira text-base mb-8 max-w-3xl text-center leading-relaxed">
             Have a project in mind? I'm available for freelance work and collaborations.
             Let's create something amazing together!
           </p>

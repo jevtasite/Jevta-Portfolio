@@ -49,7 +49,7 @@ export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection 
         setCurrentSection(normalizedSection);
 
         // Scroll to section - need to scroll the terminal-content container
-        const element = document.getElementById(normalizedSection === 'home' ? 'hero' : normalizedSection);
+        const element = document.getElementById(normalizedSection);
         const terminalContent = document.querySelector('.terminal-content');
 
         if (element && terminalContent) {
@@ -113,10 +113,7 @@ export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection 
 
     clear: () => {
       clearOutput();
-      return {
-        type: 'success',
-        content: 'Terminal cleared',
-      };
+      return null; // Don't add any output after clearing
     },
 
     whoami: () => ({
@@ -166,7 +163,7 @@ Website: jevta.site
 
   if (validSections.includes(normalizedInput)) {
     // Treat it as if they typed "cd [section]"
-    const element = document.getElementById(normalizedInput === 'home' ? 'hero' : normalizedInput);
+    const element = document.getElementById(normalizedInput);
     const terminalContent = document.querySelector('.terminal-content');
 
     if (element && terminalContent) {

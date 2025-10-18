@@ -40,6 +40,11 @@ const Skills = () => {
           description: "Flexbox, Grid, animations, custom properties",
         },
         {
+          name: "Bootstrap5",
+          description:
+            "Async/await, promises, destructuring, functional programming",
+        },
+        {
           name: "JavaScript-ES6+",
           description:
             "Async/await, promises, destructuring, functional programming",
@@ -90,10 +95,7 @@ const Skills = () => {
   ];
 
   return (
-    <section
-      id="skills"
-      className="skills-section min-h-screen py-20 px-4 relative z-10"
-    >
+    <section id="skills" className="skills-section py-20 px-4 relative z-10">
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}
         <div className="mb-8">
@@ -230,7 +232,9 @@ const Skills = () => {
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
-                  <span className="text-comment-green">Mobile-First & Responsive Design</span>
+                  <span className="text-comment-green">
+                    Mobile-First & Responsive Design
+                  </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
                   // Every project starts with mobile optimization
@@ -239,7 +243,9 @@ const Skills = () => {
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
-                  <span className="text-comment-green">Clean, Maintainable Code</span>
+                  <span className="text-comment-green">
+                    Clean, Maintainable Code
+                  </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
                   // Writing code that's easy to read and modify
@@ -248,7 +254,9 @@ const Skills = () => {
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
-                  <span className="text-comment-green">Cross-Browser Compatibility</span>
+                  <span className="text-comment-green">
+                    Cross-Browser Compatibility
+                  </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
                   // Ensuring consistent experience across all browsers
@@ -257,7 +265,9 @@ const Skills = () => {
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
-                  <span className="text-comment-green">Performance Optimization</span>
+                  <span className="text-comment-green">
+                    Performance Optimization
+                  </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
                   // Fast load times and smooth interactions

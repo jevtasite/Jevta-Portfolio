@@ -140,7 +140,6 @@ const Footer = () => {
             <span className="text-comment-green">
               echo "Thanks for visiting! Type 'help' to explore more."
             </span>
-            <span className="text-matrix-green cursor-blink">▋</span>
           </div>
         </div>
       </div>
