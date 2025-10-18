@@ -81,6 +81,9 @@ const CommandLine = () => {
   const handleCommand = (command) => {
     if (!command) return;
 
+    // Show console immediately when command is executed (before output is added)
+    setShowConsole(true);
+
     // Add to history
     addCommand(command);
 
@@ -117,15 +120,16 @@ const CommandLine = () => {
     setInput(value);
     setCurrentCommand(value);
 
-    // Show console when user interacts with input (if there's any output)
-    if (output.length > 0) {
+    // Show console when user starts typing (if there's any output to show)
+    if (value.length > 0 && output.length > 0) {
       setShowConsole(true);
     }
   };
 
-  // Show console when input is focused (if there's output)
+  // Show console when input is focused and user starts interacting
   const handleInputFocus = () => {
-    if (output.length > 0) {
+    // Only auto-show if there's output and user is actively typing
+    if (input.length > 0 && output.length > 0) {
       setShowConsole(true);
     }
   };

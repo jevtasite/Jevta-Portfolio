@@ -14,7 +14,7 @@ export const parseCommand = (input, { addOutput, clearOutput, setCurrentSection,
   whoami            - Show info about me
   flappy / bird     - Play Flappy Bird game
 
-💡 Quick tip: You can also type section names directly!
+Quick tip: You can also type section names directly!
    Examples: "about.txt", "skills", "contact"
       `,
     }),

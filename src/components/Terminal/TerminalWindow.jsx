@@ -15,10 +15,8 @@ const TerminalWindow = ({ children }) => {
   useEffect(() => {
     if (consoleRef.current && output.length > 0) {
       consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
-      // Auto-show console when commands are executed
-      setShowConsole(true);
     }
-  }, [output, setShowConsole]);
+  }, [output]);
 
   return (
     <div className="terminal-window min-h-screen relative">
@@ -63,11 +61,11 @@ const TerminalWindow = ({ children }) => {
           {/* Console Header */}
           <div className="flex items-center justify-between bg-elevated-black border-b border-lime-terminal px-4 py-2">
             <div className="flex items-center space-x-2">
-              <span className="text-lime-terminal font-fira text-base sm:text-lg">$ Terminal Output</span>
+              <span className="text-lime-terminal font-fira text-sm sm:text-base">$ Terminal Output</span>
             </div>
             <button
               onClick={() => setShowConsole(false)}
-              className="text-comment-green hover:text-error-red transition-colors font-fira text-base sm:text-lg"
+              className="text-comment-green hover:text-error-red transition-colors font-fira text-sm sm:text-base"
               aria-label="Close terminal output"
             >
               [X]
@@ -86,17 +84,17 @@ const TerminalWindow = ({ children }) => {
                 {item.type === 'command' && (
                   <>
                     <div className="flex items-start space-x-2">
-                      <span className="text-matrix-green font-fira text-base sm:text-lg">
+                      <span className="text-matrix-green font-fira text-sm sm:text-base">
                         user@jevta.site:~$
                       </span>
-                      <span className="text-matrix-green font-fira text-base sm:text-lg">
+                      <span className="text-matrix-green font-fira text-sm sm:text-base">
                         {item.text}
                       </span>
                     </div>
                     {/* Result */}
                     {item.result && (
                       <div
-                        className={`mt-1 font-fira text-base sm:text-lg whitespace-pre-wrap ${
+                        className={`mt-1 font-fira text-sm sm:text-base whitespace-pre-wrap ${
                           item.result.type === 'error'
                             ? 'text-error-red'
                             : item.result.type === 'info'
