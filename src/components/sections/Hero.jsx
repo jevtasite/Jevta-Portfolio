@@ -11,7 +11,7 @@ const Hero = () => {
   const [systemInitialized, setSystemInitialized] = useState(false);
 
   const initMessages = [t('hero.greeting'), t('hero.systemReady')];
-  const loopMessages = [t('hero.buildGreat'), t('hero.exploreWork')];
+  const loopMessages = [t('hero.helloWorld'), t('hero.buildGreat'), t('hero.exploreWork')];
 
   const messages = systemInitialized ? loopMessages : initMessages;
 

@@ -18,13 +18,14 @@ const resources = {
       // Hero Section
       "hero.greeting": "Initializing system...",
       "hero.systemReady": "System ready.",
+      "hero.helloWorld": "Hello, World.",
       "hero.buildGreat": "Let's build something great!",
       "hero.exploreWork": "Explore my work below.",
       "hero.name": "I'm Luka Stoiljković",
       "hero.role": "Front-end Developer",
       "hero.explore": "Type",
       "hero.help": "help",
-      "hero.toExplore": "in terminal to explore",
+      "hero.toExplore": "in the terminal to explore",
       "hero.or": "or",
       "hero.ls": "ls",
       "hero.toSeeAll": "to see all sections",
@@ -199,6 +200,7 @@ const resources = {
       // Hero Section
       "hero.greeting": "Pokretanje sistema...",
       "hero.systemReady": "Sistem spreman.",
+      "hero.helloWorld": "Hello, World.",
       "hero.buildGreat": "Hajde da napravimo nešto sjajno!",
       "hero.exploreWork": "Pogledaj moj rad ispod.",
       "hero.name": "Ja sam Luka Stoiljković",

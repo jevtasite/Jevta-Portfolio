@@ -176,7 +176,7 @@ const Stats = () => {
             >
               {/* ASCII Icon */}
               <div className="p-4 border-b border-comment-green/30">
-                <pre className="text-matrix-green font-fira text-xs leading-tight text-center group-hover:text-lime-terminal transition-colors">
+                <pre className="ascii-art text-matrix-green font-fira text-xs leading-tight text-center group-hover:text-lime-terminal transition-colors">
                   {stat.ascii}
                 </pre>
               </div>

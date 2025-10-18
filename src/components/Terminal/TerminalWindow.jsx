@@ -9,7 +9,7 @@ import FlappyBird from '../Games/FlappyBird';
 const TerminalWindow = ({ children }) => {
   const contentRef = useRef(null);
   const consoleRef = useRef(null);
-  const { output, gameActive, setGameActive, showConsole, setShowConsole } = useTerminalStore();
+  const { output, gameActive, setGameActive, showConsole, setShowConsole, clearOutput } = useTerminalStore();
 
   // Auto-scroll console to bottom when new output is added
   useEffect(() => {
@@ -115,17 +115,31 @@ const TerminalWindow = ({ children }) => {
 
       {/* Console Toggle Button (when hidden) */}
       {!showConsole && output.length > 0 && (
-        <button
-          onClick={() => setShowConsole(true)}
-          className="fixed left-4 bg-elevated-black border-2 border-lime-terminal text-lime-terminal px-4 py-2 font-fira text-sm sm:text-base hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
+        <div
+          className="fixed left-4 bg-elevated-black border-2 border-lime-terminal font-fira text-sm sm:text-base transition-all flex items-center"
           style={{
             bottom: '72px',
             zIndex: 8888
           }}
-          aria-label="Show terminal"
         >
-          <span>$ Terminal</span>
-        </button>
+          <button
+            onClick={() => setShowConsole(true)}
+            className="text-lime-terminal px-4 py-2 hover:bg-lime-terminal hover:text-terminal-black transition-all flex items-center gap-2"
+            aria-label="Show terminal"
+          >
+            <span>$ Terminal</span>
+          </button>
+          <button
+            onClick={() => {
+              clearOutput();
+              setShowConsole(false);
+            }}
+            className="text-comment-green hover:text-error-red hover:bg-error-red/10 px-3 py-2 border-l-2 border-lime-terminal transition-all"
+            aria-label="Close and clear terminal"
+          >
+            [X]
+          </button>
+        </div>
       )}
 
       {/* Command Line (Fixed at Bottom) */}
