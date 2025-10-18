@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   const scrollToTop = () => {
     // Find the terminal-content container which is the actual scrolling element
     const terminalContent = document.querySelector('.terminal-content');
@@ -45,14 +49,14 @@ const Footer = () => {
               JEVTA
             </h3>
             <p className="text-comment-green font-fira text-sm leading-relaxed">
-              Front-end Developer crafting modern web experiences with clean code and creative design.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-lime-terminal font-fira text-lg mb-4">
-              &gt; Quick Links
+              &gt; {t('footer.quickLinks')}
             </h4>
             <div className="space-y-2 font-fira text-sm">
               {[
@@ -80,7 +84,7 @@ const Footer = () => {
           {/* Social Links */}
           <div>
             <h4 className="text-lime-terminal font-fira text-lg mb-4">
-              &gt; Connect
+              &gt; {t('footer.connect')}
             </h4>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social, index) => (
@@ -128,8 +132,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-4">
           {/* Copyright */}
           <div className="text-comment-green font-fira text-sm text-center">
-            <span className="text-lime-terminal shine-logo">Jevta</span> © Copyright 2025
-            <span className="text-matrix-green ml-2">// All Rights Reserved</span>
+            <span className="text-lime-terminal shine-logo">Jevta</span> {t('footer.copyright')}
+            <span className="text-matrix-green ml-2">// {t('footer.allRights')}</span>
           </div>
         </div>
 
@@ -138,7 +142,7 @@ const Footer = () => {
           <div className="flex items-center space-x-2 font-fira text-xs">
             <span className="text-matrix-green">$</span>
             <span className="text-comment-green">
-              echo "Thanks for visiting! Type 'help' to explore more."
+              echo "{t('footer.thanks')}"
             </span>
           </div>
         </div>

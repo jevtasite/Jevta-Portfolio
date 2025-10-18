@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [displayText, setDisplayText] = useState('');
   const [showName, setShowName] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -81,10 +83,10 @@ const Hero = () => {
           {showName && (
             <div className="space-y-2 animate-fade-in">
               <h1 className="text-matrix-green font-fira text-3xl md:text-5xl font-bold">
-                I'm Luka Stoiljković
+                {t('hero.name')}
               </h1>
               <p className="text-comment-green font-fira text-lg md:text-xl">
-                &lt; Front-end Developer /&gt;
+                &lt; {t('hero.role')} /&gt;
               </p>
             </div>
           )}
@@ -93,8 +95,8 @@ const Hero = () => {
         {/* CTA */}
         {showName && (
           <div className="mt-8 text-comment-green font-fira text-sm animate-fade-in">
-            <p>Type <span className="text-lime-terminal">'help'</span> to explore</p>
-            <p>or <span className="text-lime-terminal">'ls'</span> to see all sections</p>
+            <p>{t('hero.explore')} <span className="text-lime-terminal">'help'</span> {t('hero.toExplore')}</p>
+            <p>{t('hero.or')} <span className="text-lime-terminal">'ls'</span> {t('hero.toSeeAll')}</p>
           </div>
         )}
 

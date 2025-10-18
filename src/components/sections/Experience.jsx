@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Experience = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -27,26 +29,24 @@ const Experience = () => {
     };
   }, []);
 
-  const experiences = [
+  const getExperiences = () => [
     {
-      type: 'Internship',
+      type: t('experience.internship'),
       company: 'Esenca Software',
       companyUrl: 'https://esenca.rs/',
       period: 'Summer 2023',
       timestamp: '2023-07-15 09:00:00',
-      description:
-        'Completed a comprehensive front-end development internship where I worked on real-world projects, learned industry best practices, and collaborated with experienced developers. Gained hands-on experience with modern web technologies and agile development methodologies.',
+      description: t('experience.esencaDesc'),
       certificate: 'https://drive.google.com/file/d/1RocFTef7IS-BZRohnQbvb3gdcyd_cYWx/view?usp=sharing',
       technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Git'],
     },
     {
-      type: 'Freelance',
+      type: t('experience.freelance'),
       company: 'Self-Employed',
       companyUrl: null,
       period: '2023 - Present',
       timestamp: '2023-09-01 00:00:00',
-      description:
-        'Working independently on various web development projects for clients. Specializing in creating modern, responsive websites with clean code and excellent user experiences. Managing all aspects of projects from client communication to deployment.',
+      description: t('experience.freelanceDesc'),
       certificate: null,
       technologies: ['React', 'Tailwind CSS', 'Vite', 'Framer Motion', 'Vercel'],
     },
@@ -66,14 +66,14 @@ const Experience = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              Work Experience
+              {t('experience.title')}
             </h2>
           </div>
         </div>
 
         {/* Timeline */}
         <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {experiences.map((exp, index) => (
+          {getExperiences().map((exp, index) => (
             <div
               key={index}
               className="timeline-item border border-comment-green bg-elevated-black/50 p-6 hover:border-lime-terminal transition-all duration-300"
@@ -136,7 +136,7 @@ const Experience = () => {
               {/* Technologies */}
               <div className="mb-4">
                 <div className="text-comment-green font-fira text-xs mb-2">
-                  &gt; Technologies used:
+                  &gt; {t('experience.technologies')}:
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech, techIndex) => (
@@ -187,7 +187,7 @@ const Experience = () => {
             <div className="flex-1">
               <span className="text-comment-green">status:</span>
               <span className="text-lime-terminal ml-2">
-                Currently open to new opportunities and exciting projects!
+                {t('experience.status')}
               </span>
             </div>
           </div>

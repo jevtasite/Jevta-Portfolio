@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Services = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -98,14 +100,33 @@ const Services = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              Services Offered
+              {t('services.title')}
             </h2>
           </div>
         </div>
 
         {/* Services Grid */}
         <div className={`grid md:grid-cols-3 gap-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {services.map((service, index) => (
+          {[
+            {
+              icon: services[0].icon,
+              title: t('services.webDev'),
+              description: t('services.webDevDesc'),
+              features: services[0].features,
+            },
+            {
+              icon: services[1].icon,
+              title: t('services.uiux'),
+              description: t('services.uiuxDesc'),
+              features: services[1].features,
+            },
+            {
+              icon: services[2].icon,
+              title: t('services.consultancy'),
+              description: t('services.consultancyDesc'),
+              features: services[2].features,
+            },
+          ].map((service, index) => (
             <div
               key={index}
               className="service-card border border-comment-green bg-elevated-black/50 hover:border-lime-terminal transition-all duration-300 group"
@@ -135,7 +156,7 @@ const Services = () => {
                 {/* Features List */}
                 <div className="space-y-2">
                   <div className="text-comment-green font-fira text-xs mb-2">
-                    ## Features:
+                    ## {t('services.features')}:
                   </div>
                   {service.features.map((feature, featureIndex) => (
                     <div
@@ -155,11 +176,10 @@ const Services = () => {
         {/* CTA Section */}
         <div className="mt-12 border border-lime-terminal bg-elevated-black/50 py-16 px-8 flex flex-col items-center justify-center">
           <h3 className="text-lime-terminal font-fira text-2xl font-bold mb-6 text-center">
-            Let's Work Together
+            {t('services.workTogether')}
           </h3>
           <p className="text-comment-green font-fira text-base mb-8 max-w-3xl text-center leading-relaxed">
-            Have a project in mind? I'm available for freelance work and collaborations.
-            Let's create something amazing together!
+            {t('services.workTogetherDesc')}
           </p>
           <button
             onClick={() => {
@@ -170,7 +190,7 @@ const Services = () => {
             }}
             className="border-2 border-lime-terminal text-lime-terminal px-8 py-3 font-fira hover:bg-lime-terminal hover:text-terminal-black transition-all duration-300"
           >
-            &gt; Get In Touch_
+            &gt; {t('services.getInTouch')}_
           </button>
         </div>
       </div>

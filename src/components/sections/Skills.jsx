@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 const Skills = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -105,7 +107,7 @@ const Skills = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              Technical Skills
+              {t('skills.title')}
             </h2>
           </div>
         </div>
@@ -202,7 +204,7 @@ const Skills = () => {
           {/* Tools & Technologies */}
           <div className="border border-comment-green p-6 bg-elevated-black/50">
             <h3 className="text-lime-terminal font-fira text-lg mb-4">
-              &gt; Tools & Technologies
+              &gt; {t('skills.tools')}
             </h3>
             <div className="flex flex-wrap gap-2">
               {[
@@ -226,51 +228,51 @@ const Skills = () => {
           {/* Work Approach */}
           <div className="border border-comment-green p-6 bg-elevated-black/50">
             <h3 className="text-lime-terminal font-fira text-lg mb-4">
-              &gt; Work Approach
+              &gt; {t('skills.workApproach')}
             </h3>
             <div className="space-y-3 font-fira text-sm">
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
                   <span className="text-comment-green">
-                    Mobile-First & Responsive Design
+                    {t('skills.mobileFirst')}
                   </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
-                  // Every project starts with mobile optimization
+                  // {t('skills.mobileFirstDesc')}
                 </div>
               </div>
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
                   <span className="text-comment-green">
-                    Clean, Maintainable Code
+                    {t('skills.cleanCode')}
                   </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
-                  // Writing code that's easy to read and modify
+                  // {t('skills.cleanCodeDesc')}
                 </div>
               </div>
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
                   <span className="text-comment-green">
-                    Cross-Browser Compatibility
+                    {t('skills.crossBrowser')}
                   </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
-                  // Ensuring consistent experience across all browsers
+                  // {t('skills.crossBrowserDesc')}
                 </div>
               </div>
               <div>
                 <div className="flex items-start space-x-2 mb-1">
                   <span className="text-matrix-green">▸</span>
                   <span className="text-comment-green">
-                    Performance Optimization
+                    {t('skills.performance')}
                   </span>
                 </div>
                 <div className="text-comment-green text-xs italic ml-4">
-                  // Fast load times and smooth interactions
+                  // {t('skills.performanceDesc')}
                 </div>
               </div>
             </div>

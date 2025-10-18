@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Stats = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [counts, setCounts] = useState({
     experience: 0,
@@ -68,7 +70,7 @@ const Stats = () => {
     return () => clearInterval(timer);
   };
 
-  const stats = [
+  const getStats = () => [
     {
       icon: '📅',
       ascii: `
@@ -77,7 +79,7 @@ const Stats = () => {
  ║   MM   ║
  ║   DD   ║
  ╚════════╝`,
-      label: 'Years of Experience',
+      label: t('stats.yearsExp'),
       value: counts.experience,
       suffix: '+',
       color: 'text-matrix-green',
@@ -90,7 +92,7 @@ const Stats = () => {
  ║   ⚉    ║
  ║  ⚉ ⚉  ║
  ╚════════╝`,
-      label: 'Happy Clients',
+      label: t('stats.clients'),
       value: counts.clients,
       suffix: '+',
       color: 'text-lime-terminal',
@@ -103,7 +105,7 @@ const Stats = () => {
  ║  ✓✓✓   ║
  ║   ✓    ║
  ╚════════╝`,
-      label: 'Projects Completed',
+      label: t('stats.projects'),
       value: counts.projects,
       suffix: '+',
       color: 'text-cyber-magenta',
@@ -116,7 +118,7 @@ const Stats = () => {
  ║   ═    ║
  ║  CODE  ║
  ╚════════╝`,
-      label: 'Hours of Coding',
+      label: t('stats.hours'),
       value: counts.hours,
       suffix: '+',
       color: 'text-lime-terminal',
@@ -137,7 +139,7 @@ const Stats = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              System Statistics
+              {t('stats.title')}
             </h2>
           </div>
         </div>
@@ -147,16 +149,16 @@ const Stats = () => {
           <div className="border border-comment-green bg-elevated-black/50 p-4">
             <div className="font-fira text-xs space-y-1">
               <div className="text-comment-green">
-                Status: <span className="text-lime-terminal flex items-center gap-2 inline-flex">
+                {t('stats.status')}: <span className="text-lime-terminal flex items-center gap-2 inline-flex">
                   <span className="w-2 h-2 bg-lime-terminal rounded-full animate-pulse" />
-                  Available for work
+                  {t('stats.online')}
                 </span>
               </div>
               <div className="text-comment-green">
-                Response Time: <span className="text-matrix-green">&lt; 24 hours</span>
+                {t('stats.responseTime')}: <span className="text-matrix-green">{t('stats.lessThan24')}</span>
               </div>
               <div className="text-comment-green">
-                Location: <span className="text-matrix-green">Serbia</span>
+                {t('contact.location')}: <span className="text-matrix-green">{t('contact.locationValue')}</span>
               </div>
             </div>
           </div>
@@ -164,7 +166,7 @@ const Stats = () => {
 
         {/* Stats Grid */}
         <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {stats.map((stat, index) => (
+          {getStats().map((stat, index) => (
             <div
               key={index}
               className="stat-card border border-comment-green bg-elevated-black/50 hover:border-lime-terminal transition-all duration-300 group"
@@ -201,7 +203,7 @@ const Stats = () => {
           {/* Tech Stack */}
           <div className="border border-comment-green bg-elevated-black/50 p-6">
             <h3 className="text-lime-terminal font-fira text-lg mb-4">
-              Current Tech Stack
+              {t('stats.activeProjects')}
             </h3>
             <div className="space-y-2 font-fira text-sm">
               <div className="flex items-start space-x-2">
@@ -226,23 +228,23 @@ const Stats = () => {
           {/* Availability */}
           <div className="border border-comment-green bg-elevated-black/50 p-6">
             <h3 className="text-lime-terminal font-fira text-lg mb-4">
-              Availability
+              {t('stats.availability')}
             </h3>
             <div className="space-y-2 font-fira text-sm">
               <div className="flex justify-between text-comment-green">
-                <span>Status:</span>
+                <span>{t('stats.status')}:</span>
                 <span className="text-lime-terminal flex items-center gap-2">
                   <span className="w-2 h-2 bg-lime-terminal rounded-full animate-pulse" />
-                  Available
+                  {t('stats.online')}
                 </span>
               </div>
               <div className="flex justify-between text-comment-green">
-                <span>Response Time:</span>
-                <span className="text-matrix-green">&lt; 24 hours</span>
+                <span>{t('stats.responseTime')}:</span>
+                <span className="text-matrix-green">{t('stats.lessThan24')}</span>
               </div>
               <div className="flex justify-between text-comment-green">
-                <span>Location:</span>
-                <span className="text-matrix-green">Serbia</span>
+                <span>{t('contact.location')}:</span>
+                <span className="text-matrix-green">{t('contact.locationValue')}</span>
               </div>
               <div className="flex justify-between text-comment-green">
                 <span>Work Type:</span>

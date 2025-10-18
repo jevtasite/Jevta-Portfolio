@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -56,32 +58,32 @@ const About = () => {
           <div className="space-y-6 flex flex-col">
             <div className="border border-comment-green p-6 bg-elevated-black/50">
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
-                &gt; Profile Information
+                &gt; {t('about.profileInfo')}
               </h3>
 
               <div className="space-y-3 font-fira text-sm">
                 <div className="flex">
-                  <span className="text-comment-green w-32">Full Name:</span>
+                  <span className="text-comment-green w-32">{t('about.fullName')}:</span>
                   <span className="text-matrix-green">Luka Stoiljković</span>
                 </div>
 
                 <div className="flex">
-                  <span className="text-comment-green w-32">Birth Date:</span>
-                  <span className="text-matrix-green">July 3rd, 2005</span>
+                  <span className="text-comment-green w-32">{t('about.birthDate')}:</span>
+                  <span className="text-matrix-green">{t('about.birthDay')}</span>
                 </div>
 
                 <div className="flex">
-                  <span className="text-comment-green w-32">Job:</span>
-                  <span className="text-matrix-green">Front-end Developer</span>
+                  <span className="text-comment-green w-32">{t('about.job')}:</span>
+                  <span className="text-matrix-green">{t('about.jobTitle')}</span>
                 </div>
 
                 <div className="flex">
-                  <span className="text-comment-green w-32">Website:</span>
+                  <span className="text-comment-green w-32">{t('about.website')}:</span>
                   <span className="text-matrix-green">jevta.site</span>
                 </div>
 
                 <div className="flex">
-                  <span className="text-comment-green w-32">Email:</span>
+                  <span className="text-comment-green w-32">{t('about.email')}:</span>
                   <a
                     href="mailto:jevta.site@gmail.com"
                     className="text-lime-terminal hover:text-cyber-magenta transition-colors underline"
@@ -114,36 +116,30 @@ const About = () => {
           <div className="space-y-6">
             <div className="border border-comment-green p-6 bg-elevated-black/50">
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
-                &gt; About Me
+                &gt; {t('about.aboutMe')}
               </h3>
 
               <div className="space-y-4 text-comment-green font-fira text-sm leading-relaxed">
                 <p>
                   <span className="text-matrix-green">// </span>
-                  Hello! I'm Luka Stoiljković. I'm a passionate front-end
-                  developer who loves creating beautiful and functional web
-                  experiences.
-                </p>
-
-                <p>
-                  <span className="text-matrix-green">// </span>I specialize in
-                  modern web technologies and have a keen eye for design. My
-                  goal is to build websites that not only look great but also
-                  provide excellent user experiences.
+                  {t('about.bio1')}
                 </p>
 
                 <p>
                   <span className="text-matrix-green">// </span>
-                  When I'm not coding, you can find me exploring new
-                  technologies, contributing to open source, or sharing my
-                  knowledge with the developer community.
+                  {t('about.bio2')}
+                </p>
+
+                <p>
+                  <span className="text-matrix-green">// </span>
+                  {t('about.bio3')}
                 </p>
               </div>
             </div>
 
             <div className="border border-comment-green p-6 bg-elevated-black/50">
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
-                &gt; Quick Skills Overview
+                &gt; {t('about.quickSkills')}
               </h3>
 
               <div className="space-y-1 font-fira text-sm">
@@ -177,7 +173,7 @@ const About = () => {
                 <span className="text-lime-terminal">$</span> cat skills.json
                 <span className="text-comment-green">
                   {" "}
-                  // for detailed skills
+                  // {t('about.detailedSkills')}
                 </span>
               </p>
             </div>
@@ -195,7 +191,7 @@ const About = () => {
             }}
             className="border-2 border-matrix-green text-matrix-green px-8 py-3 font-fira hover:bg-matrix-green hover:text-terminal-black transition-all duration-300"
           >
-            &gt; Hire Me_
+            &gt; {t('about.hireMe')}_
           </button>
         </div>
       </div>

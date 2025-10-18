@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ const Contact = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              Get In Touch
+              {t('contact.title')}
             </h2>
           </div>
         </div>
@@ -107,13 +109,13 @@ const Contact = () => {
             <div className="border border-comment-green bg-elevated-black/50 p-6 hover:border-lime-terminal transition-all duration-300">
               <h3 className="text-lime-terminal font-fira text-xl mb-4 flex items-center gap-2">
                 <span>✉</span>
-                Email
+                {t('contact.email')}
               </h3>
 
               <div className="space-y-4">
                 <p className="text-comment-green font-fira text-sm">
                   <span className="text-matrix-green">// </span>
-                  Send me an email and I'll get back to you as soon as possible!
+                  {t('contact.emailDesc')}
                 </p>
 
                 <div className="border border-comment-green/30 bg-terminal-black p-4">
@@ -126,7 +128,7 @@ const Contact = () => {
                     className="w-full mt-4 border-2 border-lime-terminal text-lime-terminal px-6 py-3 font-fira hover:bg-lime-terminal hover:text-terminal-black transition-all duration-300 flex items-center justify-center gap-2 group"
                   >
                     <span className="text-lg">✉</span>
-                    <span>Open Gmail Composer</span>
+                    <span>{t('contact.openGmail')}</span>
                   </button>
                 </div>
 
@@ -139,20 +141,20 @@ const Contact = () => {
             {/* Response Time */}
             <div className="border border-comment-green bg-elevated-black/50 p-6">
               <h3 className="text-lime-terminal font-fira text-lg mb-4">
-                &gt; Response Time
+                &gt; {t('contact.responseTime')}
               </h3>
               <div className="space-y-2 font-fira text-sm">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-lime-terminal rounded-full animate-pulse" />
-                  <span className="text-comment-green">Usually within 24 hours</span>
+                  <span className="text-comment-green">{t('contact.within24')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-matrix-green rounded-full" />
-                  <span className="text-comment-green">Available for freelance work</span>
+                  <span className="text-comment-green">{t('contact.availableFreelance')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-matrix-green rounded-full" />
-                  <span className="text-comment-green">Open to collaborations</span>
+                  <span className="text-comment-green">{t('contact.openCollabs')}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +164,7 @@ const Contact = () => {
           <div className="space-y-6">
             <div className="border border-comment-green bg-elevated-black/50 p-6">
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
-                &gt; Social Links
+                &gt; {t('contact.socialLinks')}
               </h3>
 
               <div className="space-y-3">
@@ -198,20 +200,20 @@ const Contact = () => {
             {/* Location & Info */}
             <div className="border border-comment-green bg-elevated-black/50 p-6">
               <h3 className="text-lime-terminal font-fira text-lg mb-4">
-                &gt; Location & Info
+                &gt; {t('contact.location')}
               </h3>
               <div className="space-y-2 font-fira text-sm">
                 <div className="flex justify-between text-comment-green">
-                  <span>Location:</span>
-                  <span className="text-matrix-green">Serbia 🇷🇸</span>
+                  <span>{t('contact.location')}:</span>
+                  <span className="text-matrix-green">{t('contact.locationValue')} 🇷🇸</span>
                 </div>
                 <div className="flex justify-between text-comment-green">
-                  <span>Timezone:</span>
-                  <span className="text-matrix-green">UTC+1 (CET)</span>
+                  <span>{t('contact.timezone')}:</span>
+                  <span className="text-matrix-green">{t('contact.timezoneValue')}</span>
                 </div>
                 <div className="flex justify-between text-comment-green">
-                  <span>Languages:</span>
-                  <span className="text-matrix-green">EN / SR</span>
+                  <span>{t('contact.languages')}:</span>
+                  <span className="text-matrix-green">{t('contact.languagesValue')}</span>
                 </div>
               </div>
             </div>
@@ -221,7 +223,7 @@ const Contact = () => {
         {/* Footer Message */}
         <div className="mt-12 border border-lime-terminal bg-elevated-black/50 p-6 text-center">
           <p className="text-comment-green font-fira text-sm">
-            <span className="text-lime-terminal">$</span> echo "Looking forward to hearing from you!"
+            <span className="text-lime-terminal">$</span> echo "{t('contact.lookingForward')}"
           </p>
         </div>
       </div>
