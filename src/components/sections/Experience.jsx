@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 const Experience = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const [visibleExperiences, setVisibleExperiences] = useState([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,6 +12,13 @@ const Experience = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
+            // Progressive disclosure - reveal experiences one by one
+            const experiences = getExperiences();
+            experiences.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleExperiences(prev => [...prev, index]);
+              }, index * 300); // 300ms delay between each experience
+            });
           }
         });
       },
@@ -76,10 +84,11 @@ const Experience = () => {
           {getExperiences().map((exp, index) => (
             <div
               key={index}
-              className="timeline-item border border-comment-green bg-elevated-black/50 p-6 hover:border-lime-terminal transition-all duration-300"
-              style={{
-                animationDelay: isVisible ? `${index * 200}ms` : '0ms',
-              }}
+              className={`timeline-item border border-comment-green bg-elevated-black/50 p-6 hover:border-lime-terminal transition-all duration-500 ${
+                visibleExperiences.includes(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+              }`}
             >
               {/* Log Header */}
               <div className="flex items-start justify-between mb-4 flex-wrap gap-2">

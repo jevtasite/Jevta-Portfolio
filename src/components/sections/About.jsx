@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 const About = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const [visibleItems, setVisibleItems] = useState([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,6 +12,13 @@ const About = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
+            // Progressive disclosure - reveal items one by one
+            const items = ['header', 'profile', 'picture', 'bio', 'skills', 'cta'];
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                setVisibleItems(prev => [...prev, item]);
+              }, index * 150); // 150ms delay between each item
+            });
           }
         });
       },
@@ -36,7 +44,7 @@ const About = () => {
     >
       <div className="max-w-terminal mx-auto">
         {/* Terminal Header */}
-        <div className="mb-8">
+        <div className={`mb-8 transition-all duration-500 ${visibleItems.includes('header') ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
           <div className="flex items-center space-x-2 text-matrix-green font-fira text-sm mb-2">
             <span>$</span>
             <span>cat about.txt</span>
@@ -56,7 +64,7 @@ const About = () => {
         >
           {/* Left Column - Profile Info */}
           <div className="space-y-6 flex flex-col">
-            <div className="border border-comment-green p-6 bg-elevated-black/50">
+            <div className={`border border-comment-green p-6 bg-elevated-black/50 transition-all duration-500 ${visibleItems.includes('profile') ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
                 &gt; {t('about.profileInfo')}
               </h3>
@@ -95,7 +103,7 @@ const About = () => {
             </div>
 
             {/* Profile Picture Placeholder */}
-            <div className="border border-comment-green p-6 bg-elevated-black/50 flex-1 flex flex-col">
+            <div className={`border border-comment-green p-6 bg-elevated-black/50 flex-1 flex flex-col transition-all duration-500 ${visibleItems.includes('picture') ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <div className="bg-terminal-black border-2 border-matrix-green flex items-center justify-center flex-1">
                 <pre className="text-matrix-green text-2xl leading-tight">
                   {`   ___
@@ -114,7 +122,7 @@ const About = () => {
 
           {/* Right Column - Bio & Skills */}
           <div className="space-y-6">
-            <div className="border border-comment-green p-6 bg-elevated-black/50">
+            <div className={`border border-comment-green p-6 bg-elevated-black/50 transition-all duration-500 ${visibleItems.includes('bio') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
                 &gt; {t('about.aboutMe')}
               </h3>
@@ -137,7 +145,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="border border-comment-green p-6 bg-elevated-black/50">
+            <div className={`border border-comment-green p-6 bg-elevated-black/50 transition-all duration-500 ${visibleItems.includes('skills') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <h3 className="text-lime-terminal font-fira text-xl mb-4">
                 &gt; {t('about.quickSkills')}
               </h3>
@@ -181,7 +189,7 @@ const About = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="mt-12 text-center">
+        <div className={`mt-12 text-center transition-all duration-500 ${visibleItems.includes('cta') ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           <button
             onClick={() => {
               const contact = document.getElementById("contact");

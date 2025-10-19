@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 const Skills = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const [visibleSkills, setVisibleSkills] = useState([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,6 +12,13 @@ const Skills = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
+            // Progressive disclosure - reveal skills tree progressively
+            const totalSkills = skillTree.reduce((acc, cat) => acc + cat.skills.length, 0);
+            for (let i = 0; i < totalSkills; i++) {
+              setTimeout(() => {
+                setVisibleSkills(prev => [...prev, i]);
+              }, i * 100); // 100ms delay between each skill
+            }
           }
         });
       },
@@ -142,6 +150,7 @@ const Skills = () => {
 
             {skillTree.map((category, categoryIndex) => {
               const isLastCategory = categoryIndex === skillTree.length - 1;
+              const skillsBeforeCategory = skillTree.slice(0, categoryIndex).reduce((acc, cat) => acc + cat.skills.length, 0);
 
               return (
                 <div key={categoryIndex} className="ml-0">
@@ -160,9 +169,14 @@ const Skills = () => {
                     const isLastSkill =
                       skillIndex === category.skills.length - 1;
                     const prefix = isLastCategory ? "    " : "│   ";
+                    const skillGlobalIndex = skillsBeforeCategory + skillIndex;
+                    const isSkillVisible = visibleSkills.includes(skillGlobalIndex);
 
                     return (
-                      <div key={skillIndex} className="ml-0">
+                      <div
+                        key={skillIndex}
+                        className={`ml-0 transition-all duration-500 ${isSkillVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                      >
                         {/* Skill file */}
                         <div className="flex items-start space-x-1 font-fira text-sm group">
                           <span className="text-matrix-green">
