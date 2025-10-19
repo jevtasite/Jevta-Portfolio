@@ -29,5 +29,23 @@ export const profile = {
     availableForFreelance: true,
     openToCollaboration: true,
     responseTime: "Within 24 hours"
-  }
+  },
+
+  // Stats
+  stats: {
+    yearsOfExperience: 2,
+    projectsCompleted: 15,
+    technologiesMastered: 10,
+    coffeeConsumed: "∞",
+    clientSatisfaction: "100%"
+  },
+
+  // Journey/Story
+  journey: [
+    "Started web development journey in 2022",
+    "Fell in love with React and modern JavaScript",
+    "Built 15+ projects ranging from landing pages to full web applications",
+    "Continuously learning and exploring new technologies",
+    "Passionate about creating seamless user experiences"
+  ]
 };

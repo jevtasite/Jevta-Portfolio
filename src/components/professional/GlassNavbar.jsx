@@ -41,7 +41,7 @@ const GlassNavbar = () => {
               className="nav-logo-ascii cursor-pointer flex-shrink-0"
               onClick={() => scrollToSection('home')}
             >
-              <pre className="ascii-art-nav font-fira text-matrix-green">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
+              <pre className="ascii-art text-matrix-green font-fira crt-effect whitespace-pre nav-ascii-scale">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
      ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗
      ██║█████╗  ██║   ██║   ██║   ███████║
 ██   ██║██╔══╝  ╚██╗ ██╔╝   ██║   ██╔══██║
@@ -92,7 +92,7 @@ const GlassNavbar = () => {
               className="nav-logo-ascii-mobile cursor-pointer"
               onClick={() => scrollToSection('home')}
             >
-              <pre className="ascii-art-nav-mobile font-fira text-matrix-green">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
+              <pre className="ascii-art text-matrix-green font-fira crt-effect whitespace-pre nav-ascii-scale-mobile">{`     ██╗███████╗██╗   ██╗████████╗ █████╗
      ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗
      ██║█████╗  ██║   ██║   ██║   ███████║
 ██   ██║██╔══╝  ╚██╗ ██╔╝   ██║   ██╔══██║

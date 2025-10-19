@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import RetroTerminalBackground from '../components/professional/RetroTerminalBackground';
 import GlassNavbar from '../components/professional/GlassNavbar';
 import GlassHero from '../components/professional/GlassHero';
 import GlassAbout from '../components/professional/GlassAbout';
@@ -24,6 +25,7 @@ const ProfessionalPage = () => {
 
   return (
     <div className="professional-portfolio">
+      <RetroTerminalBackground />
       <GlassNavbar />
       <GlassHero />
       <GlassAbout />

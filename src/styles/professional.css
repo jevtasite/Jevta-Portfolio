@@ -1,17 +1,17 @@
 /* Professional Portfolio - Terminal Color Scheme */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap");
 
 /* Terminal Color Variables */
 :root {
   /* Core Terminal Colors */
-  --matrix-green: #00FF41;
-  --lime-terminal: #39FF14;
-  --cyber-magenta: #FF00FF;
-  --terminal-black: #0D0208;
-  --elevated-black: #1A1A1A;
-  --comment-green: #6A9955;
-  --error-red: #FF6B6B;
+  --matrix-green: #00ff41;
+  --lime-terminal: #39ff14;
+  --cyber-magenta: #ff00ff;
+  --terminal-black: #0d0208;
+  --elevated-black: #1a1a1a;
+  --comment-green: #6a9955;
+  --error-red: #ff6b6b;
 
   /* Glass Effects with Terminal Colors */
   --glass-bg: rgba(26, 26, 26, 0.4);
@@ -35,17 +35,9 @@
 
 /* Professional Body Styles */
 body.professional-theme {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   background: var(--terminal-black);
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 255, 65, 0.03) 2px,
-      rgba(0, 255, 65, 0.03) 4px
-    );
-  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
 }
@@ -81,9 +73,7 @@ body.professional-theme ::selection {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  box-shadow:
-    var(--glass-shadow),
-    0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glass-shadow), 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -93,18 +83,14 @@ body.professional-theme ::selection {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  box-shadow:
-    var(--green-glow),
-    0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: var(--green-glow), 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
 .glass:hover {
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
   transform: translateY(-4px);
-  box-shadow:
-    var(--green-glow-strong),
-    0 12px 48px 0 rgba(0, 255, 65, 0.15);
+  box-shadow: var(--green-glow-strong), 0 12px 48px 0 rgba(0, 255, 65, 0.15);
 }
 
 /* Containers */
@@ -129,7 +115,7 @@ body.professional-theme ::selection {
   max-width: 1000px;
   width: calc(100% - 5rem);
   z-index: 1000;
-  padding: 1.5rem 2.5rem;
+  padding: 0.75rem 2.5rem;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   background: rgba(13, 2, 8, 0.85);
@@ -274,57 +260,40 @@ body.professional-theme ::selection {
   }
 }
 
-/* ASCII Logo in Navbar - Desktop */
-.nav-logo-ascii {
-  transition: all 0.3s ease;
+/* ASCII Logo Scale for Navbar - Desktop */
+.nav-ascii-scale {
+  transform: scale(0.28);
+  transform-origin: left center;
+  margin: -22px 0;
 }
 
-.ascii-art-nav {
-  font-size: 6px;
-  line-height: 1.1;
-  color: var(--matrix-green);
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
-  font-variant-ligatures: none;
-  letter-spacing: 0 !important;
-  word-spacing: 0 !important;
-  font-feature-settings: normal;
-  font-kerning: none;
-  margin: 0;
-  transition: all 0.3s ease;
+.nav-logo-ascii:hover .nav-ascii-scale {
+  transform: scale(0.3);
 }
 
-.nav-logo-ascii:hover .ascii-art-nav {
-  text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
-  transform: scale(1.02);
+/* ASCII Logo Scale for Navbar - Mobile */
+.nav-ascii-scale-mobile {
+  transform: scale(0.37);
+  transform-origin: left center;
+  margin: -15px 0;
 }
 
-/* ASCII Logo in Navbar - Mobile */
 .nav-logo-ascii-mobile {
-  transition: all 0.3s ease;
+  margin-left: -20px;
 }
 
-.ascii-art-nav-mobile {
-  font-size: 4px;
-  line-height: 1.1;
-  color: var(--matrix-green);
-  text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
-  font-variant-ligatures: none;
-  letter-spacing: 0 !important;
-  word-spacing: 0 !important;
-  font-feature-settings: normal;
-  font-kerning: none;
-  margin: 0;
-  transition: all 0.3s ease;
+.nav-logo-ascii-mobile:active .nav-ascii-scale-mobile {
+  transform: scale(0.4);
 }
 
-.nav-logo-ascii-mobile:active .ascii-art-nav-mobile {
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
-  transform: scale(0.98);
+/* Mobile Menu Button - Match logo margin for symmetry */
+.mobile-menu-button {
+  margin: -15px -20px -15px 0 !important;
 }
 
 /* Text Logo (Mobile) */
 .nav-logo {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--matrix-green);
@@ -352,7 +321,7 @@ body.professional-theme ::selection {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -396,23 +365,26 @@ body.professional-theme ::selection {
   position: absolute;
   inset: 0;
   opacity: 0.1;
-  background-image:
-    linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+  background-image: linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: matrix-scroll 20s linear infinite;
 }
 
 @keyframes matrix-scroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 50px 50px; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
 }
 
 /* Floating Particles */
 .matrix-particle {
   position: absolute;
   color: var(--matrix-green);
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: 14px;
   opacity: 0.3;
   animation: float-particle 15s linear infinite;
@@ -436,7 +408,7 @@ body.professional-theme ::selection {
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 800;
   line-height: 1.1;
@@ -477,8 +449,13 @@ body.professional-theme ::selection {
 
 /* Typing Animation */
 @keyframes typing-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .typing-cursor {
@@ -495,13 +472,14 @@ body.professional-theme ::selection {
 }
 
 .glass-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     transparent,
     var(--matrix-green),
     transparent
@@ -516,9 +494,7 @@ body.professional-theme ::selection {
 
 .glass-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow:
-    var(--green-glow-strong),
-    0 20px 60px 0 rgba(0, 255, 65, 0.2);
+  box-shadow: var(--green-glow-strong), 0 20px 60px 0 rgba(0, 255, 65, 0.2);
   border-color: var(--lime-terminal);
 }
 
@@ -541,10 +517,15 @@ body.professional-theme ::selection {
 }
 
 .glass-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 65, 0.1),
+    transparent
+  );
   transform: translateX(-100%);
   transition: transform 0.6s ease;
 }
@@ -580,7 +561,7 @@ body.professional-theme ::selection {
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
@@ -638,13 +619,14 @@ body.professional-theme ::selection {
 }
 
 .progress-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     transparent,
     rgba(255, 255, 255, 0.3),
     transparent
@@ -653,8 +635,12 @@ body.professional-theme ::selection {
 }
 
 @keyframes progress-shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Timeline */
@@ -665,13 +651,14 @@ body.professional-theme ::selection {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: -3rem;
   width: 2px;
-  background: linear-gradient(180deg,
+  background: linear-gradient(
+    180deg,
     var(--matrix-green),
     var(--lime-terminal),
     transparent
@@ -687,24 +674,19 @@ body.professional-theme ::selection {
   height: 18px;
   border-radius: 50%;
   background: var(--matrix-green);
-  box-shadow:
-    0 0 0 4px var(--terminal-black),
-    0 0 0 6px var(--matrix-green),
+  box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 6px var(--matrix-green),
     0 0 20px var(--matrix-green);
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
-    box-shadow:
-      0 0 0 4px var(--terminal-black),
-      0 0 0 6px var(--matrix-green),
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 6px var(--matrix-green),
       0 0 20px var(--matrix-green);
   }
   50% {
-    box-shadow:
-      0 0 0 4px var(--terminal-black),
-      0 0 0 8px var(--lime-terminal),
+    box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 8px var(--lime-terminal),
       0 0 30px var(--lime-terminal);
   }
 }
@@ -720,7 +702,11 @@ body.professional-theme ::selection {
 .project-image-placeholder {
   width: 100%;
   height: 250px;
-  background: linear-gradient(135deg, var(--elevated-black), var(--terminal-black));
+  background: linear-gradient(
+    135deg,
+    var(--elevated-black),
+    var(--terminal-black)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -732,17 +718,16 @@ body.professional-theme ::selection {
 }
 
 .project-image-placeholder::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 255, 65, 0.05) 10px,
-      rgba(0, 255, 65, 0.05) 20px
-    );
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 255, 65, 0.05) 10px,
+    rgba(0, 255, 65, 0.05) 20px
+  );
 }
 
 .project-image {
@@ -764,9 +749,7 @@ body.professional-theme ::selection {
   height: 200px;
   border-radius: 50%;
   border: 3px solid var(--matrix-green);
-  box-shadow:
-    0 0 0 6px var(--terminal-black),
-    0 0 0 8px var(--matrix-green),
+  box-shadow: 0 0 0 6px var(--terminal-black), 0 0 0 8px var(--matrix-green),
     var(--green-glow-strong);
   object-fit: cover;
   background: var(--elevated-black);
@@ -820,8 +803,12 @@ body.professional-theme ::selection {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
@@ -885,7 +872,9 @@ body.professional-theme ::selection {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive */
@@ -919,20 +908,48 @@ body.professional-theme ::selection {
 }
 
 /* Utility Classes */
-.text-center { text-align: center; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-4 { gap: 1rem; }
-.gap-8 { gap: 2rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-8 { margin-bottom: 2rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-8 { margin-top: 2rem; }
-.p-4 { padding: 1rem; }
-.p-8 { padding: 2rem; }
+.text-center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-8 {
+  padding: 2rem;
+}
 
 /* ========================================
    HERO SECTION - TERMINAL REDESIGN
@@ -942,10 +959,7 @@ body.professional-theme ::selection {
 .scan-lines-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    transparent 50%,
-    rgba(0, 255, 65, 0.02) 50%
-  );
+  background: linear-gradient(transparent 50%, rgba(0, 255, 65, 0.02) 50%);
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 1;
@@ -954,8 +968,12 @@ body.professional-theme ::selection {
 }
 
 @keyframes scan-lines-move {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(4px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
 }
 
 /* Floating Particles */
@@ -973,12 +991,16 @@ body.professional-theme ::selection {
   background: var(--matrix-green);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green);
+  opacity: 0;
   animation: float-particle-hero 15s ease-in-out infinite;
 }
 
 @keyframes float-particle-hero {
-  0%, 100% {
+  0% {
     transform: translate(0, 0);
+    opacity: 0;
+  }
+  5% {
     opacity: 0.3;
   }
   25% {
@@ -993,18 +1015,25 @@ body.professional-theme ::selection {
     transform: translate(40px, 20px);
     opacity: 0.7;
   }
+  95% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
 }
 
 /* Terminal Prompt */
 .terminal-prompt {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: clamp(0.875rem, 2vw, 1.125rem);
   text-align: center;
 }
 
 /* Hero Title with Cursor */
 .hero-title-main {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(2.5rem, 8vw, 5.5rem);
   font-weight: 800;
   line-height: 1.1;
@@ -1019,17 +1048,19 @@ body.professional-theme ::selection {
 }
 
 @keyframes blink-cursor {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
 
 /* Terminal Role Brackets */
 .terminal-role {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: clamp(1.25rem, 4vw, 2.5rem);
   font-weight: 600;
   display: inline-flex;
@@ -1047,110 +1078,6 @@ body.professional-theme ::selection {
 .role-text {
   color: var(--cyber-magenta);
   text-shadow: var(--magenta-glow);
-}
-
-/* Terminal Command Output Container */
-.terminal-output-container {
-  max-width: 650px;
-  margin: 0 auto;
-  background: rgba(13, 2, 8, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 2px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: var(--green-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-
-.terminal-output-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--lime-terminal), transparent);
-  opacity: 0.5;
-}
-
-/* Terminal Command Header */
-.terminal-output-header {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.terminal-command-prompt {
-  color: var(--lime-terminal);
-  font-weight: bold;
-  text-shadow: 0 0 10px var(--lime-terminal);
-  font-size: 1.1rem;
-}
-
-.terminal-command {
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-/* Terminal Output Divider */
-.terminal-output-divider {
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent,
-    var(--matrix-green) 20%,
-    var(--matrix-green) 80%,
-    transparent
-  );
-  margin: 0.75rem 0;
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
-  opacity: 0.6;
-}
-
-/* Terminal Output Content */
-.terminal-output-content {
-  font-family: 'Fira Code', monospace;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.terminal-output-line {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 0.75rem;
-  background: rgba(0, 255, 65, 0.02);
-  border-left: 3px solid var(--matrix-green);
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.terminal-output-line:hover {
-  background: rgba(0, 255, 65, 0.05);
-  border-left-color: var(--lime-terminal);
-  transform: translateX(4px);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-}
-
-.terminal-output-key {
-  color: var(--comment-green);
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  min-width: 100px;
-  flex-shrink: 0;
-}
-
-.terminal-output-value {
-  color: var(--text-primary);
-  font-weight: 500;
-  font-size: 0.9rem;
-  flex: 1;
 }
 
 /* Hero Buttons */
@@ -1171,6 +1098,11 @@ body.professional-theme ::selection {
 
 .hero-btn svg {
   flex-shrink: 0;
+}
+
+/* Hero Buttons Container - Extra spacing from social icons */
+.professional-hero .flex.justify-center.gap-4.mb-16 {
+  margin-bottom: 1rem !important;
 }
 
 /* Social Icon Links */
@@ -1197,33 +1129,68 @@ body.professional-theme ::selection {
 }
 
 /* Responsive Hero Adjustments */
-@media (max-width: 768px) {
-  .terminal-output-container {
-    padding: 1.25rem;
+
+/* Tablets and Medium Devices (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .professional-hero {
+    padding: 2rem 1.5rem;
   }
 
-  .terminal-output-header {
-    font-size: 0.85rem;
-  }
-
-  .terminal-command-prompt {
+  .terminal-prompt {
     font-size: 1rem;
   }
 
-  .terminal-output-line {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-    padding: 0.65rem 0.75rem;
+  .hero-title-main {
+    font-size: clamp(2.5rem, 6vw, 4rem);
   }
 
-  .terminal-output-key {
-    min-width: auto;
-    font-size: 0.75rem;
+  .terminal-role {
+    font-size: clamp(1.25rem, 3.5vw, 2rem);
   }
 
-  .terminal-output-value {
-    font-size: 0.85rem;
+  .bracket-left,
+  .bracket-right {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .hero-btn {
+    padding: 0.95rem 2.25rem;
+    font-size: 0.95rem;
+  }
+
+  .social-icon-link {
+    padding: 0.65rem;
+  }
+
+  .professional-hero .flex.justify-center.gap-4.mb-16 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Mobile Devices (481px - 768px) */
+@media (max-width: 768px) {
+  .professional-hero {
+    padding: 1.5rem 1rem;
+    min-height: 100vh;
+  }
+
+  .terminal-prompt {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title-main {
+    font-size: clamp(2rem, 7vw, 3rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .terminal-role {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+  }
+
+  .bracket-left,
+  .bracket-right {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
   }
 
   .hero-btn {
@@ -1233,31 +1200,1190 @@ body.professional-theme ::selection {
     max-width: 300px;
   }
 
-  .terminal-role {
-    flex-direction: column;
-    gap: 0.25rem;
+  .social-icon-link {
+    padding: 0.65rem;
+  }
+
+  .social-icon-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .professional-hero .flex.justify-center.gap-4.mb-16 {
+    margin-bottom: 1rem !important;
   }
 }
 
+/* Small Mobile Devices (320px - 480px) */
 @media (max-width: 480px) {
-  .terminal-output-container {
-    padding: 1rem;
+  .professional-hero {
+    padding: 1rem 0.75rem;
   }
 
-  .terminal-output-header {
-    font-size: 0.8rem;
+  .terminal-prompt {
+    font-size: 0.75rem;
+    margin-bottom: 1.25rem;
   }
 
-  .terminal-output-key {
-    font-size: 0.7rem;
+  .hero-title-main {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    margin-bottom: 1rem;
   }
 
-  .terminal-output-value {
-    font-size: 0.8rem;
+  .terminal-role {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+
+  .bracket-left,
+  .bracket-right {
+    font-size: clamp(1.15rem, 6vw, 1.5rem);
   }
 
   .hero-btn {
     padding: 0.75rem 1.5rem;
     font-size: 0.85rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .social-icon-link {
+    padding: 0.6rem;
+  }
+
+  .social-icon-link svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .professional-hero .flex.justify-center.gap-4.mb-16 {
+    margin-bottom: 1rem !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Extra Small Devices (< 360px) */
+@media (max-width: 360px) {
+  .terminal-prompt {
+    font-size: 0.7rem;
+  }
+
+  .hero-title-main {
+    font-size: clamp(1.5rem, 9vw, 2rem);
+  }
+
+  .terminal-role {
+    font-size: 0.95rem;
+  }
+
+  .bracket-left,
+  .bracket-right {
+    font-size: 1.1rem;
+  }
+
+  .hero-btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  .social-icon-link {
+    padding: 0.55rem;
+  }
+}
+
+/* ===================================
+   RETRO CRT TERMINAL BACKGROUND
+   =================================== */
+
+/* Main Container */
+.retro-terminal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* CRT Scanlines Effect */
+.crt-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 255, 65, 0.04) 50%
+  );
+  background-size: 100% 4px;
+  animation: scanlines-move 8s linear infinite;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+@keyframes scanlines-move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* Static Noise Overlay */
+.static-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.025) 2px,
+      rgba(0, 255, 65, 0.025) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.025) 2px,
+      rgba(0, 255, 65, 0.025) 4px
+    );
+  opacity: 0.5;
+  animation: static-noise-flicker 0.15s infinite;
+  z-index: 1;
+}
+
+@keyframes static-noise-flicker {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Vignette Effect (Darkens edges like old CRT) */
+.crt-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 3;
+}
+
+/* Subtle Screen Flicker */
+.crt-flicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 65, 0.02);
+  opacity: 0;
+  animation: screen-flicker 5s ease-in-out infinite;
+  z-index: 4;
+}
+
+@keyframes screen-flicker {
+  0%, 100% {
+    opacity: 0;
+  }
+  5%, 10% {
+    opacity: 0.08;
+  }
+  15%, 20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.04;
+  }
+}
+
+/* ===================================
+   RESPONSIVE - RETRO CRT
+   =================================== */
+
+/* Reduce effects on smaller screens for performance */
+@media (max-width: 768px) {
+  .crt-scanlines {
+    opacity: 0.4;
+    background-size: 100% 3px;
+  }
+
+  .static-noise {
+    opacity: 0.25;
+  }
+
+  .crt-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.15) 90%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+
+  .crt-flicker {
+    animation-duration: 7s;
+  }
+}
+
+@media (max-width: 480px) {
+  .crt-scanlines {
+    opacity: 0.3;
+    background-size: 100% 2px;
+  }
+
+  .static-noise {
+    opacity: 0.2;
+  }
+
+  .crt-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 70%,
+      rgba(0, 0, 0, 0.1) 95%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  }
+
+  .crt-flicker {
+    animation-duration: 10s;
+  }
+}
+
+/* ===================================
+   TERMINAL BOOT LOADER
+   =================================== */
+
+/* Full Screen Loader Overlay */
+.terminal-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease-out;
+}
+
+.terminal-loader.fade-out {
+  opacity: 0;
+}
+
+/* Terminal Screen Background */
+.terminal-loader-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--terminal-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Terminal Loader Content */
+.terminal-loader-content {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 1.125rem;
+  color: var(--matrix-green);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Boot Lines */
+.boot-line {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.boot-line.completed {
+  opacity: 1;
+}
+
+.boot-line.active {
+  opacity: 1;
+}
+
+/* Typing Cursor for Loader */
+.typing-cursor-loader {
+  color: var(--lime-terminal);
+  font-weight: bold;
+  animation: blink-loader-cursor 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink-loader-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Progress Bar ASCII */
+.progress-bar-ascii {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: var(--matrix-green);
+  white-space: nowrap;
+}
+
+.progress-filled {
+  color: var(--lime-terminal);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+.progress-empty {
+  color: rgba(0, 255, 65, 0.3);
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+/* ===================================
+   RESPONSIVE - TERMINAL LOADER
+   =================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .terminal-loader-content {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  .boot-line {
+    margin-bottom: 0.6rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .terminal-loader-content {
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
+
+  .boot-line {
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-bar-ascii {
+    font-size: 0.75rem;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+  .terminal-loader-content {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}
+
+/* ===================================
+   APP CONTENT FADE-IN TRANSITION
+   =================================== */
+
+/* App Content Container */
+.app-content {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-content.content-hidden {
+  opacity: 0;
+}
+
+.app-content.content-visible {
+  animation: terminal-power-on 1.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+/* Terminal Power-On Animation - Smooth Continuous Fade */
+@keyframes terminal-power-on {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   TERMINAL CODE EDITOR (About Section)
+   =================================== */
+
+/* Terminal Editor Container */
+.terminal-editor {
+  background: rgba(13, 2, 8, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--green-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.terminal-editor:hover {
+  background: rgba(13, 2, 8, 0.95);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--green-glow-strong), 0 8px 32px rgba(0, 255, 65, 0.15);
+}
+
+/* Terminal Header (Window Controls & Title Bar) */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(13, 2, 8, 0.6);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+/* Window Controls (Traffic Lights) */
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.control-btn.close {
+  background: linear-gradient(135deg, #ff5f57, #ff3b30);
+  box-shadow: 0 0 8px rgba(255, 95, 87, 0.4);
+}
+
+.control-btn.minimize {
+  background: linear-gradient(135deg, #ffbd2e, #ffa000);
+  box-shadow: 0 0 8px rgba(255, 189, 46, 0.4);
+}
+
+.control-btn.maximize {
+  background: linear-gradient(135deg, #28ca42, #00d800);
+  box-shadow: 0 0 8px rgba(40, 202, 66, 0.4);
+}
+
+/* Terminal Title */
+.terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Copy Email Button */
+.copy-code-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 6px;
+  color: var(--matrix-green);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-code-btn:hover {
+  background: rgba(0, 255, 65, 0.2);
+  border-color: var(--matrix-green);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+  transform: translateY(-2px);
+}
+
+.copy-code-btn.copied {
+  background: rgba(40, 202, 66, 0.2);
+  border-color: rgba(40, 202, 66, 0.5);
+  color: #28ca42;
+}
+
+/* File Tabs */
+.file-tabs {
+  display: flex;
+  align-items: center;
+  background: rgba(13, 2, 8, 0.4);
+  border-bottom: 1px solid var(--glass-border);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 65, 0.3) transparent;
+}
+
+.file-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.file-tab:hover {
+  background: rgba(0, 255, 65, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.file-tab.active {
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--matrix-green);
+  border-bottom: 2px solid var(--matrix-green);
+}
+
+.file-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--matrix-green);
+  box-shadow: 0 0 8px var(--matrix-green);
+}
+
+.file-icon {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.file-tab.active .file-icon {
+  opacity: 1;
+  color: var(--matrix-green);
+}
+
+.tab-close {
+  opacity: 0;
+  margin-left: 0.25rem;
+  font-size: 1.125rem;
+  transition: opacity 0.3s ease;
+}
+
+.file-tab:hover .tab-close {
+  opacity: 0.5;
+}
+
+.tab-close:hover {
+  opacity: 1 !important;
+  color: #ff5f57;
+}
+
+/* Code Editor Content Area */
+.code-editor {
+  background: rgba(13, 2, 8, 0.3);
+  padding: 1.5rem 0;
+  max-height: 600px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 65, 0.3) rgba(13, 2, 8, 0.5);
+}
+
+.code-editor::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-editor::-webkit-scrollbar-track {
+  background: rgba(13, 2, 8, 0.5);
+}
+
+.code-editor::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.3);
+  border-radius: 4px;
+}
+
+.code-editor::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.5);
+}
+
+/* Code Content */
+.code-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Code Lines */
+.code-line {
+  display: flex;
+  padding: 0.15rem 0;
+  transition: background 0.2s ease;
+}
+
+.code-line:hover {
+  background: rgba(0, 255, 65, 0.03);
+}
+
+.code-line.empty-line {
+  min-height: 1.6em;
+}
+
+/* Line Numbers */
+.line-number {
+  display: inline-block;
+  width: 3.5rem;
+  text-align: right;
+  padding-right: 1.5rem;
+  color: rgba(255, 255, 255, 0.25);
+  user-select: none;
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.code-line:hover .line-number {
+  color: rgba(0, 255, 65, 0.5);
+}
+
+/* Syntax Highlighting - Terminal Theme Colors */
+.code-comment {
+  color: var(--comment-green);
+  font-style: italic;
+  opacity: 0.7;
+  text-shadow: 0 0 4px rgba(106, 153, 85, 0.2);
+}
+
+.code-keyword {
+  color: var(--cyber-magenta);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.code-variable {
+  color: var(--lime-terminal);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+}
+
+.code-property {
+  color: var(--matrix-green);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+.code-string {
+  color: var(--lime-terminal);
+  opacity: 0.9;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
+}
+
+.code-number {
+  color: var(--matrix-green);
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+.code-boolean {
+  color: var(--cyber-magenta);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.code-operator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.code-bracket {
+  color: var(--lime-terminal);
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+.code-indent {
+  white-space: pre;
+}
+
+/* Markdown Syntax (for README.md) */
+.code-markdown-header {
+  color: var(--matrix-green);
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.code-markdown-list {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.code-markdown-list::before {
+  color: var(--lime-terminal);
+  margin-right: 0.5rem;
+}
+
+.code-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .terminal-header {
+    padding: 0.65rem 0.875rem;
+  }
+
+  .terminal-title {
+    font-size: 0.75rem;
+  }
+
+  .copy-code-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .copy-code-btn span {
+    display: none;
+  }
+
+  .file-tab {
+    padding: 0.65rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .tab-close {
+    display: none;
+  }
+
+  .code-editor {
+    padding: 1rem 0;
+    max-height: 500px;
+  }
+
+  .code-content {
+    font-size: 0.8125rem;
+  }
+
+  .line-number {
+    width: 2.5rem;
+    padding-right: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-editor {
+    border-radius: 8px;
+  }
+
+  .window-controls {
+    gap: 0.375rem;
+  }
+
+  .control-btn {
+    width: 10px;
+    height: 10px;
+  }
+
+  .terminal-title {
+    font-size: 0.7rem;
+  }
+
+  .file-tabs {
+    overflow-x: auto;
+  }
+
+  .file-tab {
+    padding: 0.6rem 0.875rem;
+    font-size: 0.7rem;
+  }
+
+  .file-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .code-editor {
+    max-height: 400px;
+    padding: 0.75rem 0;
+  }
+
+  .code-content {
+    font-size: 0.75rem;
+  }
+
+  .line-number {
+    width: 2rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* ===================================
+   GIT COMMIT LOG STYLING (Skills Section)
+   =================================== */
+
+/* Git Log Container */
+.git-log-container {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Commit Category */
+.commit-category {
+  margin-bottom: 1rem;
+}
+
+/* Commit Entry */
+.commit-entry {
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.commit-entry:hover {
+  background: rgba(0, 255, 65, 0.03);
+  border-left-color: var(--lime-terminal);
+}
+
+.commit-entry.expanded {
+  background: rgba(0, 255, 65, 0.05);
+  border-left-color: var(--matrix-green);
+}
+
+/* Commit Header */
+.commit-header {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.commit-hash {
+  color: var(--lime-terminal);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+  margin-right: 0.5rem;
+}
+
+.commit-ref {
+  color: var(--matrix-green);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Commit Meta */
+.commit-meta {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.commit-author {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.commit-date {
+  color: var(--comment-green);
+}
+
+/* Commit Message */
+.commit-message {
+  margin-bottom: 1rem;
+}
+
+.message-title {
+  color: var(--cyber-magenta);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+}
+
+.message-body {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  border-left: 2px solid rgba(0, 255, 65, 0.2);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* Diff Stats */
+.commit-diff {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.diff-file {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.diff-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: monospace;
+}
+
+.diff-stat .additions {
+  color: var(--lime-terminal);
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.3);
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.diff-stat .deletions {
+  color: var(--cyber-magenta);
+  text-shadow: 0 0 6px rgba(255, 0, 255, 0.3);
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.stat-numbers {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.diff-summary {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Expanded Details */
+.commit-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(13, 2, 8, 0.5);
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  font-size: 0.85rem;
+}
+
+.detail-header {
+  color: var(--lime-terminal);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.detail-line {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.25rem;
+}
+
+.detail-content {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.addition-line {
+  color: var(--lime-terminal);
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
+  padding-left: 0.5rem;
+}
+
+/* Commit Divider */
+.commit-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 65, 0.15),
+    transparent
+  );
+  margin-top: 1.25rem;
+}
+
+/* ===================================
+   NPM DEPENDENCIES & SCRIPTS (Skills Section)
+   =================================== */
+
+/* Dependencies Output */
+.dependencies-output,
+.scripts-output {
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.npm-header {
+  color: var(--matrix-green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+.npm-dependency {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.npm-dependency:hover {
+  color: var(--lime-terminal);
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
+  transform: translateX(4px);
+}
+
+.npm-tree {
+  color: var(--comment-green);
+  margin-right: 0.5rem;
+}
+
+.npm-package {
+  color: var(--lime-terminal);
+  font-weight: 500;
+}
+
+/* Scripts Output */
+.scripts-header {
+  color: var(--matrix-green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+.npm-script {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-left: 2px solid rgba(0, 255, 65, 0.2);
+  transition: all 0.3s ease;
+}
+
+.npm-script:hover {
+  background: rgba(0, 255, 65, 0.03);
+  border-left-color: var(--lime-terminal);
+}
+
+.script-name {
+  color: var(--cyber-magenta);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 0 6px rgba(255, 0, 255, 0.2);
+}
+
+.script-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Responsive Design for Git Log */
+@media (max-width: 768px) {
+  .commit-entry {
+    padding: 1rem 1.25rem;
+  }
+
+  .commit-header {
+    font-size: 0.8rem;
+  }
+
+  .message-title {
+    font-size: 0.9rem;
+  }
+
+  .diff-stat {
+    font-size: 0.75rem;
+  }
+
+  .diff-stat .additions,
+  .diff-stat .deletions {
+    letter-spacing: -2px;
+    font-size: 0.7rem;
+  }
+
+  .commit-details {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .dependencies-output,
+  .scripts-output {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .commit-entry {
+    padding: 0.875rem 1rem;
+  }
+
+  .commit-hash {
+    font-size: 0.75rem;
+  }
+
+  .commit-ref {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .message-title {
+    font-size: 0.85rem;
+  }
+
+  .diff-file {
+    font-size: 0.75rem;
+  }
+
+  .diff-stat .additions,
+  .diff-stat .deletions {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dependencies-output,
+  .scripts-output {
+    font-size: 0.8rem;
+  }
+
+  .npm-script {
+    padding: 0.5rem;
   }
 }

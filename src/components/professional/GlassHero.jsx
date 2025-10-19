@@ -1,25 +1,29 @@
-import { useEffect, useState } from 'react';
-import { profile } from '../../data/profile';
-import '../../styles/professional.css';
+import { useEffect, useState } from "react";
+import { profile } from "../../data/profile";
+import "../../styles/professional.css";
 
 const GlassHero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Small delay to ensure smooth render
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById("contact");
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
+    const projectsSection = document.getElementById("projects");
     if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+      projectsSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -33,20 +37,37 @@ const GlassHero = () => {
 
       {/* Floating Particles */}
       <div className="floating-particles">
-        <div className="particle" style={{ top: '20%', left: '10%', animationDelay: '0s' }} />
-        <div className="particle" style={{ top: '60%', left: '15%', animationDelay: '2s' }} />
-        <div className="particle" style={{ top: '40%', right: '20%', animationDelay: '4s' }} />
-        <div className="particle" style={{ top: '80%', right: '10%', animationDelay: '6s' }} />
-        <div className="particle" style={{ top: '30%', left: '50%', animationDelay: '3s' }} />
-        <div className="particle" style={{ top: '70%', left: '80%', animationDelay: '5s' }} />
+        <div
+          className="particle"
+          style={{ top: "20%", left: "10%", animationDelay: "0s" }}
+        />
+        <div
+          className="particle"
+          style={{ top: "60%", left: "15%", animationDelay: "2s" }}
+        />
+        <div
+          className="particle"
+          style={{ top: "40%", right: "20%", animationDelay: "4s" }}
+        />
+        <div
+          className="particle"
+          style={{ top: "80%", right: "10%", animationDelay: "6s" }}
+        />
+        <div
+          className="particle"
+          style={{ top: "30%", left: "50%", animationDelay: "3s" }}
+        />
+        <div
+          className="particle"
+          style={{ top: "70%", left: "80%", animationDelay: "5s" }}
+        />
       </div>
 
       <div className="professional-container relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Terminal Prompt Greeting */}
           <div
-            className={`mb-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.1s' }}
+            className={`mb-6 ${isVisible ? "opacity-100" : "opacity-0"}`}
           >
             <div className="terminal-prompt">
               <span className="text-comment-green">user@portfolio</span>
@@ -59,8 +80,9 @@ const GlassHero = () => {
 
           {/* Name with Blinking Cursor */}
           <div
-            className={`text-center mb-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.2s' }}
+            className={`text-center mb-6 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
           >
             <h1 className="hero-title-main">
               {profile.name}
@@ -70,8 +92,9 @@ const GlassHero = () => {
 
           {/* Role with Terminal Brackets */}
           <div
-            className={`text-center mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.3s' }}
+            className={`text-center mb-12 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
           >
             <div className="terminal-role">
               <span className="bracket-left">[</span>
@@ -80,45 +103,16 @@ const GlassHero = () => {
             </div>
           </div>
 
-          {/* Terminal Command Output */}
-          <div
-            className={`mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.4s' }}
-          >
-            <div className="terminal-output-container">
-              <div className="terminal-output-header">
-                <span className="terminal-command-prompt">$</span>
-                <span className="terminal-command">cat profile.info</span>
-              </div>
-              <div className="terminal-output-divider" />
-              <div className="terminal-output-content">
-                <div className="terminal-output-line">
-                  <span className="terminal-output-key">LOCATION:</span>
-                  <span className="terminal-output-value">{profile.location}</span>
-                </div>
-                <div className="terminal-output-line">
-                  <span className="terminal-output-key">STATUS:</span>
-                  <span className="terminal-output-value">Available</span>
-                </div>
-                <div className="terminal-output-line">
-                  <span className="terminal-output-key">PROJECTS:</span>
-                  <span className="terminal-output-value">10+ Delivered</span>
-                </div>
-                <div className="terminal-output-line">
-                  <span className="terminal-output-key">RESPONSE:</span>
-                  <span className="terminal-output-value">Fast Turnaround</span>
-                </div>
-              </div>
-              <div className="terminal-output-divider" />
-            </div>
-          </div>
-
           {/* CTA Buttons */}
           <div
-            className={`flex flex-wrap justify-center gap-4 mb-10 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.6s' }}
+            className={`flex flex-wrap justify-center gap-4 mb-16 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
           >
-            <button onClick={scrollToContact} className="glass-btn-primary hero-btn">
+            <button
+              onClick={scrollToContact}
+              className="glass-btn-primary hero-btn"
+            >
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -154,8 +148,9 @@ const GlassHero = () => {
 
           {/* Social Links */}
           <div
-            className={`flex justify-center gap-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-            style={{ animationDelay: '0.7s' }}
+            className={`flex justify-center gap-4 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
           >
             <a
               href={profile.social.facebook}
