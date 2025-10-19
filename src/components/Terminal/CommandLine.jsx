@@ -29,6 +29,23 @@ const CommandLine = () => {
     }
   }, []);
 
+  // Global Enter key listener to focus command line
+  useEffect(() => {
+    const handleGlobalKeyPress = (e) => {
+      // Focus input when Enter is pressed (unless already focused or in a game)
+      if (e.key === 'Enter' && document.activeElement !== inputRef.current) {
+        const { gameActive } = useTerminalStore.getState();
+        if (!gameActive && inputRef.current) {
+          e.preventDefault();
+          inputRef.current.focus();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyPress);
+    return () => window.removeEventListener('keydown', handleGlobalKeyPress);
+  }, []);
+
   // Show command line with CRT flash after hero content finishes
   useEffect(() => {
     // Hero CRT reveal: 500ms delay + 800ms animation = 1300ms

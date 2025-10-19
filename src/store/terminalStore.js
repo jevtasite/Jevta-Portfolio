@@ -21,11 +21,24 @@ const useTerminalStore = create((set) => ({
   // Console visibility
   showConsole: false,
 
+  // Session statistics
+  sessionStats: {
+    commandsTyped: 0,
+    sessionStart: new Date().toISOString(),
+  },
+
+  // Matrix overlay
+  matrixOverlayActive: false,
+
   // Actions
   addCommand: (command) =>
     set((state) => ({
       commandHistory: [...state.commandHistory, command],
       historyIndex: -1,
+      sessionStats: {
+        ...state.sessionStats,
+        commandsTyped: state.sessionStats.commandsTyped + 1,
+      },
     })),
 
   setCurrentCommand: (command) =>
@@ -66,6 +79,9 @@ const useTerminalStore = create((set) => ({
 
   setShowConsole: (show) =>
     set({ showConsole: show }),
+
+  setMatrixOverlay: (active) =>
+    set({ matrixOverlayActive: active }),
 }));
 
 export default useTerminalStore;

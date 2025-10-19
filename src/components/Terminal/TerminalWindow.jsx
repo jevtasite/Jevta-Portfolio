@@ -9,12 +9,29 @@ import FlappyBird from '../Games/FlappyBird';
 const TerminalWindow = ({ children }) => {
   const contentRef = useRef(null);
   const consoleRef = useRef(null);
-  const { output, gameActive, setGameActive, showConsole, setShowConsole, clearOutput } = useTerminalStore();
+  const prevOutputLengthRef = useRef(0);
+  const { output, gameActive, setGameActive, showConsole, setShowConsole, clearOutput, matrixOverlayActive } = useTerminalStore();
 
-  // Auto-scroll console to bottom when new output is added
+  // Smart scroll: scroll to top on first output, scroll to bottom on progressive updates
   useEffect(() => {
     if (consoleRef.current && output.length > 0) {
-      consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
+      const prevLength = prevOutputLengthRef.current;
+      const isFirstOutput = prevLength === 0 && output.length === 1;
+
+      if (isFirstOutput) {
+        // First output after clear - scroll to top to show command
+        consoleRef.current.scrollTop = 0;
+      } else {
+        // Progressive output (like hack command) - scroll to bottom to see new lines
+        consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
+      }
+
+      prevOutputLengthRef.current = output.length;
+    }
+
+    // Reset tracking when output is cleared
+    if (output.length === 0) {
+      prevOutputLengthRef.current = 0;
     }
   }, [output]);
 
@@ -155,6 +172,19 @@ const TerminalWindow = ({ children }) => {
             setGameActive(false);
           }}
         />
+      )}
+
+      {/* Matrix Overlay Effect */}
+      {matrixOverlayActive && (
+        <div
+          className="fixed inset-0 z-[100] pointer-events-none animate-fade-in"
+          style={{
+            background: 'rgba(0, 0, 0, 0.5)',
+            boxShadow: 'inset 0 0 100px rgba(0, 255, 65, 0.3)',
+          }}
+        >
+          <MatrixRain />
+        </div>
       )}
     </div>
   );

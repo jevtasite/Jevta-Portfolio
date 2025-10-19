@@ -7,12 +7,14 @@ A unique, terminal-themed portfolio website for Luka Stoiljković (Jevta), featu
 ## 🚀 Features
 
 ### 🖥️ Terminal Interface
+
 - **Fully Functional Command Line** - Interactive terminal with real commands
 - **Matrix Rain Background** - Authentic hacker aesthetic with falling green characters
 - **CRT Effects** - Scan lines and retro terminal feel
 - **Window Chrome** - Realistic terminal window with minimize/maximize/close buttons
 
 ### ⚡ Working Terminal Commands
+
 ```bash
 help              # Show available commands
 ls                # List all sections
@@ -21,10 +23,10 @@ cat [file]        # Display section content
 clear             # Clear terminal output
 whoami            # Show info about Luka
 history           # Show command history
-exit              # Easter egg!
 ```
 
 ### 🌐 Multi-Language Support
+
 - **English** & **Serbian** translations
 - Easy language switching via terminal chrome buttons
 - Full i18n implementation with react-i18next
@@ -53,12 +55,14 @@ exit              # Easter egg!
 - **Lucide React** - Icon library (ready to use)
 
 ### Fonts
+
 - **Fira Code** - Headers and ASCII art
 - **Space Mono** - Body text and code blocks
 
 ## 🎨 Design System
 
 ### Color Palette
+
 ```css
 --matrix-green: #00FF41      /* Primary - Active state, success */
 --lime-terminal: #39FF14     /* Secondary - Highlights */
@@ -70,6 +74,7 @@ exit              # Easter egg!
 ```
 
 ### Motion Principles
+
 - Step-function easing (no smooth curves)
 - Character-by-character typing (60ms/char)
 - ASCII art hover transformations
@@ -101,6 +106,7 @@ npm run preview
 ## 🔧 Development
 
 ### File Structure
+
 ```
 src/
 ├── components/
@@ -136,8 +142,8 @@ Edit `src/utils/commands.js`:
 ```javascript
 const commands = {
   yourCommand: () => ({
-    type: 'success',
-    content: 'Your command output here',
+    type: "success",
+    content: "Your command output here",
   }),
 };
 ```
@@ -151,6 +157,7 @@ To add more languages, edit `src/i18n.js` and add new translation objects.
 ## 🌍 Deployment
 
 ### Vercel (Recommended)
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -160,6 +167,7 @@ vercel
 ```
 
 ### Netlify
+
 ```bash
 # Build
 npm run build
@@ -168,6 +176,7 @@ npm run build
 ```
 
 ### Build Output
+
 - Build command: `npm run build`
 - Output directory: `dist/`
 - Node version: 18.x or higher
@@ -185,18 +194,22 @@ npm run build
 No environment variables required for basic functionality.
 
 For production deployment, consider adding:
+
 - Analytics tracking ID
 - Contact form API endpoint (if using a backend service)
 
 ## 📝 Customization
 
 ### Changing Colors
+
 Edit `tailwind.config.js` to customize the color palette.
 
 ### Modifying Animations
+
 Animation timings and effects are in `src/index.css` and individual components.
 
 ### Updating Content
+
 - **Personal Info**: Edit individual section components in `src/components/sections/`
 - **Projects**: Update the `projects` array in `Portfolio.jsx`
 - **Skills**: Modify the `skills` array in `Skills.jsx`
@@ -225,6 +238,7 @@ Copyright © 2025 Luka Stoiljković (Jevta). All rights reserved.
 ## 👨‍💻 Author
 
 **Luka Stoiljković (Jevta)**
+
 - Website: [jevta.site](https://jevta.site)
 - Email: jevta.site@gmail.com
 - GitHub: [@jevtasite](https://github.com/jevtasite)
@@ -234,4 +248,4 @@ Copyright © 2025 Luka Stoiljković (Jevta). All rights reserved.
 
 **Built with** ❤️ **and lots of** ☕ **by Jevta**
 
-*Type `help` to get started!*
+_Type `help` to get started!_
