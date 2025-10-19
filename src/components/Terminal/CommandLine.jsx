@@ -103,7 +103,30 @@ const CommandLine = () => {
     // Enter - Execute command
     else if (e.key === "Enter") {
       e.preventDefault();
-      handleCommand(input.trim());
+      const command = input.trim();
+
+      // Execute command
+      handleCommand(command);
+
+      // Blur to close mobile keyboard - multiple methods for compatibility
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+
+      // Remove focus from any active element
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+
+      // Set readonly temporarily to force keyboard close (iOS fix)
+      if (inputRef.current) {
+        inputRef.current.setAttribute('readonly', 'readonly');
+        setTimeout(() => {
+          if (inputRef.current) {
+            inputRef.current.removeAttribute('readonly');
+          }
+        }, 100);
+      }
     }
   };
 
@@ -137,11 +160,6 @@ const CommandLine = () => {
     // Clear input
     setInput("");
     setCurrentCommand("");
-
-    // Blur input to close mobile keyboard
-    if (inputRef.current) {
-      inputRef.current.blur();
-    }
   };
 
   const handleInputChange = (e) => {

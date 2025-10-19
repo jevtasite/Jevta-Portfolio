@@ -8,20 +8,24 @@ import Services from './components/sections/Services';
 import Stats from './components/sections/Stats';
 import Contact from './components/sections/Contact';
 import Footer from './components/sections/Footer';
+import MouseTrail from './components/effects/MouseTrail';
 
 function App() {
   return (
-    <TerminalWindow>
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Portfolio />
-      <Services />
-      <Stats />
-      <Contact />
-      <Footer />
-    </TerminalWindow>
+    <>
+      <MouseTrail />
+      <TerminalWindow>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Portfolio />
+        <Services />
+        <Stats />
+        <Contact />
+        <Footer />
+      </TerminalWindow>
+    </>
   );
 }
 

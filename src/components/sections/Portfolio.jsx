@@ -5,6 +5,7 @@ const Portfolio = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [expandedProject, setExpandedProject] = useState(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,6 +38,17 @@ const Portfolio = () => {
       url: "https://fieldfocus.agency/",
       tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       type: t('portfolio.webDesign'),
+      features: [
+        "Modern agency landing page",
+        "Smooth scroll animations",
+        "Mobile-first responsive design",
+        "Performance optimized"
+      ],
+      challenges: [
+        "Cross-browser compatibility",
+        "Optimizing loading times",
+        "Creating engaging animations"
+      ]
     },
     {
       name: "Platinum Media",
@@ -44,6 +56,17 @@ const Portfolio = () => {
       url: "https://platinumedia.site/",
       tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       type: t('portfolio.webDesign'),
+      features: [
+        "Professional media agency site",
+        "Interactive portfolio gallery",
+        "Dynamic content sections",
+        "SEO optimized structure"
+      ],
+      challenges: [
+        "Image optimization for fast loading",
+        "Creating intuitive navigation",
+        "Maintaining brand consistency"
+      ]
     },
     {
       name: "Playmaker Group",
@@ -51,6 +74,17 @@ const Portfolio = () => {
       url: "https://playmakergroup.net",
       tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       type: t('portfolio.webDesign'),
+      features: [
+        "Sports management platform",
+        "Client showcase sections",
+        "Contact integration",
+        "Multi-page navigation"
+      ],
+      challenges: [
+        "Organizing complex information",
+        "Creating professional layout",
+        "Ensuring mobile usability"
+      ]
     },
     {
       name: "L'ÉQUIPE",
@@ -58,6 +92,17 @@ const Portfolio = () => {
       url: "https://l-equipe-management.com/",
       tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       type: t('portfolio.webDesign'),
+      features: [
+        "Talent management website",
+        "Artist portfolio displays",
+        "Elegant design system",
+        "Smooth page transitions"
+      ],
+      challenges: [
+        "Showcasing diverse talent",
+        "Creating visual hierarchy",
+        "Balancing aesthetics with performance"
+      ]
     },
   ];
 
@@ -111,13 +156,14 @@ const Portfolio = () => {
           {getProjects().map((project, index) => (
             <div
               key={index}
-              className={`project-card border-2 transition-all duration-300 ${
+              className={`project-card border-2 transition-all duration-300 cursor-pointer ${
                 hoveredProject === index
                   ? "border-lime-terminal bg-elevated-black/80 glitch"
                   : "border-comment-green bg-elevated-black/50"
               }`}
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => setExpandedProject(expandedProject === index ? null : index)}
               style={{
                 animationDelay: isVisible ? `${index * 150}ms` : "0ms",
               }}
@@ -128,9 +174,14 @@ const Portfolio = () => {
                   <h3 className="text-lime-terminal font-fira text-xl font-bold">
                     {project.name}
                   </h3>
-                  <span className="text-comment-green font-fira text-xs">
-                    .com
-                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-comment-green font-fira text-xs">
+                      .com
+                    </span>
+                    <span className="text-lime-terminal font-fira text-xs">
+                      {expandedProject === index ? '[-]' : '[+]'}
+                    </span>
+                  </div>
                 </div>
                 <div className="text-comment-green font-fira text-xs">
                   {project.type}
@@ -162,6 +213,43 @@ const Portfolio = () => {
                   </div>
                 </div>
 
+                {/* Expanded Details */}
+                {expandedProject === index && (
+                  <div className="space-y-4 mb-4 animate-fade-in">
+                    {/* Features */}
+                    <div className="border border-comment-green/30 p-4 bg-terminal-black/50">
+                      <div className="text-lime-terminal font-fira text-xs mb-2 flex items-center space-x-2">
+                        <span>&gt;</span>
+                        <span>cat features.txt</span>
+                      </div>
+                      <ul className="space-y-1">
+                        {project.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="text-comment-green font-fira text-xs flex items-start space-x-2">
+                            <span className="text-matrix-green">✓</span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Challenges */}
+                    <div className="border border-comment-green/30 p-4 bg-terminal-black/50">
+                      <div className="text-lime-terminal font-fira text-xs mb-2 flex items-center space-x-2">
+                        <span>&gt;</span>
+                        <span>cat challenges.log</span>
+                      </div>
+                      <ul className="space-y-1">
+                        {project.challenges.map((challenge, challengeIndex) => (
+                          <li key={challengeIndex} className="text-comment-green font-fira text-xs flex items-start space-x-2">
+                            <span className="text-cyber-magenta">!</span>
+                            <span>{challenge}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
                 {/* Action Buttons */}
                 <div className="flex items-center space-x-4 pt-4 border-t border-comment-green/30">
                   <a
@@ -169,6 +257,7 @@ const Portfolio = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 text-lime-terminal font-fira text-sm hover:text-cyber-magenta transition-colors group"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <span>./launch_project.sh</span>
                     <svg
@@ -185,6 +274,15 @@ const Portfolio = () => {
                       />
                     </svg>
                   </a>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedProject(expandedProject === index ? null : index);
+                    }}
+                    className="text-comment-green font-fira text-xs hover:text-lime-terminal transition-colors"
+                  >
+                    {expandedProject === index ? '$ collapse' : '$ expand'}
+                  </button>
                 </div>
               </div>
 

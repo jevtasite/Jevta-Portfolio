@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 const Stats = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const [countingComplete, setCountingComplete] = useState(false);
   const [counts, setCounts] = useState({
     experience: 0,
     clients: 0,
@@ -50,20 +51,28 @@ const Stats = () => {
 
     let step = 0;
 
+    // Easing function for smooth animation (easeOutExpo)
+    const easeOutExpo = (t) => {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    };
+
     const timer = setInterval(() => {
       step++;
-      const progress = step / steps;
+      const linearProgress = step / steps;
+      const easedProgress = easeOutExpo(linearProgress);
 
       setCounts({
-        experience: Math.floor(finalStats.experience * progress),
-        clients: Math.floor(finalStats.clients * progress),
-        projects: Math.floor(finalStats.projects * progress),
-        hours: Math.floor(finalStats.hours * progress),
+        experience: Math.floor(finalStats.experience * easedProgress),
+        clients: Math.floor(finalStats.clients * easedProgress),
+        projects: Math.floor(finalStats.projects * easedProgress),
+        hours: Math.floor(finalStats.hours * easedProgress),
       });
 
       if (step >= steps) {
         clearInterval(timer);
         setCounts(finalStats);
+        // Mark counting as complete with a slight delay
+        setTimeout(() => setCountingComplete(true), 100);
       }
     }, interval);
 
@@ -164,6 +173,25 @@ const Stats = () => {
           </div>
         </div>
 
+        {/* Counting Status */}
+        {isVisible && !countingComplete && (
+          <div className="mb-6 border border-matrix-green/50 bg-elevated-black/50 p-3">
+            <div className="font-fira text-xs text-matrix-green animate-pulse flex items-center space-x-2">
+              <span className="animate-spin">⟳</span>
+              <span>&gt; Computing statistics...</span>
+            </div>
+          </div>
+        )}
+
+        {countingComplete && (
+          <div className="mb-6 border border-lime-terminal bg-elevated-black/50 p-3 animate-fade-in">
+            <div className="font-fira text-xs text-lime-terminal flex items-center space-x-2">
+              <span>✓</span>
+              <span>&gt; Statistics loaded successfully!</span>
+            </div>
+          </div>
+        )}
+
         {/* Stats Grid */}
         <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           {getStats().map((stat, index) => (
@@ -184,7 +212,18 @@ const Stats = () => {
               {/* Stat Content */}
               <div className="p-6 text-center">
                 {/* Value */}
-                <div className={`${stat.color} font-fira text-5xl font-bold mb-2 transition-all duration-300`}>
+                <div
+                  className={`${stat.color} font-fira text-5xl font-bold mb-2 transition-all duration-300 ${
+                    isVisible && stat.value < (finalStats[Object.keys(finalStats)[index]] || 0)
+                      ? 'scale-110 drop-shadow-[0_0_10px_rgba(57,255,20,0.5)]'
+                      : 'scale-100'
+                  }`}
+                  style={{
+                    textShadow: isVisible && stat.value < (finalStats[Object.keys(finalStats)[index]] || 0)
+                      ? '0 0 20px rgba(57, 255, 20, 0.3)'
+                      : 'none'
+                  }}
+                >
                   {stat.value}
                   <span className="text-3xl">{stat.suffix}</span>
                 </div>
@@ -193,6 +232,23 @@ const Stats = () => {
                 <div className="text-comment-green font-fira text-sm">
                   {stat.label}
                 </div>
+
+                {/* Counter indicator */}
+                {isVisible && stat.value < (finalStats[Object.keys(finalStats)[index]] || 0) && (
+                  <div className="mt-2">
+                    <div className="text-matrix-green font-fira text-xs animate-pulse mb-1">
+                      &gt; counting...
+                    </div>
+                    <div className="w-full bg-terminal-black border border-matrix-green/30 h-1 overflow-hidden">
+                      <div
+                        className="h-full bg-matrix-green transition-all duration-100"
+                        style={{
+                          width: `${(stat.value / (finalStats[Object.keys(finalStats)[index]] || 1)) * 100}%`
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
