@@ -2052,338 +2052,286 @@ body.professional-theme ::selection {
 }
 
 /* ===================================
-   GIT COMMIT LOG STYLING (Skills Section)
+   SKILLS SECTION - ACCORDION STYLE
    =================================== */
 
-/* Git Log Container */
-.git-log-container {
-  max-height: 600px;
-  overflow-y: auto;
-}
-
-/* Commit Category */
-.commit-category {
-  margin-bottom: 1rem;
-}
-
-/* Commit Entry */
-.commit-entry {
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
-}
-
-.commit-entry:hover {
-  background: rgba(0, 255, 65, 0.03);
-  border-left-color: var(--lime-terminal);
-}
-
-.commit-entry.expanded {
-  background: rgba(0, 255, 65, 0.05);
-  border-left-color: var(--matrix-green);
-}
-
-/* Commit Header */
-.commit-header {
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-}
-
-.commit-hash {
-  color: var(--lime-terminal);
-  font-weight: 600;
-  text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
-  margin-right: 0.5rem;
-}
-
-.commit-ref {
-  color: var(--matrix-green);
-  opacity: 0.8;
-  font-style: italic;
-}
-
-/* Commit Meta */
-.commit-meta {
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
-  line-height: 1.6;
-}
-
-.commit-author {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.commit-date {
-  color: var(--comment-green);
-}
-
-/* Commit Message */
-.commit-message {
-  margin-bottom: 1rem;
-}
-
-.message-title {
-  color: var(--cyber-magenta);
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
-}
-
-.message-body {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.875rem;
-  padding-left: 1rem;
-  margin-top: 0.5rem;
-  border-left: 2px solid rgba(0, 255, 65, 0.2);
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-/* Diff Stats */
-.commit-diff {
-  margin-bottom: 0.75rem;
-  font-size: 0.85rem;
-}
-
-.diff-file {
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.diff-stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-family: monospace;
-}
-
-.diff-stat .additions {
-  color: var(--lime-terminal);
-  text-shadow: 0 0 6px rgba(57, 255, 20, 0.3);
-  font-weight: bold;
-  letter-spacing: -1px;
-}
-
-.diff-stat .deletions {
-  color: var(--cyber-magenta);
-  text-shadow: 0 0 6px rgba(255, 0, 255, 0.3);
-  font-weight: bold;
-  letter-spacing: -1px;
-}
-
-.stat-numbers {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-}
-
-.diff-summary {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
-  font-style: italic;
-}
-
-/* Expanded Details */
-.commit-details {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: rgba(13, 2, 8, 0.5);
-  border-radius: 8px;
-  border: 1px solid var(--glass-border);
-  font-size: 0.85rem;
-}
-
-.detail-header {
-  color: var(--lime-terminal);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.detail-line {
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0.25rem;
-}
-
-.detail-content {
-  margin-top: 0.75rem;
+/* Skills Accordion Container */
+.skills-accordion {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 1rem;
 }
 
-.addition-line {
-  color: var(--lime-terminal);
-  text-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
-  padding-left: 0.5rem;
-}
-
-/* Commit Divider */
-.commit-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 255, 65, 0.15),
-    transparent
-  );
-  margin-top: 1.25rem;
-}
-
-/* ===================================
-   NPM DEPENDENCIES & SCRIPTS (Skills Section)
-   =================================== */
-
-/* Dependencies Output */
-.dependencies-output,
-.scripts-output {
-  padding: 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-.npm-header {
-  color: var(--matrix-green);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
-}
-
-.npm-dependency {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0.5rem;
+/* Accordion Item */
+.accordion-item {
+  background: rgba(13, 2, 8, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.npm-dependency:hover {
-  color: var(--lime-terminal);
-  text-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
-  transform: translateX(4px);
+.accordion-item.expanded {
+  background: rgba(0, 255, 65, 0.08);
+  border-color: var(--lime-terminal);
 }
 
-.npm-tree {
-  color: var(--comment-green);
-  margin-right: 0.5rem;
+/* Accordion Header (Clickable Button) */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--matrix-green);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
 
-.npm-package {
+.accordion-header:hover {
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.accordion-item.expanded .accordion-header {
+  background: rgba(0, 255, 65, 0.03);
+}
+
+/* Accordion Arrow */
+.accordion-arrow {
   color: var(--lime-terminal);
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+  line-height: 1;
+}
+
+.accordion-title {
+  flex: 1;
+}
+
+.accordion-count {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
-/* Scripts Output */
-.scripts-header {
-  color: var(--matrix-green);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+/* Accordion Content (Expandable Area) */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+  opacity: 0;
 }
 
-.npm-script {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border-left: 2px solid rgba(0, 255, 65, 0.2);
+.accordion-content.show {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.accordion-inner {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* Skill Item (Inside Accordion) */
+.skill-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Tree Characters */
+.skill-tree {
+  flex-shrink: 0;
+}
+
+.tree-char {
+  color: var(--comment-green);
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Skill Details */
+.skill-details {
+  flex: 1;
+}
+
+.skill-name {
+  color: var(--cyber-magenta);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.375rem;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+}
+
+.skill-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Simple Glass Sections (Tools & Work Approach) */
+.simple-glass-section {
+  background: rgba(13, 2, 8, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--green-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.simple-glass-section:hover {
+  background: rgba(13, 2, 8, 0.95);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--green-glow-strong), 0 8px 32px rgba(0, 255, 65, 0.15);
+}
+
+.simple-section-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--matrix-green);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+/* Simple Badges Grid (Tools) */
+.simple-badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.simple-badge {
+  padding: 0.625rem 1.25rem;
+  background: rgba(0, 255, 65, 0.1);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 50px;
+  color: var(--lime-terminal);
+  font-weight: 500;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
 }
 
-.npm-script:hover {
-  background: rgba(0, 255, 65, 0.03);
+.simple-badge:hover {
+  background: rgba(0, 255, 65, 0.2);
+  border-color: var(--lime-terminal);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Work Approach List */
+.work-approach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.approach-item {
+  padding: 1rem;
+  border-left: 3px solid rgba(0, 255, 65, 0.3);
+  transition: all 0.3s ease;
+}
+
+.approach-item:hover {
+  background: rgba(0, 255, 65, 0.05);
   border-left-color: var(--lime-terminal);
 }
 
-.script-name {
-  color: var(--cyber-magenta);
+.approach-title {
   font-weight: 600;
-  display: block;
-  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  color: var(--cyber-magenta);
+  margin-bottom: 0.5rem;
   text-shadow: 0 0 6px rgba(255, 0, 255, 0.2);
 }
 
-.script-desc {
+.approach-description {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
-/* Responsive Design for Git Log */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .commit-entry {
-    padding: 1rem 1.25rem;
+  .category-header {
+    font-size: 1.25rem;
   }
 
-  .commit-header {
-    font-size: 0.8rem;
-  }
-
-  .message-title {
-    font-size: 0.9rem;
-  }
-
-  .diff-stat {
-    font-size: 0.75rem;
-  }
-
-  .diff-stat .additions,
-  .diff-stat .deletions {
-    letter-spacing: -2px;
-    font-size: 0.7rem;
-  }
-
-  .commit-details {
-    padding: 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .dependencies-output,
-  .scripts-output {
-    padding: 1rem;
+  .skill-badge {
+    padding: 0.625rem 1.25rem;
     font-size: 0.85rem;
+  }
+
+  .skill-tooltip {
+    font-size: 0.75rem;
+    white-space: normal;
+    max-width: 200px;
+  }
+
+  .simple-glass-section {
+    padding: 1.5rem;
+  }
+
+  .simple-section-header {
+    font-size: 1.125rem;
   }
 }
 
 @media (max-width: 480px) {
-  .commit-entry {
-    padding: 0.875rem 1rem;
+  .skills-grid {
+    gap: 2rem;
   }
 
-  .commit-hash {
-    font-size: 0.75rem;
+  .category-header {
+    font-size: 1.125rem;
   }
 
-  .commit-ref {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.75rem;
-  }
-
-  .message-title {
-    font-size: 0.85rem;
-  }
-
-  .diff-file {
-    font-size: 0.75rem;
-  }
-
-  .diff-stat .additions,
-  .diff-stat .deletions {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .dependencies-output,
-  .scripts-output {
+  .skill-badge {
+    padding: 0.5rem 1rem;
     font-size: 0.8rem;
   }
 
-  .npm-script {
-    padding: 0.5rem;
+  .simple-glass-section {
+    padding: 1.25rem;
+  }
+
+  .simple-section-header {
+    font-size: 1rem;
+  }
+
+  .simple-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .approach-item {
+    padding: 0.75rem;
+  }
+
+  .approach-title {
+    font-size: 0.9rem;
+  }
+
+  .approach-description {
+    font-size: 0.8rem;
   }
 }
