@@ -360,36 +360,44 @@ Website: jevta.site
         '"Wake up, Neo..."',
       ];
 
-      const randomQuote = matrixQuotes[Math.floor(Math.random() * matrixQuotes.length)];
+      const randomQuote =
+        matrixQuotes[Math.floor(Math.random() * matrixQuotes.length)];
 
       // Progressive matrix messages with decoding animation
       const matrixSequence = [
-        { delay: 0, content: '> ENTERING THE MATRIX...' },
-        { delay: 1000, content: '> LOADING CONSTRUCT...' },
-        { delay: 2000, content: '> DECODING REALITY... ▓▓▓░░░░░░░░░  25%' },
-        { delay: 3000, content: '> DECODING REALITY... ▓▓▓▓▓▓░░░░░░  50%' },
-        { delay: 4000, content: '> DECODING REALITY... ▓▓▓▓▓▓▓▓▓░░░  75%' },
-        { delay: 5000, content: '> DECODING REALITY... ▓▓▓▓▓▓▓▓▓▓▓▓ 100%' },
-        { delay: 6000, content: '\n> MATRIX CODE STREAMING...' },
-        { delay: 6500, content: '> 01001101 01100001 01110100 01110010 01101001 01111000' },
-        { delay: 7000, content: '> 01010010 01100101 01100001 01101100 01101001 01110100 01111001' },
+        { delay: 0, content: "> ENTERING THE MATRIX..." },
+        { delay: 1000, content: "> LOADING CONSTRUCT..." },
+        { delay: 2000, content: "> DECODING REALITY... ▓▓▓░░░░░░░░░  25%" },
+        { delay: 3000, content: "> DECODING REALITY... ▓▓▓▓▓▓░░░░░░  50%" },
+        { delay: 4000, content: "> DECODING REALITY... ▓▓▓▓▓▓▓▓▓░░░  75%" },
+        { delay: 5000, content: "> DECODING REALITY... ▓▓▓▓▓▓▓▓▓▓▓▓ 100%" },
+        { delay: 6000, content: "\n> MATRIX CODE STREAMING..." },
+        {
+          delay: 6500,
+          content: "> 01001101 01100001 01110100 01110010 01101001 01111000",
+        },
+        {
+          delay: 7000,
+          content:
+            "> 01010010 01100101 01100001 01101100 01101001 01110100 01111001",
+        },
         { delay: 7500, content: `\n${randomQuote}` },
-        { delay: 8500, content: '\n> REALITY BREACH DETECTED...' },
-        { delay: 9000, content: '> RESTORING NORMAL OPERATIONS...' },
-        { delay: 9500, content: '> DISCONNECTING FROM MATRIX...' },
-        { delay: 10000, content: '\n✓ BACK TO REALITY' },
+        { delay: 8500, content: "\n> REALITY BREACH DETECTED..." },
+        { delay: 9000, content: "> RESTORING NORMAL OPERATIONS..." },
+        { delay: 9500, content: "> DISCONNECTING FROM MATRIX..." },
+        { delay: 10000, content: "\n✓ BACK TO REALITY" },
       ];
 
       // Schedule progressive outputs
       matrixSequence.forEach(({ delay, content }) => {
         setTimeout(() => {
           addOutput({
-            type: 'command',
-            text: '',
+            type: "command",
+            text: "",
             result: {
-              type: 'success',
-              content: content
-            }
+              type: "success",
+              content: content,
+            },
           });
         }, delay);
       });
@@ -470,7 +478,7 @@ You get extra respect points! ⭐`,
   /    \\___________/    \\
   \\_____________________/
 
-  ☕ Coffee break time! ☕
+      Coffee break time! 
 
   "Programmer: A machine that turns coffee into code."`,
       };
