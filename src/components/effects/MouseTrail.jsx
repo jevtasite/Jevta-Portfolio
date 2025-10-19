@@ -14,8 +14,8 @@ const MouseTrail = () => {
 
     // Set canvas size
     const updateCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
     };
     updateCanvasSize();
     window.addEventListener('resize', updateCanvasSize);
@@ -113,7 +113,12 @@ const MouseTrail = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[9999]"
-      style={{ mixBlendMode: 'screen' }}
+      style={{
+        mixBlendMode: 'screen',
+        width: '100vw',
+        height: '100vh',
+        maxWidth: '100%'
+      }}
     />
   );
 };

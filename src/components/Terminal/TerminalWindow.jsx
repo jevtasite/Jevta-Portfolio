@@ -49,15 +49,17 @@ const TerminalWindow = ({ children }) => {
       {/* Main Content Area */}
       <div
         ref={contentRef}
-        className="terminal-content overflow-y-auto"
+        className="terminal-content overflow-y-auto overflow-x-hidden"
         style={{
           position: 'fixed',
           top: '40px',
           left: 0,
           right: 0,
-          bottom: '0', // extends all the way down
+          bottom: '0',
           zIndex: 1,
-          paddingBottom: '64px' // padding to prevent content from going under command line
+          paddingBottom: '64px',
+          width: '100%',
+          maxWidth: '100vw'
         }}
       >
         {/* Page Content */}

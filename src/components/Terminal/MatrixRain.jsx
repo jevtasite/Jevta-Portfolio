@@ -10,8 +10,8 @@ const MatrixRain = () => {
     const ctx = canvas.getContext('2d');
 
     // Set canvas size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
 
     // Matrix characters
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`';
@@ -56,8 +56,8 @@ const MatrixRain = () => {
 
     // Handle resize
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
     };
 
     window.addEventListener('resize', handleResize);
@@ -73,7 +73,12 @@ const MatrixRain = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full pointer-events-none opacity-10 z-0"
-      style={{ height: 'calc(100vh - 64px)', mixBlendMode: 'screen' }}
+      style={{
+        height: 'calc(100vh - 64px)',
+        mixBlendMode: 'screen',
+        maxWidth: '100%',
+        width: '100vw'
+      }}
     />
   );
 };
