@@ -74,7 +74,7 @@ const GlassTestimonials = () => {
           } transition-opacity duration-500`}
         >
           <h2 className="section-title">
-            Client <span className="gradient-text">Reviews</span>
+            Client <span className="gradient-text-green">Reviews</span>
           </h2>
           <p className="section-subtitle">
             Review history from completed projects

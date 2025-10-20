@@ -44,7 +44,7 @@ const GlassProjects = () => {
           } transition-opacity duration-500`}
         >
           <h2 className="section-title">
-            Featured <span className="gradient-text">Projects</span>
+            Featured <span className="gradient-text-green">Projects</span>
           </h2>
           <p className="section-subtitle">
             A showcase of my recent work and client collaborations

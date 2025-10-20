@@ -346,7 +346,7 @@ const GlassAbout = () => {
       <div className="professional-container">
         <div className="scroll-reveal visible">
           <h2 className="section-title">
-            About <span className="gradient-text">Me</span>
+            About <span className="gradient-text-green">Me</span>
           </h2>
           <p className="section-subtitle">
             Explore my developer profile through code
