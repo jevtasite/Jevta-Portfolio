@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
-import { testimonials } from '../../data/testimonials';
-import '../../styles/professional.css';
+import { useEffect, useState, useRef } from "react";
+import { testimonials } from "../../data/testimonials";
+import "../../styles/professional.css";
 
 const GlassTestimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +45,7 @@ const GlassTestimonials = () => {
   const renderProgressBar = (rating) => {
     const filled = Math.floor((rating / 5) * 20);
     const empty = 20 - filled;
-    return '█'.repeat(filled) + '░'.repeat(empty);
+    return "█".repeat(filled) + "░".repeat(empty);
   };
 
   const goToNext = () => {
@@ -53,7 +53,9 @@ const GlassTestimonials = () => {
   };
 
   const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   const currentTestimonial = testimonials[currentIndex];
@@ -63,10 +65,14 @@ const GlassTestimonials = () => {
       id="testimonials"
       ref={sectionRef}
       className="professional-section"
-      style={{ background: 'rgba(0,0,0,0.1)' }}
+      style={{ background: "rgba(0,0,0,0.1)" }}
     >
       <div className="professional-container">
-        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <div
+          className={`${
+            isVisible ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-500`}
+        >
           <h2 className="section-title">
             Client <span className="gradient-text">Reviews</span>
           </h2>
@@ -76,8 +82,18 @@ const GlassTestimonials = () => {
         </div>
 
         {/* Terminal Review Card Carousel */}
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '3rem' }} className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-          <div style={{ maxWidth: '56rem', width: '100%' }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "3rem",
+          }}
+          className={`${
+            isVisible ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-500`}
+        >
+          <div style={{ maxWidth: "56rem", width: "100%" }}>
             <div
               className="terminal-review-card"
               onMouseEnter={() => setIsPaused(true)}
@@ -97,29 +113,16 @@ const GlassTestimonials = () => {
 
               {/* Terminal Content */}
               <div className="terminal-card-content">
-                {/* Command Line */}
-                <div className="terminal-command-line">
-                  <span className="terminal-prompt">$</span>
-                  <span className="terminal-command">cat review_{currentTestimonial.id}.log</span>
-                </div>
-
                 {/* Review Output */}
                 <div className="terminal-output">
-                  {/* Timestamp & Status */}
-                  <div className="terminal-output-line">
-                    <span className="terminal-timestamp">[{currentTestimonial.timestamp}]</span>
-                    <span className="terminal-success"> ✓ SUCCESS</span>
-                  </div>
-
                   {/* Separator */}
-                  <div className="terminal-output-line terminal-divider">
-                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                  </div>
 
                   {/* Client Name Only */}
                   <div className="terminal-output-line">
                     <span className="terminal-field">Client:</span>
-                    <span className="terminal-field-value">{currentTestimonial.name}</span>
+                    <span className="terminal-field-value">
+                      {currentTestimonial.name}
+                    </span>
                   </div>
 
                   {/* Separator */}
@@ -143,8 +146,12 @@ const GlassTestimonials = () => {
                   {/* Rating */}
                   <div className="terminal-output-line">
                     <span className="terminal-field">Rating:</span>
-                    <span className="terminal-rating-bar">[{renderProgressBar(currentTestimonial.rating)}]</span>
-                    <span className="terminal-rating-score">{currentTestimonial.rating.toFixed(1)}/5.0</span>
+                    <span className="terminal-rating-bar">
+                      [{renderProgressBar(currentTestimonial.rating)}]
+                    </span>
+                    <span className="terminal-rating-score">
+                      {currentTestimonial.rating.toFixed(1)}/5.0
+                    </span>
                   </div>
 
                   {/* Status */}
@@ -152,12 +159,6 @@ const GlassTestimonials = () => {
                     <span className="terminal-field">Status:</span>
                     <span className="terminal-status">PROJECT_COMPLETED</span>
                   </div>
-                </div>
-
-                {/* Prompt at bottom */}
-                <div className="terminal-card-footer">
-                  <span className="terminal-prompt">$</span>
-                  <span className="terminal-cursor">_</span>
                 </div>
               </div>
             </div>
@@ -169,8 +170,18 @@ const GlassTestimonials = () => {
                 className="carousel-nav-btn"
                 aria-label="Previous review"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
 
@@ -180,7 +191,9 @@ const GlassTestimonials = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                    className={`carousel-dot ${
+                      index === currentIndex ? "active" : ""
+                    }`}
                     aria-label={`Go to review ${index + 1}`}
                   />
                 ))}
@@ -191,8 +204,18 @@ const GlassTestimonials = () => {
                 className="carousel-nav-btn"
                 aria-label="Next review"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
             </div>
@@ -200,7 +223,10 @@ const GlassTestimonials = () => {
             {/* Pause indicator */}
             {isPaused && (
               <div className="carousel-pause-indicator">
-                <span className="text-xs" style={{ color: 'var(--comment-green)' }}>
+                <span
+                  className="text-xs"
+                  style={{ color: "var(--comment-green)" }}
+                >
                   Paused - Hover out to resume
                 </span>
               </div>

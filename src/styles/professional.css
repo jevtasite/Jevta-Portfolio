@@ -704,26 +704,20 @@ body.professional-theme ::selection {
 .timeline-dot.active {
   background: var(--matrix-green);
   border-color: var(--lime-terminal);
-  box-shadow: 0 0 0 4px var(--terminal-black),
-              0 0 0 6px var(--matrix-green),
-              0 0 20px var(--matrix-green),
-              0 0 40px rgba(0, 255, 65, 0.4);
+  box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 6px var(--matrix-green),
+    0 0 20px var(--matrix-green), 0 0 40px rgba(0, 255, 65, 0.4);
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
   0%,
   100% {
-    box-shadow: 0 0 0 4px var(--terminal-black),
-                0 0 0 6px var(--matrix-green),
-                0 0 20px var(--matrix-green),
-                0 0 40px rgba(0, 255, 65, 0.4);
+    box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 6px var(--matrix-green),
+      0 0 20px var(--matrix-green), 0 0 40px rgba(0, 255, 65, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 4px var(--terminal-black),
-                0 0 0 8px var(--lime-terminal),
-                0 0 30px var(--lime-terminal),
-                0 0 50px rgba(57, 255, 20, 0.6);
+    box-shadow: 0 0 0 4px var(--terminal-black), 0 0 0 8px var(--lime-terminal),
+      0 0 30px var(--lime-terminal), 0 0 50px rgba(57, 255, 20, 0.6);
   }
 }
 
@@ -1354,10 +1348,7 @@ body.professional-theme ::selection {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    transparent 50%,
-    rgba(0, 255, 65, 0.04) 50%
-  );
+  background: linear-gradient(transparent 50%, rgba(0, 255, 65, 0.04) 50%);
   background-size: 100% 4px;
   animation: scanlines-move 8s linear infinite;
   opacity: 0.8;
@@ -1380,8 +1371,7 @@ body.professional-theme ::selection {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    repeating-linear-gradient(
+  background-image: repeating-linear-gradient(
       0deg,
       transparent,
       transparent 2px,
@@ -1401,7 +1391,8 @@ body.professional-theme ::selection {
 }
 
 @keyframes static-noise-flicker {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -1440,13 +1431,16 @@ body.professional-theme ::selection {
 }
 
 @keyframes screen-flicker {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
-  5%, 10% {
+  5%,
+  10% {
     opacity: 0.08;
   }
-  15%, 20% {
+  15%,
+  20% {
     opacity: 0;
   }
   50% {
@@ -1545,7 +1539,7 @@ body.professional-theme ::selection {
 
 /* Terminal Loader Content */
 .terminal-loader-content {
-  font-family: 'Fira Code', 'Courier New', monospace;
+  font-family: "Fira Code", "Courier New", monospace;
   font-size: 1.125rem;
   color: var(--matrix-green);
   text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
@@ -1579,17 +1573,19 @@ body.professional-theme ::selection {
 }
 
 @keyframes blink-loader-cursor {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
 
 /* Progress Bar ASCII */
 .progress-bar-ascii {
-  font-family: 'Fira Code', 'Courier New', monospace;
+  font-family: "Fira Code", "Courier New", monospace;
   color: var(--matrix-green);
   white-space: nowrap;
 }
@@ -1662,7 +1658,7 @@ body.professional-theme ::selection {
 }
 
 .app-content.content-visible {
-  animation: terminal-power-on 1.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+  animation: terminal-power-on 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Terminal Power-On Animation - Smooth Continuous Fade */
@@ -1688,7 +1684,7 @@ body.professional-theme ::selection {
   border: 1px solid var(--glass-border);
   box-shadow: var(--green-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  font-family: "Fira Code", "JetBrains Mono", "Courier New", monospace;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1818,7 +1814,7 @@ body.professional-theme ::selection {
 }
 
 .file-tab.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -2442,7 +2438,7 @@ body.professional-theme ::selection {
   background: rgba(0, 0, 0, 0.3);
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--glass-border);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -2486,7 +2482,7 @@ body.professional-theme ::selection {
 /* Terminal Content */
 .terminal-card-content {
   padding: 1.5rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.9rem;
   line-height: 1.6;
   min-height: 420px;
@@ -2560,7 +2556,6 @@ body.professional-theme ::selection {
   border-left: 3px solid var(--cyber-magenta);
   margin: 0.75rem 0;
   color: var(--text-primary);
-  font-style: italic;
   line-height: 1.7;
 }
 
@@ -2601,10 +2596,12 @@ body.professional-theme ::selection {
 }
 
 @keyframes blink-cursor {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
@@ -2677,7 +2674,7 @@ body.professional-theme ::selection {
 .carousel-pause-indicator {
   text-align: center;
   margin-top: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.875rem;
   opacity: 0.8;
 }
@@ -2736,3 +2733,41 @@ body.professional-theme ::selection {
     height: 10px;
   }
 }
+
+/* ========================================
+   HERO-ABOUT SCROLL TRANSITION
+   ======================================== */
+
+.hero-about-transition-container {
+  position: relative;
+  width: 100%;
+  /* Height is auto, determined by content */
+}
+
+.hero-section-wrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+  will-change: opacity, transform;
+}
+
+.about-section-wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Ensure smooth performance on mobile */
+@media (max-width: 768px) {
+  .hero-section-wrapper,
+  .about-section-wrapper {
+    transition: none; /* Use immediate updates on mobile for better performance */
+  }
+}
+

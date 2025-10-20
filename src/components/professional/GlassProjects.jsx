@@ -233,6 +233,7 @@ const GlassProjects = () => {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.5rem",
+                marginTop: "1rem",
               }}
             >
               <span>Get Started</span>
