@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
-import { projects } from '../../data/projects';
-import '../../styles/professional.css';
+import { useEffect, useState, useRef } from "react";
+import { projects } from "../../data/projects";
+import "../../styles/professional.css";
 
 const GlassProjects = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,9 +31,18 @@ const GlassProjects = () => {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="professional-section" style={{ background: 'rgba(0,0,0,0.1)' }}>
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="professional-section"
+      style={{ background: "rgba(0,0,0,0.1)" }}
+    >
       <div className="professional-container-wide">
-        <div className={`scroll-reveal ${isVisible ? 'visible' : ''}`}>
+        <div
+          className={`${
+            isVisible ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-500`}
+        >
           <h2 className="section-title">
             Featured <span className="gradient-text">Projects</span>
           </h2>
@@ -47,23 +56,45 @@ const GlassProjects = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`glass-card cursor-pointer scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${index * 0.1 + 0.2}s` }}
-              onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
+              className={`glass-card cursor-pointer ${
+                isVisible ? "opacity-100" : "opacity-0"
+              } transition-opacity duration-500`}
+              onClick={() =>
+                setExpandedProject(
+                  expandedProject === project.id ? null : project.id
+                )
+              }
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-2xl font-bold gradient-text-cyan">{project.name}</h3>
-                  <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>{project.type}</p>
+                  <h3 className="text-2xl font-bold gradient-text-cyan">
+                    {project.name}
+                  </h3>
+                  <p
+                    className="text-sm mt-1"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {project.type}
+                  </p>
                 </div>
-                <span className="px-3 py-1 text-xs rounded-full font-medium" style={{ background: 'var(--glass-gradient-4)', color: 'white' }}>
+                <span
+                  className="px-3 py-1 text-xs rounded-full font-medium flex items-center gap-2"
+                  style={{
+                    background: "var(--glass-gradient-4)",
+                    color: "white",
+                  }}
+                >
+                  <span
+                    className="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                    style={{ boxShadow: "0 0 8px rgba(74, 222, 128, 0.8)" }}
+                  />
                   {project.status}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>
+              <p className="mb-4" style={{ color: "var(--text-secondary)" }}>
                 {project.description}
               </p>
 
@@ -86,7 +117,11 @@ const GlassProjects = () => {
                     <h4 className="font-semibold mb-2">Features:</h4>
                     <ul className="space-y-1">
                       {project.features.map((feature, fIndex) => (
-                        <li key={fIndex} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                        <li
+                          key={fIndex}
+                          className="flex items-start gap-2 text-sm"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
                           <span className="text-green-400">✓</span>
                           <span>{feature}</span>
                         </li>
@@ -99,8 +134,12 @@ const GlassProjects = () => {
                     <h4 className="font-semibold mb-2">Challenges Solved:</h4>
                     <ul className="space-y-1">
                       {project.challenges.map((challenge, cIndex) => (
-                        <li key={cIndex} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                          <span style={{ color: 'var(--accent-pink)' }}>!</span>
+                        <li
+                          key={cIndex}
+                          className="flex items-start gap-2 text-sm"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
+                          <span style={{ color: "var(--accent-pink)" }}>!</span>
                           <span>{challenge}</span>
                         </li>
                       ))}
@@ -119,29 +158,99 @@ const GlassProjects = () => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <span>Visit Site</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                   </svg>
                 </a>
                 <button
                   className="glass-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setExpandedProject(expandedProject === project.id ? null : project.id);
+                    setExpandedProject(
+                      expandedProject === project.id ? null : project.id
+                    );
                   }}
                 >
-                  {expandedProject === project.id ? 'Less' : 'More'}
+                  {expandedProject === project.id ? "Less" : "More"}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Footer Message */}
-        <div className={`glass-card text-center max-w-2xl mx-auto mt-12 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.8s' }}>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            More projects coming soon! 🚀
-          </p>
+        {/* CTA Card - Centered */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "0.3rem",
+          }}
+          className={`${
+            isVisible ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-500`}
+        >
+          <div
+            className="glass-card"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              maxWidth: "42rem",
+              padding: "2.5rem",
+            }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-3">
+              Your website is waiting to be built.
+            </h2>
+            <p
+              className="text-lg mb-6"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Let's bring your vision online.
+            </p>
+            <button
+              onClick={() => {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="glass-btn-primary"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <span>Get Started</span>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>

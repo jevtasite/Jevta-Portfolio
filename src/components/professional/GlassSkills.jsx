@@ -73,39 +73,6 @@ const GlassSkills = () => {
           })}
         </div>
 
-        {/* Tools & Work Approach - Simple Sections */}
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          {/* Tools */}
-          <div className="simple-glass-section">
-            <h3 className="simple-section-header">
-              <span className="section-icon">⚡</span>
-              Tools & Technologies
-            </h3>
-            <div className="simple-badges-grid">
-              {tools.map((tool, index) => (
-                <span key={index} className="simple-badge">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Work Approach */}
-          <div className="simple-glass-section">
-            <h3 className="simple-section-header">
-              <span className="section-icon">💡</span>
-              Work Approach
-            </h3>
-            <div className="work-approach-list">
-              {workApproach.map((approach, index) => (
-                <div key={index} className="approach-item">
-                  <div className="approach-title">{approach.title}</div>
-                  <div className="approach-description">{approach.description}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

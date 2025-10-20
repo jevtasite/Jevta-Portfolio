@@ -50,7 +50,7 @@ const GlassServices = () => {
   return (
     <section id="services" ref={sectionRef} className="professional-section">
       <div className="professional-container">
-        <div className={`scroll-reveal ${isVisible ? 'visible' : ''}`}>
+        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
           <h2 className="section-title">
             My <span className="gradient-text-pink">Services</span>
           </h2>
@@ -64,8 +64,7 @@ const GlassServices = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`glass-card text-center scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{ transitionDelay: `${index * 0.1 + 0.2}s` }}
+              className={`glass-card text-center ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
             >
               {/* Icon */}
               <div className="flex justify-center mb-6 gradient-text-cyan">
@@ -111,7 +110,7 @@ const GlassServices = () => {
         </div>
 
         {/* CTA Section */}
-        <div className={`glass-card text-center max-w-3xl mx-auto mt-12 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.6s' }}>
+        <div className={`glass-card text-center max-w-3xl mx-auto mt-12 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
           <h3 className="text-3xl font-bold mb-4 gradient-text">
             Let's Work Together
           </h3>

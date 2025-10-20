@@ -5,6 +5,7 @@ import '../../styles/professional.css';
 const GlassTestimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -32,19 +33,19 @@ const GlassTestimonials = () => {
 
   // Auto-rotate testimonials
   useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // Change every 6 seconds
+    }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
-  const renderStars = (rating) => {
-    return [...Array(5)].map((_, index) => (
-      <span key={index} className="star-rating">
-        {index < rating ? '★' : '☆'}
-      </span>
-    ));
+  const renderProgressBar = (rating) => {
+    const filled = Math.floor((rating / 5) * 20);
+    const empty = 20 - filled;
+    return '█'.repeat(filled) + '░'.repeat(empty);
   };
 
   const goToNext = () => {
@@ -65,144 +66,146 @@ const GlassTestimonials = () => {
       style={{ background: 'rgba(0,0,0,0.1)' }}
     >
       <div className="professional-container">
-        <div className={`scroll-reveal ${isVisible ? 'visible' : ''}`}>
+        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
           <h2 className="section-title">
-            Client <span className="gradient-text">Testimonials</span>
+            Client <span className="gradient-text">Reviews</span>
           </h2>
           <p className="section-subtitle">
-            What clients say about working with me
+            Review history from completed projects
           </p>
         </div>
 
-        {/* Main Testimonial Card */}
-        <div className={`max-w-4xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
-          <div className="glass-card testimonial-card">
-            {/* Quote */}
-            <div className="testimonial-quote">
-              {currentTestimonial.quote}
-            </div>
-
-            {/* Rating */}
-            <div className="flex justify-center mb-6">
-              {renderStars(currentTestimonial.rating)}
-            </div>
-
-            {/* Client Info */}
-            <div className="text-center">
-              {/* Avatar Placeholder */}
-              <div className="flex justify-center mb-4">
-                <div
-                  className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold"
-                  style={{
-                    background: 'var(--glass-bg)',
-                    border: '2px solid var(--matrix-green)',
-                    color: 'var(--matrix-green)',
-                    boxShadow: 'var(--green-glow)'
-                  }}
-                >
-                  {currentTestimonial.name.split(' ').map(n => n[0]).join('')}
+        {/* Terminal Review Card Carousel */}
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '3rem' }} className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+          <div style={{ maxWidth: '56rem', width: '100%' }}>
+            <div
+              className="terminal-review-card"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {/* Terminal Window Header */}
+              <div className="terminal-card-header">
+                <div className="terminal-window-controls">
+                  <span className="window-control close"></span>
+                  <span className="window-control minimize"></span>
+                  <span className="window-control maximize"></span>
+                </div>
+                <div className="terminal-card-title">
+                  review_{currentTestimonial.id}.log
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold gradient-text-lime mb-1">
-                {currentTestimonial.name}
-              </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                {currentTestimonial.role} at {currentTestimonial.company}
-              </p>
-              <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
-                Project: {currentTestimonial.project}
-              </p>
+              {/* Terminal Content */}
+              <div className="terminal-card-content">
+                {/* Command Line */}
+                <div className="terminal-command-line">
+                  <span className="terminal-prompt">$</span>
+                  <span className="terminal-command">cat review_{currentTestimonial.id}.log</span>
+                </div>
+
+                {/* Review Output */}
+                <div className="terminal-output">
+                  {/* Timestamp & Status */}
+                  <div className="terminal-output-line">
+                    <span className="terminal-timestamp">[{currentTestimonial.timestamp}]</span>
+                    <span className="terminal-success"> ✓ SUCCESS</span>
+                  </div>
+
+                  {/* Separator */}
+                  <div className="terminal-output-line terminal-divider">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                  </div>
+
+                  {/* Client Name Only */}
+                  <div className="terminal-output-line">
+                    <span className="terminal-field">Client:</span>
+                    <span className="terminal-field-value">{currentTestimonial.name}</span>
+                  </div>
+
+                  {/* Separator */}
+                  <div className="terminal-output-line terminal-divider">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                  </div>
+
+                  {/* Feedback Section */}
+                  <div className="terminal-output-line">
+                    <span className="terminal-section-title">FEEDBACK:</span>
+                  </div>
+                  <div className="terminal-review-text">
+                    "{currentTestimonial.quote}"
+                  </div>
+
+                  {/* Separator */}
+                  <div className="terminal-output-line terminal-divider">
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                  </div>
+
+                  {/* Rating */}
+                  <div className="terminal-output-line">
+                    <span className="terminal-field">Rating:</span>
+                    <span className="terminal-rating-bar">[{renderProgressBar(currentTestimonial.rating)}]</span>
+                    <span className="terminal-rating-score">{currentTestimonial.rating.toFixed(1)}/5.0</span>
+                  </div>
+
+                  {/* Status */}
+                  <div className="terminal-output-line">
+                    <span className="terminal-field">Status:</span>
+                    <span className="terminal-status">PROJECT_COMPLETED</span>
+                  </div>
+                </div>
+
+                {/* Prompt at bottom */}
+                <div className="terminal-card-footer">
+                  <span className="terminal-prompt">$</span>
+                  <span className="terminal-cursor">_</span>
+                </div>
+              </div>
             </div>
 
-            {/* Navigation */}
-            <div className="flex items-center justify-between mt-8">
+            {/* Navigation Controls */}
+            <div className="terminal-carousel-nav">
               <button
                 onClick={goToPrev}
-                className="glass-btn"
-                aria-label="Previous testimonial"
+                className="carousel-nav-btn"
+                aria-label="Previous review"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
-              {/* Dots */}
-              <div className="flex gap-2">
+              {/* Dot Indicators */}
+              <div className="carousel-dots">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentIndex
-                        ? 'w-8 bg-lime-terminal'
-                        : 'bg-comment-green hover:bg-matrix-green'
-                    }`}
-                    style={{
-                      boxShadow: index === currentIndex ? '0 0 8px var(--lime-terminal)' : 'none'
-                    }}
-                    aria-label={`Go to testimonial ${index + 1}`}
+                    className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                    aria-label={`Go to review ${index + 1}`}
                   />
                 ))}
               </div>
 
               <button
                 onClick={goToNext}
-                className="glass-btn"
-                aria-label="Next testimonial"
+                className="carousel-nav-btn"
+                aria-label="Next review"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
-          </div>
-        </div>
 
-        {/* All Testimonials Grid (Optional - Shows all at once) */}
-        <div className="grid md:grid-cols-2 gap-6 mt-12 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.id}
-              className={`glass scroll-reveal ${isVisible ? 'visible' : ''}`}
-              style={{
-                padding: '1.5rem',
-                transitionDelay: `${index * 0.1 + 0.4}s`,
-                cursor: 'pointer'
-              }}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                  style={{
-                    background: 'var(--glass-bg)',
-                    border: '1px solid var(--matrix-green)',
-                    color: 'var(--matrix-green)'
-                  }}
-                >
-                  {testimonial.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div className="flex-1">
-                  <div className="font-semibold" style={{ color: 'var(--matrix-green)' }}>
-                    {testimonial.name}
-                  </div>
-                  <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                    {testimonial.role}
-                  </div>
-                </div>
-                <div className="text-xs">
-                  {renderStars(testimonial.rating)}
-                </div>
+            {/* Pause indicator */}
+            {isPaused && (
+              <div className="carousel-pause-indicator">
+                <span className="text-xs" style={{ color: 'var(--comment-green)' }}>
+                  Paused - Hover out to resume
+                </span>
               </div>
-              <p
-                className="text-sm leading-relaxed line-clamp-3"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                "{testimonial.quote}"
-              </p>
-            </div>
-          ))}
+            )}
+          </div>
         </div>
       </div>
     </section>

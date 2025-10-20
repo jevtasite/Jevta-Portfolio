@@ -54,7 +54,7 @@ const GlassContact = () => {
   return (
     <section id="contact" ref={sectionRef} className="professional-section" style={{ background: 'rgba(0,0,0,0.1)' }}>
       <div className="professional-container">
-        <div className={`scroll-reveal ${isVisible ? 'visible' : ''}`}>
+        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
           <h2 className="section-title">
             Get In <span className="gradient-text-green">Touch</span>
           </h2>
@@ -65,7 +65,7 @@ const GlassContact = () => {
 
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           {/* Email & Contact */}
-          <div className={`scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
+          <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
             <div className="glass-card">
               <h3 className="text-2xl font-bold mb-6 gradient-text-cyan flex items-center gap-2">
                 <span>✉</span>
@@ -115,7 +115,7 @@ const GlassContact = () => {
           {/* Social & Location */}
           <div className="space-y-8">
             {/* Social Links */}
-            <div className={`glass-card scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
+            <div className={`glass-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
               <h3 className="text-2xl font-bold mb-6 gradient-text">Social Links</h3>
               <div className="space-y-4">
                 {contactInfo.social.map((social, index) => (
@@ -144,7 +144,7 @@ const GlassContact = () => {
             </div>
 
             {/* Location Info */}
-            <div className={`glass-card scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
+            <div className={`glass-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
               <h3 className="text-2xl font-bold mb-6 gradient-text-green">Location & Info</h3>
               <div className="space-y-4">
                 <div className="flex justify-between">
@@ -165,7 +165,7 @@ const GlassContact = () => {
         </div>
 
         {/* Footer Message */}
-        <div className={`glass-card text-center max-w-2xl mx-auto mt-12 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.5s' }}>
+        <div className={`glass-card text-center max-w-2xl mx-auto mt-12 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
             {contactMessages.footer}
           </p>
