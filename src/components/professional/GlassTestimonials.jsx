@@ -5,6 +5,7 @@ import "../../styles/professional.css";
 const GlassTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -24,13 +25,21 @@ const GlassTestimonials = () => {
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setIsTransitioning(false);
+    }, 350); // Match windowClose duration
   };
 
   const goToPrev = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(
+        (prev) => (prev - 1 + testimonials.length) % testimonials.length
+      );
+      setIsTransitioning(false);
+    }, 350); // Match windowClose duration
   };
 
   const currentTestimonial = testimonials[currentIndex];
@@ -60,11 +69,12 @@ const GlassTestimonials = () => {
             marginTop: "3rem",
           }}
         >
-          <div style={{ maxWidth: "56rem", width: "100%" }}>
+          <div style={{ maxWidth: "56rem", width: "100%", position: "relative", overflow: "hidden" }}>
             <div
-              className="terminal-review-card"
+              className={`terminal-review-card ${isTransitioning ? 'card-exit' : 'card-enter'}`}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
+              key={currentIndex}
             >
               {/* Terminal Window Header */}
               <div className="terminal-card-header">
