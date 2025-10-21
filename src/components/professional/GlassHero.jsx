@@ -1,6 +1,31 @@
 import { useEffect, useState } from "react";
 import { profile } from "../../data/profile";
+import {
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaBootstrap,
+  FaGitAlt,
+  FaCode
+} from "react-icons/fa";
+import {
+  SiJavascript,
+  SiTailwindcss,
+  SiVite
+} from "react-icons/si";
 import "../../styles/professional.css";
+
+const techStackIcons = {
+  React: <FaReact className="hero-tech-icon" style={{ color: "#61DAFB" }} />,
+  JavaScript: <SiJavascript className="hero-tech-icon" style={{ color: "#F7DF1E" }} />,
+  HTML5: <FaHtml5 className="hero-tech-icon" style={{ color: "#E34F26" }} />,
+  CSS3: <FaCss3Alt className="hero-tech-icon" style={{ color: "#1572B6" }} />,
+  Tailwind: <SiTailwindcss className="hero-tech-icon" style={{ color: "#06B6D4" }} />,
+  Bootstrap: <FaBootstrap className="hero-tech-icon" style={{ color: "#7952B3" }} />,
+  Vite: <SiVite className="hero-tech-icon" style={{ color: "#646CFF" }} />,
+  Git: <FaGitAlt className="hero-tech-icon" style={{ color: "#F05032" }} />,
+  VSCode: <FaCode className="hero-tech-icon" style={{ color: "#007ACC" }} />,
+};
 
 const GlassHero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -194,29 +219,23 @@ const GlassHero = () => {
             </a>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* Tech Stack Marquee */}
           <div
-            className={`scroll-indicator ${
+            className={`hero-tech-marquee ${
               isVisible ? "opacity-100" : "opacity-0"
             }`}
-            onClick={scrollToAbout}
           >
-            <p className="scroll-text">Scroll to Discover</p>
-            <svg
-              className="scroll-arrow"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
+            <div className="hero-marquee-container">
+              <div className="hero-marquee-track">
+                {[...Array(4)].map((_, setIndex) => (
+                  ["React", "JavaScript", "HTML5", "CSS3", "Tailwind", "Bootstrap", "Vite", "Git", "VSCode"].map((tech, index) => (
+                    <div key={`tech-${setIndex}-${index}`} className="hero-tech-card">
+                      {techStackIcons[tech]}
+                    </div>
+                  ))
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

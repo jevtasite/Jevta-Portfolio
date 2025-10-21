@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import RetroTerminalBackground from '../components/professional/RetroTerminalBackground';
 import GlassNavbar from '../components/professional/GlassNavbar';
 import GlassHero from '../components/professional/GlassHero';
+import SectionDivider from '../components/professional/SectionDivider';
 import GlassAbout from '../components/professional/GlassAbout';
 import GlassSkills from '../components/professional/GlassSkills';
 import GlassExperience from '../components/professional/GlassExperience';
@@ -48,6 +49,7 @@ const ProfessionalPage = () => {
       <RetroTerminalBackground />
       <GlassNavbar />
       <GlassHero />
+      <SectionDivider />
       <GlassAbout />
       <GlassSkills />
       <GlassExperience />
