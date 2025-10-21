@@ -859,42 +859,29 @@ body.professional-theme ::selection {
 /* Hero Tech Stack Marquee */
 .hero-tech-marquee {
   width: 100%;
-  opacity: 1;
-  margin-top: 3rem;
-}
-
-.hero-marquee-container {
-  position: relative;
-  width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
-  overflow: hidden;
-  padding: 2rem 0;
+  margin: 3rem auto 0;
+  padding: 2rem 0 3rem 0;
+  position: relative;
+  overflow: visible;
   -webkit-mask-image: linear-gradient(
     to right,
-    transparent,
+    transparent 0%,
     black 10%,
     black 90%,
-    transparent
+    transparent 100%
   );
   mask-image: linear-gradient(
     to right,
-    transparent,
+    transparent 0%,
     black 10%,
     black 90%,
-    transparent
+    transparent 100%
   );
 }
 
-.hero-marquee-track {
-  display: flex;
-  gap: 2rem;
-  animation: heroMarqueeScroll 25s linear infinite;
-  will-change: transform;
-}
-
-.hero-marquee-container:hover .hero-marquee-track {
-  animation-play-state: paused;
+.hero-tech-marquee > div {
+  overflow: visible !important;
 }
 
 .hero-tech-card {
@@ -910,6 +897,7 @@ body.professional-theme ::selection {
   flex-shrink: 0;
   width: 80px;
   height: 80px;
+  margin-right: 2rem;
 }
 
 .hero-tech-card:hover {
@@ -930,15 +918,6 @@ body.professional-theme ::selection {
   filter: grayscale(0%) brightness(1) drop-shadow(0 0 8px currentColor);
 }
 
-@keyframes heroMarqueeScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-25%);
-  }
-}
-
 /* Section Divider */
 .section-divider {
   width: 100%;
@@ -949,7 +928,7 @@ body.professional-theme ::selection {
 }
 
 .divider-comment {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
   color: var(--matrix-green);
   text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);

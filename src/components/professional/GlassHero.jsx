@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { profile } from "../../data/profile";
+import Marquee from "react-fast-marquee";
 import {
   FaReact,
   FaHtml5,
@@ -221,17 +222,17 @@ const GlassHero = () => {
 
           {/* Tech Stack Marquee */}
           <div className="hero-tech-marquee">
-            <div className="hero-marquee-container">
-              <div className="hero-marquee-track">
-                {[...Array(4)].map((_, setIndex) => (
-                  ["React", "JavaScript", "HTML5", "CSS3", "Tailwind", "Bootstrap", "Vite", "Git", "VSCode"].map((tech, index) => (
-                    <div key={`tech-${setIndex}-${index}`} className="hero-tech-card">
-                      {techStackIcons[tech]}
-                    </div>
-                  ))
-                ))}
-              </div>
-            </div>
+            <Marquee
+              gradient={false}
+              speed={40}
+              pauseOnHover={true}
+            >
+              {["React", "JavaScript", "HTML5", "CSS3", "Tailwind", "Bootstrap", "Vite", "Git", "VSCode"].map((tech, index) => (
+                <div key={`tech-${index}`} className="hero-tech-card">
+                  {techStackIcons[tech]}
+                </div>
+              ))}
+            </Marquee>
           </div>
         </div>
       </div>
