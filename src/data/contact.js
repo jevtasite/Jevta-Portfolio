@@ -1,13 +1,14 @@
 // Contact information
 export const contactInfo = {
   email: "jevta.site@gmail.com",
-  gmailCompose: "https://mail.google.com/mail/?view=cm&fs=1&to=jevta.site@gmail.com",
+  gmailCompose:
+    "https://mail.google.com/mail/?view=cm&fs=1&to=jevta.site@gmail.com",
 
   location: {
     country: "Serbia",
     flag: "🇷🇸",
     timezone: "UTC+1 (CET)",
-    languages: "Serbian, English"
+    languages: "Serbian, English",
   },
 
   social: [
@@ -15,27 +16,27 @@ export const contactInfo = {
       name: "Facebook",
       url: "https://www.facebook.com/profile.php?id=61552420501147",
       username: "@jevta.site",
-      icon: "facebook"
+      icon: "facebook",
     },
     {
       name: "GitHub",
       url: "https://github.com/jevtasite",
       username: "@jevtasite",
-      icon: "github"
+      icon: "github",
     },
     {
       name: "Instagram",
       url: "https://www.instagram.com/jevta.site/",
       username: "@jevta.site",
-      icon: "instagram"
-    }
+      icon: "instagram",
+    },
   ],
 
   availability: {
     status: "Available",
     responseTime: "Within 24 hours",
     freelance: true,
-    collaboration: true
+    collaboration: true,
   },
 
   preferredContact: "email",
@@ -43,13 +44,14 @@ export const contactInfo = {
   workingHours: {
     timezone: "CET (UTC+1)",
     hours: "Flexible",
-    note: "Available for international clients"
-  }
+    note: "Available for international clients",
+  },
 };
 
 // Contact CTA messages
 export const contactMessages = {
   hero: "Let's work together to bring your ideas to life!",
-  cta: "Have a project in mind? Let's discuss how we can work together to create something amazing.",
-  footer: "Looking forward to hearing from you and discussing your next project!"
+  cta: "Let's discuss how we can work together to create something amazing.",
+  footer:
+    "Looking forward to hearing from you and discussing your next project!",
 };
