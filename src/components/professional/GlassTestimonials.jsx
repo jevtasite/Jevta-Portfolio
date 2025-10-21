@@ -25,6 +25,7 @@ const GlassTestimonials = () => {
   };
 
   const goToNext = () => {
+    setIsPaused(true); // Pause auto-rotation on user interaction
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -33,6 +34,7 @@ const GlassTestimonials = () => {
   };
 
   const goToPrev = () => {
+    setIsPaused(true); // Pause auto-rotation on user interaction
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex(
@@ -40,6 +42,15 @@ const GlassTestimonials = () => {
       );
       setIsTransitioning(false);
     }, 350); // Match windowClose duration
+  };
+
+  const goToIndex = (index) => {
+    setIsPaused(true); // Pause auto-rotation on user interaction
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 350);
   };
 
   const currentTestimonial = testimonials[currentIndex];
@@ -94,11 +105,18 @@ const GlassTestimonials = () => {
                 <div className="terminal-output">
                   {/* Separator */}
 
-                  {/* Client Name Only */}
+                  {/* Client Info */}
                   <div className="terminal-output-line">
                     <span className="terminal-field">Client:</span>
                     <span className="terminal-field-value">
                       {currentTestimonial.name}
+                    </span>
+                  </div>
+
+                  <div className="terminal-output-line">
+                    <span className="terminal-field">Company:</span>
+                    <span className="terminal-field-value">
+                      {currentTestimonial.company}
                     </span>
                   </div>
 
@@ -144,6 +162,8 @@ const GlassTestimonials = () => {
             <div className="terminal-carousel-nav">
               <button
                 onClick={goToPrev}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="carousel-nav-btn"
                 aria-label="Previous review"
               >
@@ -167,7 +187,7 @@ const GlassTestimonials = () => {
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentIndex(index)}
+                    onClick={() => goToIndex(index)}
                     className={`carousel-dot ${
                       index === currentIndex ? "active" : ""
                     }`}
@@ -178,6 +198,8 @@ const GlassTestimonials = () => {
 
               <button
                 onClick={goToNext}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
                 className="carousel-nav-btn"
                 aria-label="Next review"
               >
@@ -196,18 +218,6 @@ const GlassTestimonials = () => {
                 </svg>
               </button>
             </div>
-
-            {/* Pause indicator */}
-            {isPaused && (
-              <div className="carousel-pause-indicator">
-                <span
-                  className="text-xs"
-                  style={{ color: "var(--comment-green)" }}
-                >
-                  Paused - Hover out to resume
-                </span>
-              </div>
-            )}
           </div>
         </div>
       </div>

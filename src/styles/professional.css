@@ -2781,6 +2781,8 @@ body.professional-theme ::selection {
   justify-content: center;
   gap: 2rem;
   margin-top: 2rem;
+  padding: 0.5rem 0 1.5rem;
+  overflow: visible;
 }
 
 .carousel-nav-btn {

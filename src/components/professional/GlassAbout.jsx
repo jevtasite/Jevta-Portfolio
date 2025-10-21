@@ -16,15 +16,15 @@ const GlassAbout = () => {
         await navigator.clipboard.writeText(profile.email);
       } else {
         // Fallback for older browsers or insecure contexts
-        const textArea = document.createElement('textarea');
+        const textArea = document.createElement("textarea");
         textArea.value = profile.email;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         textArea.remove();
       }
 
@@ -37,7 +37,7 @@ const GlassAbout = () => {
       // Hide toast after animation
       setTimeout(() => setShowToast(false), 3000);
     } catch (err) {
-      console.error('Failed to copy email:', err);
+      console.error("Failed to copy email:", err);
       // Still show feedback even if copy failed
       setCopied(true);
       setShowToast(true);
@@ -75,14 +75,6 @@ const GlassAbout = () => {
         <span className="code-operator">,</span>
       </div>
       <div className="code-line">
-        <span className="line-number">5</span>
-        <span className="code-indent"> </span>
-        <span className="code-property">nickname</span>
-        <span className="code-operator">:</span>{" "}
-        <span className="code-string">"{profile.nickname}"</span>
-        <span className="code-operator">,</span>
-      </div>
-      <div className="code-line">
         <span className="line-number">6</span>
         <span className="code-indent"> </span>
         <span className="code-property">birthDate</span>
@@ -95,7 +87,7 @@ const GlassAbout = () => {
         <span className="code-indent"> </span>
         <span className="code-property">location</span>
         <span className="code-operator">:</span>{" "}
-        <span className="code-string">"{profile.location} 🇷🇸"</span>
+        <span className="code-string">"{profile.location}"</span>
         <span className="code-operator">,</span>
       </div>
       <div className="code-line">
@@ -451,7 +443,12 @@ const GlassAbout = () => {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
               <span>developer.js</span>
               <span className="tab-close">×</span>
@@ -466,7 +463,12 @@ const GlassAbout = () => {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
               <span>stats.json</span>
               <span className="tab-close">×</span>
@@ -481,7 +483,12 @@ const GlassAbout = () => {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
               </svg>
               <span>README.md</span>
               <span className="tab-close">×</span>
@@ -500,9 +507,7 @@ const GlassAbout = () => {
 
           {/* Scroll Hint - Outside scrollable area */}
           {!isTerminalActive && activeTab === "developer" && (
-            <div className="scroll-hint">
-              Click to scroll
-            </div>
+            <div className="scroll-hint">Click to scroll</div>
           )}
         </div>
       </div>

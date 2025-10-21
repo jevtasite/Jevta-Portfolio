@@ -40,12 +40,12 @@ const TerminalChrome = () => {
 
         {/* Right Side Controls */}
         <div className="flex items-center space-x-2">
-          {/* Professional Mode Toggle */}
+          {/* GUI Mode Toggle */}
           <button
             onClick={() => navigate('/')}
             className="text-xs font-fira transition-colors px-3 py-1.5 border border-comment-green text-comment-green hover:bg-comment-green hover:text-terminal-black flex items-center gap-1"
-            title="Switch to Professional Portfolio"
-            aria-label="Switch to Professional Portfolio"
+            title="Switch to GUI Mode"
+            aria-label="Switch to GUI Mode"
           >
             <svg
               className="w-4 h-4"
@@ -57,10 +57,10 @@ const TerminalChrome = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
             </svg>
-            <span>Professional</span>
+            <span>GUI Mode</span>
           </button>
 
           <span className="text-comment-green text-sm">|</span>

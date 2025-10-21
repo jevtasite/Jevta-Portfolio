@@ -6,13 +6,45 @@ const GlassContact = () => {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleEmailClick = () => {
-    window.open(contactInfo.gmailCompose, '_blank');
+    // Detect if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Open native email app on mobile
+      window.location.href = `mailto:${contactInfo.email}`;
+    } else {
+      // Open Gmail web compose on desktop
+      window.open(contactInfo.gmailCompose, '_blank');
+    }
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(contactInfo.email);
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
+  const handleCopyEmail = async () => {
+    try {
+      // Try modern clipboard API first
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(contactInfo.email);
+      } else {
+        // Fallback for older browsers or insecure contexts (mobile)
+        const textArea = document.createElement('textarea');
+        textArea.value = contactInfo.email;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+      // Still show feedback even if copy failed
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    }
   };
 
   const socialIcons = {

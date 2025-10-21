@@ -1,7 +1,6 @@
 // Profile information
 export const profile = {
   name: "Luka Stoiljković",
-  nickname: "Jevta",
   role: "Front-end Developer",
   email: "jevta.site@gmail.com",
   website: "jevta.site",
@@ -43,7 +42,7 @@ export const profile = {
   journey: [
     "Started web development journey in 2022",
     "Fell in love with React and modern JavaScript",
-    "Built 10+ projects ranging from landing pages to full web applications",
+    "Built 10+ projects",
     "Continuously learning and exploring new technologies",
     "Passionate about creating seamless user experiences",
   ],
