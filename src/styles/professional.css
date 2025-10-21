@@ -897,7 +897,7 @@ body.professional-theme ::selection {
   flex-shrink: 0;
   width: 80px;
   height: 80px;
-  margin-right: 2rem;
+  margin-right: 3rem;
 }
 
 .hero-tech-card:hover {
