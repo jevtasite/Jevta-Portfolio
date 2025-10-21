@@ -10,7 +10,8 @@
       "Bash(timeout 5)",
       "Bash(ping localhost -n 3)",
       "Bash(del \"d:\\WEBDEVELOPMENT\\Jevta-Portfolio\\src\\components\\professional\\FloatingCodeBackground.jsx\")",
-      "Bash(ping localhost -n 5)"
+      "Bash(ping localhost -n 5)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []

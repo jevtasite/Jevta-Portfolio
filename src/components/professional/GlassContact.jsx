@@ -4,6 +4,7 @@ import '../../styles/professional.css';
 
 const GlassContact = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +32,12 @@ const GlassContact = () => {
 
   const handleEmailClick = () => {
     window.open(contactInfo.gmailCompose, '_blank');
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(contactInfo.email);
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
   };
 
   const socialIcons = {
@@ -66,76 +73,118 @@ const GlassContact = () => {
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           {/* Email & Contact */}
           <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-            <div className="glass-card">
-              <h3 className="text-2xl font-bold mb-6 gradient-text-cyan flex items-center gap-2">
-                <span>✉</span>
-                Email Me
-              </h3>
+            <div className="glass-card email-card">
+              <div className="email-card-header">
+                <div className="email-icon-wrapper">
+                  <svg className="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="email-card-title">Let's Connect</h3>
+              </div>
 
-              <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
-                The best way to reach me is via email. I typically respond within 24 hours!
-              </p>
-
-              <div className="glass-strong p-4 rounded-lg mb-4">
-                <div className="text-sm mb-2" style={{ color: 'var(--text-muted)' }}>Email Address:</div>
-                <a href={`mailto:${contactInfo.email}`} className="text-lg font-semibold gradient-text-pink hover:opacity-80">
+              <div className="email-address-box">
+                <div className="email-label">Email Address</div>
+                <a href={`mailto:${contactInfo.email}`} className="email-address">
                   {contactInfo.email}
                 </a>
               </div>
 
-              <button
-                onClick={handleEmailClick}
-                className="glass-btn-primary w-full justify-center"
-              >
-                <span>Open Gmail</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </button>
+              <div className="email-actions">
+                <button
+                  onClick={handleEmailClick}
+                  className="email-btn-primary"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Send Email</span>
+                </button>
+                <button
+                  onClick={handleCopyEmail}
+                  className="email-btn-secondary"
+                >
+                  {emailCopied ? (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <span>Copy Email</span>
+                    </>
+                  )}
+                </button>
+              </div>
 
-              {/* Availability */}
-              <div className="mt-6 space-y-3">
-                <h4 className="font-semibold mb-3">Availability:</h4>
-                <div className="flex items-center gap-3">
-                  <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-                  <span style={{ color: 'var(--text-secondary)' }}>{contactInfo.availability.responseTime}</span>
+              {/* Availability Status */}
+              <div className="availability-section">
+                <div className="availability-header">
+                  <div className="status-indicator">
+                    <span className="status-dot"></span>
+                    <span className="status-text">Available Now</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-3 h-3 bg-green-400 rounded-full" />
-                  <span style={{ color: 'var(--text-secondary)' }}>Available for Freelance Projects</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-3 h-3 bg-green-400 rounded-full" />
-                  <span style={{ color: 'var(--text-secondary)' }}>Open to Collaboration</span>
+                <div className="availability-list">
+                  <div className="availability-item">
+                    <svg className="availability-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Quick Response Time</span>
+                  </div>
+                  <div className="availability-item">
+                    <svg className="availability-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Open for Freelance Work</span>
+                  </div>
+                  <div className="availability-item">
+                    <svg className="availability-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Available for Collaboration</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Social & Location */}
-          <div className="space-y-8">
+          <div className="contact-right-column">
             {/* Social Links */}
-            <div className={`glass-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Social Links</h3>
-              <div className="space-y-4">
+            <div className={`glass-card social-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+              <div className="social-card-header">
+                <div className="social-icon-wrapper">
+                  <svg className="social-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="social-card-title">Social Links</h3>
+              </div>
+              <div className="social-links-list">
                 {contactInfo.social.map((social, index) => (
                   <a
                     key={index}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 glass-strong rounded-lg hover:scale-105 transition-transform"
+                    className="social-link-item"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="gradient-text-cyan">
+                    <div className="social-link-content">
+                      <div className="social-link-icon">
                         {socialIcons[social.icon]}
                       </div>
-                      <div>
-                        <div className="font-semibold">{social.name}</div>
-                        <div className="text-sm" style={{ color: 'var(--text-muted)' }}>{social.username}</div>
+                      <div className="social-link-info">
+                        <div className="social-link-name">{social.name}</div>
+                        <div className="social-link-username">{social.username}</div>
                       </div>
                     </div>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="social-link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </a>
@@ -144,32 +193,52 @@ const GlassContact = () => {
             </div>
 
             {/* Location Info */}
-            <div className={`glass-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-              <h3 className="text-2xl font-bold mb-6 gradient-text-green">Location & Info</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span style={{ color: 'var(--text-muted)' }}>Location:</span>
-                  <span className="font-semibold">{contactInfo.location.country} {contactInfo.location.flag}</span>
+            <div className={`glass-card location-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+              <div className="location-card-header">
+                <div className="location-icon-wrapper">
+                  <svg className="location-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
                 </div>
-                <div className="flex justify-between">
-                  <span style={{ color: 'var(--text-muted)' }}>Timezone:</span>
-                  <span className="font-semibold">{contactInfo.location.timezone}</span>
+                <h3 className="location-card-title">Location & Info</h3>
+              </div>
+
+              <div className="location-info-list">
+                <div className="location-info-item">
+                  <div className="location-info-label">
+                    <svg className="location-info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Location</span>
+                  </div>
+                  <span className="location-info-value">{contactInfo.location.country}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span style={{ color: 'var(--text-muted)' }}>Languages:</span>
-                  <span className="font-semibold">{contactInfo.location.languages}</span>
+
+                <div className="location-info-item">
+                  <div className="location-info-label">
+                    <svg className="location-info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Timezone</span>
+                  </div>
+                  <span className="location-info-value">{contactInfo.location.timezone}</span>
+                </div>
+
+                <div className="location-info-item">
+                  <div className="location-info-label">
+                    <svg className="location-info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span>Languages</span>
+                  </div>
+                  <span className="location-info-value">{contactInfo.location.languages}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Footer Message */}
-        <div className={`glass-card text-center max-w-2xl mx-auto mt-12 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            {contactMessages.footer}
-          </p>
-        </div>
       </div>
     </section>
   );
