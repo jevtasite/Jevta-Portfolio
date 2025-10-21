@@ -377,7 +377,7 @@ const GlassAbout = () => {
   return (
     <section id="about" className="professional-section">
       <div className="professional-container">
-        <div className="scroll-reveal visible">
+        <div className="scroll-reveal">
           <h2 className="section-title">
             About <span className="gradient-text-green">Me</span>
           </h2>

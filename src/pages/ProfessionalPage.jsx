@@ -16,9 +16,30 @@ const ProfessionalPage = () => {
     // Add professional theme class to body
     document.body.classList.add('professional-theme');
 
+    // Scroll reveal animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all scroll-reveal elements
+    const scrollElements = document.querySelectorAll('.scroll-reveal');
+    scrollElements.forEach(el => observer.observe(el));
+
     // Cleanup on unmount
     return () => {
       document.body.classList.remove('professional-theme');
+      scrollElements.forEach(el => observer.unobserve(el));
     };
   }, []);
 

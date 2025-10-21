@@ -21,7 +21,7 @@ const GlassSkills = () => {
   return (
     <section id="skills" className="professional-section">
       <div className="professional-container">
-        <div className="scroll-reveal visible">
+        <div className="scroll-reveal">
           <h2 className="section-title">
             My <span className="gradient-text-green">Skills</span>
           </h2>

@@ -1,48 +1,18 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { projects } from "../../data/projects";
 import "../../styles/professional.css";
 
 const GlassProjects = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [expandedProject, setExpandedProject] = useState(null);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section
       id="projects"
-      ref={sectionRef}
       className="professional-section"
       style={{ background: "rgba(0,0,0,0.1)" }}
     >
       <div className="professional-container-wide">
-        <div
-          className={`${
-            isVisible ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-500`}
-        >
+        <div className="scroll-reveal">
           <h2 className="section-title">
             Featured <span className="gradient-text-green">Projects</span>
           </h2>
@@ -56,9 +26,7 @@ const GlassProjects = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`glass-card cursor-pointer ${
-                isVisible ? "opacity-100" : "opacity-0"
-              } transition-opacity duration-500`}
+              className="glass-card cursor-pointer"
               onClick={() =>
                 setExpandedProject(
                   expandedProject === project.id ? null : project.id
@@ -196,9 +164,6 @@ const GlassProjects = () => {
             width: "100%",
             marginTop: "0.3rem",
           }}
-          className={`${
-            isVisible ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-500`}
         >
           <div
             className="glass-card"

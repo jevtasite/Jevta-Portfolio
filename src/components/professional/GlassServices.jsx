@@ -1,33 +1,7 @@
-import { useEffect, useState, useRef } from 'react';
 import { services } from '../../data/services';
 import '../../styles/professional.css';
 
 const GlassServices = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   const iconMap = {
     code: (
@@ -48,9 +22,9 @@ const GlassServices = () => {
   };
 
   return (
-    <section id="services" ref={sectionRef} className="professional-section">
+    <section id="services" className="professional-section">
       <div className="professional-container">
-        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <div className="scroll-reveal">
           <h2 className="section-title">
             My <span className="gradient-text-pink">Services</span>
           </h2>
@@ -64,7 +38,7 @@ const GlassServices = () => {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`glass-card text-center ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
+              className="glass-card text-center"
             >
               {/* Icon */}
               <div className="flex justify-center mb-6 gradient-text-cyan">
@@ -110,7 +84,7 @@ const GlassServices = () => {
         </div>
 
         {/* CTA Section */}
-        <div className={`glass-card text-center max-w-3xl mx-auto mt-12 ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <div className="glass-card text-center max-w-3xl mx-auto mt-12">
           <h3 className="text-3xl font-bold mb-4 gradient-text">
             Let's Work Together
           </h3>

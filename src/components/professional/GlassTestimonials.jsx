@@ -1,35 +1,10 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { testimonials } from "../../data/testimonials";
 import "../../styles/professional.css";
 
 const GlassTestimonials = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -63,16 +38,11 @@ const GlassTestimonials = () => {
   return (
     <section
       id="testimonials"
-      ref={sectionRef}
       className="professional-section"
       style={{ background: "rgba(0,0,0,0.1)" }}
     >
       <div className="professional-container">
-        <div
-          className={`${
-            isVisible ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-500`}
-        >
+        <div className="scroll-reveal">
           <h2 className="section-title">
             Client <span className="gradient-text-green">Reviews</span>
           </h2>
@@ -89,9 +59,6 @@ const GlassTestimonials = () => {
             width: "100%",
             marginTop: "3rem",
           }}
-          className={`${
-            isVisible ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-500`}
         >
           <div style={{ maxWidth: "56rem", width: "100%" }}>
             <div

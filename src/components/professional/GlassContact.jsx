@@ -1,34 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import { contactInfo, contactMessages } from '../../data/contact';
 import '../../styles/professional.css';
 
 const GlassContact = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   const handleEmailClick = () => {
     window.open(contactInfo.gmailCompose, '_blank');
@@ -59,9 +34,9 @@ const GlassContact = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="professional-section" style={{ background: 'rgba(0,0,0,0.1)' }}>
+    <section id="contact" className="professional-section" style={{ background: 'rgba(0,0,0,0.1)' }}>
       <div className="professional-container">
-        <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+        <div className="scroll-reveal">
           <h2 className="section-title">
             Get In <span className="gradient-text-green">Touch</span>
           </h2>
@@ -72,7 +47,7 @@ const GlassContact = () => {
 
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           {/* Email & Contact */}
-          <div className={`${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+          <div>
             <div className="glass-card email-card">
               <div className="email-card-header">
                 <div className="email-icon-wrapper">
@@ -157,7 +132,7 @@ const GlassContact = () => {
           {/* Social & Location */}
           <div className="contact-right-column">
             {/* Social Links */}
-            <div className={`glass-card social-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+            <div className="glass-card social-card">
               <div className="social-card-header">
                 <div className="social-icon-wrapper">
                   <svg className="social-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +168,7 @@ const GlassContact = () => {
             </div>
 
             {/* Location Info */}
-            <div className={`glass-card location-card ${isVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
+            <div className="glass-card location-card">
               <div className="location-card-header">
                 <div className="location-icon-wrapper">
                   <svg className="location-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
