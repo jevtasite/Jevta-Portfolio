@@ -13,9 +13,7 @@ const SectionDivider = () => {
 
   return (
     <div className={`section-divider ${isVisible ? "visible" : ""}`}>
-      <span className="divider-comment">
-        &lt;!-- SECTION_BREAK: ABOUT --&gt;
-      </span>
+      <span className="divider-comment">&lt;!-- SECTION_BREAK --&gt;</span>
     </div>
   );
 };

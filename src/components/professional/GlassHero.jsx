@@ -220,11 +220,7 @@ const GlassHero = () => {
           </div>
 
           {/* Tech Stack Marquee */}
-          <div
-            className={`hero-tech-marquee ${
-              isVisible ? "opacity-100" : "opacity-0"
-            }`}
-          >
+          <div className="hero-tech-marquee">
             <div className="hero-marquee-container">
               <div className="hero-marquee-track">
                 {[...Array(4)].map((_, setIndex) => (

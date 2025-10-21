@@ -859,15 +859,8 @@ body.professional-theme ::selection {
 /* Hero Tech Stack Marquee */
 .hero-tech-marquee {
   width: 100%;
-  opacity: 0;
-  transition: opacity 0.6s ease-out;
-  margin-top: 3rem;
-}
-
-.hero-tech-marquee.opacity-100 {
   opacity: 1;
-  animation: fade-in-up 0.6s ease-out forwards;
-  animation-delay: 0.8s;
+  margin-top: 3rem;
 }
 
 .hero-marquee-container {
@@ -953,14 +946,6 @@ body.professional-theme ::selection {
   justify-content: center;
   align-items: center;
   padding: 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease-out;
-}
-
-.section-divider.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .divider-comment {
@@ -969,33 +954,7 @@ body.professional-theme ::selection {
   color: var(--matrix-green);
   text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
   letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
   white-space: nowrap;
-  animation: typewriter 2s steps(30) 1s forwards;
-  max-width: 0;
-}
-
-.section-divider.visible .divider-comment {
-  max-width: 100%;
-}
-
-@keyframes typewriter {
-  from {
-    max-width: 0;
-  }
-  to {
-    max-width: 100%;
-  }
-}
-
-@keyframes blink {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var(--matrix-green);
-  }
 }
 
 @media (max-width: 768px) {
