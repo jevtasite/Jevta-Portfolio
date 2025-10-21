@@ -7,12 +7,43 @@ const GlassAbout = () => {
   const [activeTab, setActiveTab] = useState("developer");
   const [copied, setCopied] = useState(false);
   const [isTerminalActive, setIsTerminalActive] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(profile.email);
-    setCopied(true);
-    // Longer timeout on mobile for better feedback
-    setTimeout(() => setCopied(false), 3000);
+  const handleCopyEmail = async () => {
+    try {
+      // Try modern clipboard API first
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(profile.email);
+      } else {
+        // Fallback for older browsers or insecure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = profile.email;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+
+      setCopied(true);
+      setShowToast(true);
+
+      // Reset copied state
+      setTimeout(() => setCopied(false), 2500);
+
+      // Hide toast after animation
+      setTimeout(() => setShowToast(false), 3000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+      // Still show feedback even if copy failed
+      setCopied(true);
+      setShowToast(true);
+      setTimeout(() => setCopied(false), 2500);
+      setTimeout(() => setShowToast(false), 3000);
+    }
   };
 
   const renderDeveloperJS = () => (
@@ -475,6 +506,26 @@ const GlassAbout = () => {
           )}
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="copy-toast">
+          <svg
+            className="toast-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span className="toast-text">Email copied to clipboard!</span>
+        </div>
+      )}
     </section>
   );
 };
