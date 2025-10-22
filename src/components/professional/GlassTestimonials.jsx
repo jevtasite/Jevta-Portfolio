@@ -6,6 +6,11 @@ const GlassTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Minimum swipe distance (in px) to trigger a swipe
+  const minSwipeDistance = 50;
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -17,6 +22,22 @@ const GlassTestimonials = () => {
 
     return () => clearInterval(interval);
   }, [isPaused]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrev();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const renderProgressBar = (rating) => {
     const filled = Math.floor((rating / 5) * 20);
@@ -53,6 +74,30 @@ const GlassTestimonials = () => {
     }, 350);
   };
 
+  // Touch handlers for swipe gestures
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrev();
+    }
+  };
+
   const currentTestimonial = testimonials[currentIndex];
 
   return (
@@ -85,6 +130,9 @@ const GlassTestimonials = () => {
               className={`terminal-review-card ${isTransitioning ? 'card-exit' : 'card-enter'}`}
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
               key={currentIndex}
             >
               {/* Terminal Window Header */}
