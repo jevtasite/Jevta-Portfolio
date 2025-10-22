@@ -12,7 +12,7 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content"
+      content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content"
     />
 
     <!-- Google Fonts -->
@@ -22,25 +22,77 @@
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Mono:wght@400;700&display=block"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Mono:wght@400;700&display=swap"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Mono:wght@400;700&display=block"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
     <!-- SEO Meta Tags -->
-    <title>Jevta</title>
+    <title>Luka Stoiljković - Front-end Developer | React & JavaScript Specialist</title>
     <meta
       name="description"
-      content="Portfolio of Luka Stoiljković - Front-end Developer specializing in modern web development, branding, and consultancy."
+      content="Portfolio of Luka Stoiljković - Front-end Developer specializing in modern web development, branding, and consultancy. Expert in React, JavaScript, HTML5, CSS3, and modern web technologies."
     />
-    <meta property="og:title" content="Jevta - Luka Stoiljković Portfolio" />
+    <meta name="author" content="Luka Stoiljković" />
+    <meta name="keywords" content="Front-end Developer, React Developer, JavaScript, Web Development, Portfolio, Luka Stoiljković, Jevta" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://jevta.site" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Luka Stoiljković - Front-end Developer | React & JavaScript Specialist" />
+    <meta property="og:description" content="Portfolio of Luka Stoiljković - Front-end Developer specializing in modern web development, branding, and consultancy. Expert in React, JavaScript, HTML5, CSS3, and modern web technologies." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jevta.site" />
+    <meta property="og:image" content="https://jevta.site/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Jevta - Luka Stoiljković" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Luka Stoiljković - Front-end Developer | React & JavaScript Specialist" />
+    <meta name="twitter:description" content="Portfolio of Luka Stoiljković - Front-end Developer specializing in modern web development, branding, and consultancy." />
+    <meta name="twitter:image" content="https://jevta.site/og-image.png" />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Luka Stoiljković",
+      "url": "https://jevta.site",
+      "image": "https://jevta.site/og-image.png",
+      "sameAs": [
+        "https://github.com/jevtasite",
+        "https://www.instagram.com/jevta.site/",
+        "https://www.facebook.com/profile.php?id=61552420501147"
+      ],
+      "jobTitle": "Front-end Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "description": "Front-end Developer specializing in modern web development, branding, and consultancy. Expert in React, JavaScript, HTML5, CSS3, and modern web technologies.",
+      "email": "jevta.site@gmail.com",
+      "birthDate": "2005-07-03",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "RS"
+      },
+      "knowsLanguage": ["English", "Serbian"],
+      "knowsAbout": ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Vite", "Git", "Web Development", "Front-end Development"]
+    }
+    </script>
   </body>
 </html>
