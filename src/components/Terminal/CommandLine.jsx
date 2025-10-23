@@ -22,18 +22,23 @@ const CommandLine = () => {
     output,
   } = useTerminalStore();
 
-  // Focus input on mount
+  // Focus input on mount (desktop only - prevent mobile keyboard popup)
   useEffect(() => {
-    if (inputRef.current) {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    if (inputRef.current && !isMobile) {
       inputRef.current.focus();
     }
   }, []);
 
-  // Global Enter key listener to focus command line
+  // Global Enter key listener to focus command line (desktop only)
   useEffect(() => {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
     const handleGlobalKeyPress = (e) => {
       // Focus input when Enter is pressed (unless already focused or in a game)
-      if (e.key === 'Enter' && document.activeElement !== inputRef.current) {
+      // Only on desktop to prevent mobile keyboard popup
+      if (e.key === 'Enter' && document.activeElement !== inputRef.current && !isMobile) {
         const { gameActive } = useTerminalStore.getState();
         if (!gameActive && inputRef.current) {
           e.preventDefault();
