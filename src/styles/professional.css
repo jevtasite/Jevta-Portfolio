@@ -724,7 +724,7 @@ body.professional-theme ::selection {
 .project-card {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+  /* border-radius: 16px; */
   cursor: pointer;
 }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Experience = () => {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ const Experience = () => {
             const experiences = getExperiences();
             experiences.forEach((_, index) => {
               setTimeout(() => {
-                setVisibleExperiences(prev => [...prev, index]);
+                setVisibleExperiences((prev) => [...prev, index]);
               }, index * 300); // 300ms delay between each experience
             });
           }
@@ -25,7 +25,7 @@ const Experience = () => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('experience');
+    const element = document.getElementById("experience");
     if (element) {
       observer.observe(element);
     }
@@ -39,24 +39,31 @@ const Experience = () => {
 
   const getExperiences = () => [
     {
-      type: t('experience.internship'),
-      company: 'Esenca Software',
-      companyUrl: 'https://esenca.rs/',
-      period: 'Summer 2023',
-      timestamp: '2023-07-15 09:00:00',
-      description: t('experience.esencaDesc'),
-      certificate: 'https://drive.google.com/file/d/1RocFTef7IS-BZRohnQbvb3gdcyd_cYWx/view?usp=sharing',
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Git'],
+      type: t("experience.internship"),
+      company: "Esenca Software",
+      companyUrl: "https://esenca.rs/",
+      period: "Summer 2023",
+      timestamp: "2023-07-15 09:00:00",
+      description: t("experience.esencaDesc"),
+      certificate:
+        "https://drive.google.com/file/d/1RocFTef7IS-BZRohnQbvb3gdcyd_cYWx/view?usp=sharing",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git"],
     },
     {
-      type: t('experience.freelance'),
-      company: 'Self-Employed',
+      type: t("experience.freelance"),
+      company: "Self-Employed",
       companyUrl: null,
-      period: '2023 - Present',
-      timestamp: '2023-09-01 00:00:00',
-      description: t('experience.freelanceDesc'),
+      period: "2023 - Present",
+      timestamp: "2023-09-01 00:00:00",
+      description: t("experience.freelanceDesc"),
       certificate: null,
-      technologies: ['React', 'Tailwind CSS', 'Vite', 'Framer Motion', 'Vercel'],
+      technologies: [
+        "React",
+        "Tailwind CSS",
+        "Vite",
+        "Framer Motion",
+        "Netlify",
+      ],
     },
   ];
 
@@ -74,20 +81,22 @@ const Experience = () => {
           </div>
           <div className="border-l-2 border-comment-green pl-4">
             <h2 className="text-lime-terminal font-fira text-3xl md:text-4xl font-bold mb-4">
-              {t('experience.title')}
+              {t("experience.title")}
             </h2>
           </div>
         </div>
 
         {/* Timeline */}
-        <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div
+          className={`space-y-8 ${isVisible ? "animate-fade-in" : "opacity-0"}`}
+        >
           {getExperiences().map((exp, index) => (
             <div
               key={index}
               className={`timeline-item border border-comment-green bg-elevated-black/50 p-6 hover:border-lime-terminal transition-all duration-500 ${
                 visibleExperiences.includes(index)
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
               {/* Log Header */}
@@ -96,7 +105,9 @@ const Experience = () => {
                   <span>[</span>
                   <span className="text-lime-terminal">{exp.timestamp}</span>
                   <span>]</span>
-                  <span className="text-cyber-magenta uppercase">{exp.type}</span>
+                  <span className="text-cyber-magenta uppercase">
+                    {exp.type}
+                  </span>
                 </div>
                 <div className="font-fira text-xs text-comment-green">
                   {exp.period}
@@ -145,7 +156,7 @@ const Experience = () => {
               {/* Technologies */}
               <div className="mb-4">
                 <div className="text-comment-green font-fira text-xs mb-2">
-                  &gt; {t('experience.technologies')}:
+                  &gt; {t("experience.technologies")}:
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech, techIndex) => (
@@ -196,7 +207,7 @@ const Experience = () => {
             <div className="flex-1">
               <span className="text-comment-green">status:</span>
               <span className="text-lime-terminal ml-2">
-                {t('experience.status')}
+                {t("experience.status")}
               </span>
             </div>
           </div>
