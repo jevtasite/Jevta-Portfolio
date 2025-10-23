@@ -26,12 +26,7 @@ const GlassProjects = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="glass-card cursor-pointer"
-              onClick={() =>
-                setExpandedProject(
-                  expandedProject === project.id ? null : project.id
-                )
-              }
+              className="glass-card"
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-4">
@@ -142,8 +137,7 @@ const GlassProjects = () => {
                 </a>
                 <button
                   className="glass-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
+                  onClick={() => {
                     setExpandedProject(
                       expandedProject === project.id ? null : project.id
                     );
