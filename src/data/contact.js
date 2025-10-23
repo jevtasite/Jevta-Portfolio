@@ -13,10 +13,10 @@ export const contactInfo = {
 
   social: [
     {
-      name: "Facebook",
-      url: "https://www.facebook.com/profile.php?id=61552420501147",
+      name: "Instagram",
+      url: "https://www.instagram.com/jevta.site/",
       username: "@jevta.site",
-      icon: "facebook",
+      icon: "instagram",
     },
     {
       name: "GitHub",
@@ -25,10 +25,10 @@ export const contactInfo = {
       icon: "github",
     },
     {
-      name: "Instagram",
-      url: "https://www.instagram.com/jevta.site/",
+      name: "Facebook",
+      url: "https://www.facebook.com/profile.php?id=61552420501147",
       username: "@jevta.site",
-      icon: "instagram",
+      icon: "facebook",
     },
   ],
 
