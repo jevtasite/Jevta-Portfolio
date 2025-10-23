@@ -21,8 +21,12 @@ const Hero = () => {
 
     // Variable typing speed - randomized for natural feel
     const getTypingSpeed = () => {
-      if (isDeleting) return Math.random() * 50 + 30; // 30-80ms
-      return Math.random() * 100 + 80; // 80-180ms
+      if (isDeleting) return Math.random() * 40 + 30; // 30-70ms
+      // Slightly faster typing for initialization messages, normal for loop messages
+      if (!systemInitialized) {
+        return Math.random() * 40 + 50; // 50-90ms (moderately faster for init)
+      }
+      return Math.random() * 100 + 80; // 80-180ms (normal for loop)
     };
 
     const pauseTime = isDeleting ? 1000 : 2500;

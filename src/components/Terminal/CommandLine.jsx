@@ -24,7 +24,10 @@ const CommandLine = () => {
 
   // Focus input on mount (desktop only - prevent mobile keyboard popup)
   useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) || window.innerWidth < 768;
 
     if (inputRef.current && !isMobile) {
       inputRef.current.focus();
@@ -33,12 +36,19 @@ const CommandLine = () => {
 
   // Global Enter key listener to focus command line (desktop only)
   useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) || window.innerWidth < 768;
 
     const handleGlobalKeyPress = (e) => {
       // Focus input when Enter is pressed (unless already focused or in a game)
       // Only on desktop to prevent mobile keyboard popup
-      if (e.key === 'Enter' && document.activeElement !== inputRef.current && !isMobile) {
+      if (
+        e.key === "Enter" &&
+        document.activeElement !== inputRef.current &&
+        !isMobile
+      ) {
         const { gameActive } = useTerminalStore.getState();
         if (!gameActive && inputRef.current) {
           e.preventDefault();
@@ -47,8 +57,8 @@ const CommandLine = () => {
       }
     };
 
-    window.addEventListener('keydown', handleGlobalKeyPress);
-    return () => window.removeEventListener('keydown', handleGlobalKeyPress);
+    window.addEventListener("keydown", handleGlobalKeyPress);
+    return () => window.removeEventListener("keydown", handleGlobalKeyPress);
   }, []);
 
   // Show command line with CRT flash after hero content finishes
@@ -57,7 +67,7 @@ const CommandLine = () => {
     // Add flash AFTER hero animation completes
     const timer = setTimeout(() => {
       setShowCommandLine(true);
-    }, 3800); // 500ms delay + 800ms hero animation + 500ms buffer
+    }, 2400); // 500ms delay + 800ms hero animation + 500ms buffer
 
     return () => clearTimeout(timer);
   }, []);
@@ -125,10 +135,10 @@ const CommandLine = () => {
 
       // Set readonly temporarily to force keyboard close (iOS fix)
       if (inputRef.current) {
-        inputRef.current.setAttribute('readonly', 'readonly');
+        inputRef.current.setAttribute("readonly", "readonly");
         setTimeout(() => {
           if (inputRef.current) {
-            inputRef.current.removeAttribute('readonly');
+            inputRef.current.removeAttribute("readonly");
           }
         }, 100);
       }

@@ -47,6 +47,9 @@ const FlappyBird = ({ onClose }) => {
   const birdRef = useRef(createBird(canvasSize.height));
   const pipesRef = useRef([]);
 
+  // Delta time tracking for frame-rate independent gameplay
+  const lastFrameTimeRef = useRef(performance.now());
+
   // Prevent the Enter key that opened the game from immediately starting it
   const canAcceptInput = useRef(false);
 
@@ -68,6 +71,8 @@ const FlappyBird = ({ onClose }) => {
     // Give the bird an initial upward velocity when starting
     birdRef.current = applyFlapForce(birdRef.current);
     pipesRef.current = [];
+    // Reset delta time tracking
+    lastFrameTimeRef.current = performance.now();
   }, [canvasSize.height]);
 
   // Handle flap (spacebar, click, tap)
@@ -143,22 +148,34 @@ const FlappyBird = ({ onClose }) => {
 
     const ctx = canvas.getContext('2d');
 
-    const gameLoop = () => {
+    const gameLoop = (currentTime) => {
+      // Calculate delta time for frame-rate independent gameplay
+      const deltaTime = currentTime - lastFrameTimeRef.current;
+      lastFrameTimeRef.current = currentTime;
+
+      // Calculate delta multiplier (how many frames worth of movement to apply)
+      // Target: 60 FPS = 16.67ms per frame
+      const targetFrameTime = 1000 / GAME_CONFIG.TARGET_FPS;
+      const deltaMultiplier = deltaTime / targetFrameTime;
+
+      // Clamp delta multiplier to prevent large jumps (e.g., when tab is inactive)
+      const clampedDelta = Math.min(deltaMultiplier, 3);
+
       // Clear canvas
       ctx.fillStyle = '#0a0a0a'; // terminal-black
       ctx.fillRect(0, 0, canvasSize.width, canvasSize.height);
 
       // Only update physics and pipes when playing
       if (gameState === 'playing') {
-        // Update bird physics
-        birdRef.current = applyGravity(birdRef.current);
+        // Update bird physics with delta time
+        birdRef.current = applyGravity(birdRef.current, clampedDelta);
         birdRef.current = updateBirdRotation(birdRef.current);
 
         // Calculate current speed based on score (progressive difficulty)
         const currentSpeed = getCurrentPipeSpeed(score);
 
-        // Update pipes with progressive speed
-        pipesRef.current = movePipes(pipesRef.current, currentSpeed);
+        // Update pipes with progressive speed and delta time
+        pipesRef.current = movePipes(pipesRef.current, currentSpeed, clampedDelta);
         pipesRef.current = removeOffScreenPipes(pipesRef.current);
 
         // Spawn new pipes
@@ -249,8 +266,8 @@ const FlappyBird = ({ onClose }) => {
       animationFrameRef.current = requestAnimationFrame(gameLoop);
     };
 
-    // Start game loop
-    gameLoop();
+    // Start game loop with initial timestamp
+    animationFrameRef.current = requestAnimationFrame(gameLoop);
 
     return () => {
       if (animationFrameRef.current) {

@@ -2,16 +2,19 @@
 
 // Game constants
 export const GAME_CONFIG = {
-  // Physics
-  GRAVITY: 0.28,
-  FLAP_FORCE: -8.5,
-  MAX_FALL_SPEED: 5.5,
-  MAX_RISE_SPEED: -10,
+  // Target FPS for consistent gameplay
+  TARGET_FPS: 60,
 
-  // Pipes
-  PIPE_SPEED_START: 1.2,
-  PIPE_SPEED_MAX: 2.5,
-  PIPE_SPEED_INCREMENT: 0.15,
+  // Physics (values per frame at 60 FPS)
+  GRAVITY: 0.45,
+  FLAP_FORCE: -9.5,
+  MAX_FALL_SPEED: 8,
+  MAX_RISE_SPEED: -12,
+
+  // Pipes (values per frame at 60 FPS)
+  PIPE_SPEED_START: 2.2,
+  PIPE_SPEED_MAX: 4.0,
+  PIPE_SPEED_INCREMENT: 0.25,
   PIPE_GAP: 200,
   PIPE_WIDTH: 60,
   PIPE_MIN_HEIGHT: 50,
@@ -40,13 +43,13 @@ export const createBird = (canvasHeight) => ({
   rotation: 0,
 });
 
-// Apply gravity to bird
-export const applyGravity = (bird) => {
-  const newVelocity = bird.velocity + GAME_CONFIG.GRAVITY;
+// Apply gravity to bird (with delta time for frame rate independence)
+export const applyGravity = (bird, deltaMultiplier = 1) => {
+  const newVelocity = bird.velocity + GAME_CONFIG.GRAVITY * deltaMultiplier;
   return {
     ...bird,
     velocity: Math.min(newVelocity, GAME_CONFIG.MAX_FALL_SPEED),
-    y: bird.y + newVelocity,
+    y: bird.y + newVelocity * deltaMultiplier,
   };
 };
 
@@ -94,11 +97,11 @@ export const getCurrentPipeSpeed = (score) => {
   return Math.min(speed, GAME_CONFIG.PIPE_SPEED_MAX);
 };
 
-// Move pipes to the left
-export const movePipes = (pipes, speed = GAME_CONFIG.PIPE_SPEED_START) => {
+// Move pipes to the left (with delta time for frame rate independence)
+export const movePipes = (pipes, speed = GAME_CONFIG.PIPE_SPEED_START, deltaMultiplier = 1) => {
   return pipes.map((pipe) => ({
     ...pipe,
-    x: pipe.x - speed,
+    x: pipe.x - speed * deltaMultiplier,
   }));
 };
 
